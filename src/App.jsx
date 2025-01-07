@@ -1,7 +1,7 @@
 import Header from "./Header";
 import AppMain from "./AppMain";
 import Footer from "./Footer";
-import "./styles/App.css";
+import "./styles/app.css";
 
 const App = () => {
   return (
