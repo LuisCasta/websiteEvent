@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FormularioRegistro from "./FormularioRegistro";
-import "./styles/AppMain.css";
+import "./styles/appmain.css";
 import gris from "./assets/gris.png";
 import black from "./assets/haval.png";
 import blanca from "./assets/blanca.png";
