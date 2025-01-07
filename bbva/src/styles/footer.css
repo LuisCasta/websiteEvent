@@ -1,0 +1,72 @@
+.footer {
+  background-color: #082046;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.container-footer {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.container-legal {
+  display: flex;
+  gap: 20px;
+}
+
+.container-info {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 40px;
+}
+.legal-advices {
+  color: #499fc5;
+}
+.address {
+  color: #fff;
+  font-size: 0.6rem;
+  text-align: left;
+  font-weight: lighter;
+}
+
+.main-message-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: self-end;
+}
+
+.main-message-footer h2 {
+  font-size: 1.5rem;
+  text-align: left;
+  color: #fff;
+  font-weight: 800;
+}
+.main-message-footer p {
+  font-size: 0.8rem;
+  text-align: left;
+  background-color: #fff;
+  padding: 5px;
+  padding-right: 50px;
+  width: fit-content;
+  font-weight: 500;
+}
+
+.social-media {
+  display: flex;
+  gap: 5px;
+}
+
+.social-media i {
+  background-color: #499fc5;
+  color: #082046;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}

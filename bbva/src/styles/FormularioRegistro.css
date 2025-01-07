@@ -1,0 +1,79 @@
+.contenedor-formulario {
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 600px;
+  justify-content: center;
+}
+.formulario {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.message-form-text {
+  text-align: left;
+}
+.input-container {
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1.5px solid #5d5d5d;
+  background-color: #f5f5f5;
+}
+
+.btn-registro {
+  background-color: #2978b5;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* .btn-registro:hover {
+  background-color: #0056b3;
+} */
+
+.call-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000338;
+  margin: 20px auto;
+}
+
+.message-form-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #282727;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: left;
+}
+
+.form-footer:hover {
+  text-decoration: underline #2978b5;
+}
+.ready-btn-login {
+  color: #2978b5;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: left;
+}

@@ -1,0 +1,29 @@
+main {
+  background-size: cover;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  height: 800px;
+  display: flex;
+}
+.content-main {
+  display: flex;
+  justify-content: left;
+  gap: 40px;
+  width: 70%;
+  margin: auto;
+}
+.main-message h2 {
+  font-size: 3rem;
+  text-align: left;
+  color: #fff;
+  font-weight: 800;
+}
+.main-message p {
+  font-size: 1rem;
+  text-align: left;
+  background-color: #fff;
+  padding: 10px;
+  padding-right: 100px;
+  width: fit-content;
+  font-weight: 500;
+}
