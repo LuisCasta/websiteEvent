@@ -6,7 +6,7 @@ import bg2 from "./assets/BG2.png";
 import bg3 from "./assets/BG3.png";
 import camionetaBlanca from "./assets/pkWhite.png";
 import camionetaGris from "./assets/pkgrey.png";
-import slogan from "./assets/slogan.png";
+import slogan from "./assets/Slogan.png";
 import camionetaNegra from "./assets/camionetaNegra.png";
 
 console.log(camionetaBlanca);
