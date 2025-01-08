@@ -19,6 +19,7 @@ const FormularioRegistro = ({ modo, setModo }) => {
             },
           ],
           enlace: {
+            message: "",
             texto: "¿Ya estás registrado? Inicia sesión",
             accion: () => setModo("iniciarSesion"),
           },
@@ -30,6 +31,7 @@ const FormularioRegistro = ({ modo, setModo }) => {
             { id: "password", placeholder: "Contraseña", type: "password" },
           ],
           enlace: {
+            message: "",
             texto: "¿Olvidaste tu contraseña?",
             accion: () => setModo("olvidoPassword"),
           },
@@ -74,9 +76,17 @@ const FormularioRegistro = ({ modo, setModo }) => {
           {modo === "crearCuenta"
             ? ""
             : modo === "iniciarSesion"
-            ? "Iniciar Sesión"
-            : "Recuperar Contraseña"}
+            ? "Inicia Sesión"
+            : "Recuperación de Contraseña"}
         </h2>
+        {modo === "olvidoPassword" && (
+          <div className="message-form">
+            <p className="message-form-text-pw">
+              Escribe tu correo electrónico y recibirás un e-mail con las
+              indicaciones para recuperar tu contraseña
+            </p>
+          </div>
+        )}
         {campos.map((campo) => (
           <div key={campo.id}>
             <Input
@@ -96,7 +106,7 @@ const FormularioRegistro = ({ modo, setModo }) => {
             {enlace.texto}
           </a>
         </div>
-        <BotonRegistro />
+        <BotonRegistro modo={modo} />
       </form>
     </div>
   );

@@ -1,0 +1,53 @@
+.contador {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.numbers {
+  font-size: 50px;
+  font-weight: bold;
+  color: #e9f7f8;
+  background-color: #1b2650;
+  width: 110px;
+  height: 90px;
+  line-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  font-weight: lighter;
+  border-radius: 30px;
+  position: relative;
+}
+
+.numbers::after {
+  content: "";
+  width: 110px;
+  height: 5px;
+  position: absolute;
+  background-color: #e9f7f8;
+}
+
+.title-numbers {
+  font-size: 20px;
+  font-weight: bold;
+  color: #068585;
+  text-transform: uppercase;
+}
+
+.count-title {
+  color: #068585;
+  text-transform: uppercase;
+}
+
+.contador-container {
+  background-color: #e9f7f8;
+  padding: 50px;
+}

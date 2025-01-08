@@ -1,0 +1,26 @@
+.container-portada {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.portada-content {
+  position: absolute;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+.pickup-gris {
+  width: 500px;
+}
+.slogan {
+  width: 300px;
+}
+
+.message-count {
+  margin-top: 20px;
+  color: rgb(114, 114, 114);
+}

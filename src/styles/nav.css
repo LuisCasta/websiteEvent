@@ -1,0 +1,19 @@
+.navbar-title {
+  width: 80%;
+}
+.navbar-title ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-title ul li {
+  list-style: none;
+  color: white;
+  line-height: 96px;
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: 4px solid #fff;
+}
