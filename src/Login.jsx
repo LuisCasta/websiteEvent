@@ -5,6 +5,7 @@ import pickgris from "./assets/pkgrey.png";
 import "./styles/login.css";
 import DiagonalSection from "./DiagonalSection";
 import Contador from "./Contador";
+import GeneralData from "./GeneralData";
 
 const Login = () => {
   return (
@@ -18,6 +19,8 @@ const Login = () => {
             <img className="pickup-gris" src={pickgris} alt="" />
           </div>
         </div>
+      </header>
+      <div>
         <DiagonalSection />
         <div className="contador-container">
           <h2 className="count-title">Faltan</h2>
@@ -27,10 +30,10 @@ const Login = () => {
             ESPERAMOS!
           </h2>
         </div>
-      </header>
-      <main>
-        {/* Aquí puedes agregar el contenido principal de la página */}
-      </main>
+      </div>
+      <div>
+        <GeneralData />
+      </div>
     </div>
   );
 };

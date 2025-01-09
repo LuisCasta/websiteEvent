@@ -1,0 +1,31 @@
+* {
+  font-family: "MyFont", sans-serif;
+}
+@font-face {
+  font-family: "MyFont";
+  src: url("fonts/BentonSansBBVA-Medium.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("fonts/BentonSansBBVA-Bold.otf") format("otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("fonts/BentonSansBBVA-Book.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 
+BentonSansBBVA-Bold.otf
+BentonSansBBVA-Book.otf
+BentonSansBBVA-BookItalic.otf
+BentonSansBBVA-Light.otf
+BentonSansBBVA-Medium.otf
+BentonSansBBVA-MediumItalic.otf */

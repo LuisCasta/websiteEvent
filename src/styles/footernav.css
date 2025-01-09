@@ -1,11 +1,10 @@
-.navbar {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.footer-logos {
+  height: 100px;
   background-color: #082046;
   display: flex;
   /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
 }
-.navbar-content {
+.navbar-content-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,4 +20,16 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-content-footer {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .logo-gwm {
+    width: 80px;
+  }
+
+  .logo-bbva {
+    width: 70px;
+  }
 }

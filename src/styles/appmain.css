@@ -43,3 +43,31 @@ main {
     transform: translateX(0);
   }
 }
+
+.slogan-img-mov {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .content-main {
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+  }
+  main {
+    height: initial;
+  }
+
+  .slogan-img {
+    display: none;
+  }
+  .pickup {
+    position: initial;
+    width: 300px;
+  }
+
+  .slogan-img-mov {
+    display: block;
+    width: 100%;
+  }
+}

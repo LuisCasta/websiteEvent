@@ -12,7 +12,7 @@ const Nav = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        <img className="logo-bbva" src="../src/assets/bbva.png" alt="" />
+        <img className="logo-bbva" src="../src/assets/bbva.svg" alt="" />
         <div className="navbar-title">
           <ul>
             {menuItems.map((item, index) => (
@@ -26,7 +26,7 @@ const Nav = () => {
             ))}
           </ul>
         </div>
-        <img className="logo-gwm" src="../src/assets/gwm.png" alt="" />
+        <img className="logo-gwm" src="../src/assets/gwm.svg" alt="" />
       </div>
     </nav>
   );

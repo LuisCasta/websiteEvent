@@ -82,3 +82,9 @@ input {
   /* font-size: 0.5rem; */
   color: #5d5d5d;
 }
+
+@media (max-width: 768px) {
+  .contenedor-formulario {
+    width: 100%;
+  }
+}

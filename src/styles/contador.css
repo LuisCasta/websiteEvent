@@ -13,7 +13,7 @@
 .numbers {
   font-size: 50px;
   font-weight: bold;
-  color: #e9f7f8;
+  color: #fff;
   background-color: #1b2650;
   width: 110px;
   height: 90px;
@@ -23,7 +23,7 @@
   align-items: center;
   margin: 20px auto;
   font-weight: lighter;
-  border-radius: 30px;
+  border-radius: 25px;
   position: relative;
 }
 
@@ -50,4 +50,10 @@
 .contador-container {
   background-color: #e9f7f8;
   padding: 50px;
+}
+
+@media (max-width: 768px) {
+  .contador {
+    flex-direction: column;
+  }
 }

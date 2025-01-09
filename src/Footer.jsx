@@ -1,10 +1,12 @@
 import "./styles/footer.css";
-import Header from "./Header";
+import social from "./assets/social.svg";
+import Slogan from "./assets/Slogan.png";
+import FooterNav from "./FooterNav";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <Header />
+      <FooterNav />
       <div className="container-footer">
         <div className="advices">
           <div className="container-info">
@@ -21,15 +23,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="main-message-footer">
-          <h2>
-            CONVENCIÓN <br /> GWM FINANCE 2025
-          </h2>
-          <p>ACELERANDO OPORTUNIDADES</p>
+          <img className="slogan-footer" src={Slogan} alt="" />
           <div className="social-media">
-            <i className="bx bxl-facebook-circle"></i>
-            <i className="bx bxl-instagram"></i>
-            <i className="bx bxl-youtube"></i>
-            <i className="bx bxl-linkedin-square"></i>
+            <img src={social} alt="" />
           </div>
         </div>
       </div>

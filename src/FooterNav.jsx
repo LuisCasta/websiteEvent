@@ -1,8 +1,8 @@
-import "./styles/header.css";
-const Header = () => {
+import "./styles/footernav.css";
+const FooterNav = () => {
   return (
-    <header className="navbar">
-      <div className="navbar-content">
+    <header className="footer-logos">
+      <div className="navbar-content-footer">
         <img className="logo-bbva" src="../src/assets/bbva.svg" alt="" />
         <img className="logo-gwm" src="../src/assets/gwm.svg" alt="" />
       </div>
@@ -10,4 +10,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default FooterNav;

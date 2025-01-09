@@ -1,0 +1,79 @@
+.general-data,
+.dress-code {
+  display: flex;
+  margin: auto;
+  height: 500px;
+}
+
+.container-data {
+  background-image: url(../assets/dresscode.png);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 60%;
+  overflow: hidden;
+}
+.text-data {
+  width: 50%;
+  text-align: left;
+}
+
+.bkground-3 {
+  background-image: url(../assets/bk3.png);
+}
+.text-data h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.img-graldata {
+  width: 40%;
+  aspect-ratio: 9/16;
+}
+
+/* hasta aquí el código para Datos generales */
+
+/* Aquí empieza el código para Dress Code */
+
+.container-code-text {
+  background-image: url(../assets/datagralbk.png);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 60%;
+  text-align: left;
+}
+
+.text-code {
+  width: 50%;
+  text-align: left;
+}
+
+.text-code h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.img-dresscode {
+  width: 40%;
+  aspect-ratio: 1/1;
+  background-color: #9fcbd2;
+}
+
+.list-code li {
+  margin-top: 1rem;
+}
+
+/* .img-dresscode img {
+  max-width: 100%;
+} */

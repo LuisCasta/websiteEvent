@@ -9,8 +9,6 @@ import camionetaGris from "./assets/pkgrey.png";
 import slogan from "./assets/Slogan.png";
 import camionetaNegra from "./assets/camionetaNegra.png";
 
-console.log(camionetaBlanca);
-
 const AppMain = () => {
   const [modo, setModo] = useState("crearCuenta"); // Estado para el modo actual
 
@@ -36,6 +34,7 @@ const AppMain = () => {
       }}
     >
       <div className="content-main">
+        <img className="slogan-img-mov" src={slogan} alt="" />
         <FormularioRegistro setModo={setModo} modo={modo} />
         <div className="main-message">
           <img className="slogan-img" src={slogan} alt="" />

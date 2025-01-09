@@ -24,3 +24,9 @@
   margin-top: 20px;
   color: rgb(114, 114, 114);
 }
+
+@media (max-width: 768px) {
+  .container-portada img {
+    display: none;
+  }
+}
