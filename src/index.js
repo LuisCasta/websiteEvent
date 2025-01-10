@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = " https://apibbva.onrender.com";
+const API_URL = "https://apibbva.onrender.com/api/auth/register";
 
 // Función para registrar un usuario
 export const registerUser = async (userData) => {

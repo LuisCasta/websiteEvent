@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FormularioRegistro from "./FormularioRegistro";
+import PropTypes from "prop-types";
 import Header from "./Header.jsx";
 import "./styles/appmain.css";
 import bg1 from "./assets/haval.png";
@@ -57,13 +58,12 @@ const AppMain = () => {
   const manejarAccion = async (e) => {
     if (modo === "crearCuenta") {
       e.preventDefault();
-      // Auí empieza el código para comnsumir la api register
       setFormData({ ...formData, [e.target.name]: e.target.value });
       setError(null); // Limpiar errores previos
       setSuccessMessage(null); // Limpiar mensajes previos
-      if (formDataInput.password !== formDataInput.confirmPassword) {
+      if (formDataInput.password != formDataInput.confirmPassword) {
         setError("Las contraseñas no coinciden");
-        return;
+        return alert("vuelve a intentarlo"); // Limpiar mensajes previos;
       }
       try {
         const result = await registerUser({
@@ -140,5 +140,7 @@ const AppMain = () => {
     </>
   );
 };
-
+AppMain.propTypes = {
+  formDataInput: PropTypes.func,
+};
 export default AppMain;

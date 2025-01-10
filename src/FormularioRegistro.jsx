@@ -33,7 +33,7 @@ const FormularioRegistro = ({
             { id: "email", placeholder: "Correo electrónico", type: "email" },
             { id: "password", placeholder: "Contraseña", type: "password" },
             {
-              id: "comprobar-pw",
+              id: "confirmPassword",
               placeholder: "Confirmar tu contraseña",
               type: "password",
             },
@@ -126,7 +126,7 @@ const FormularioRegistro = ({
               id={campo.id}
               type={campo.type}
               placeholder={campo.placeholder}
-              value={formDataInput[campo.id]} // Enlaza el valor al estado correspondiente
+              value={formDataInput[campo.id] || ""} // Enlaza el valor al estado correspondiente
               onChange={handleChange} // Llama a handleChange cuando el valor cambie
               required
             />
