@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import FormularioRegistro from "./FormularioRegistro";
-import Header from "./Header";
+import Header from "./Header.jsx";
 import "./styles/appmain.css";
 import bg1 from "./assets/haval.png";
 import bg2 from "./assets/BG2.png";

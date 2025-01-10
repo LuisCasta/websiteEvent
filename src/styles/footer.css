@@ -60,13 +60,16 @@
 }
 
 @media (max-width: 768px) {
-  .slogan-footer,
-  .container-legal {
+  .slogan-footer {
     display: none;
   }
   .container-footer {
     flex-direction: column;
     gap: 0px;
+  }
+
+  .container-legal {
+    justify-content: center;
   }
 
   .address {
