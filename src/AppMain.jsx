@@ -130,7 +130,9 @@ const AppMain = () => {
           />
           <div className="main-message">
             <img className="slogan-img" src={slogan} alt="" />
-            <img className="pickup" src={camionetas[modo]} alt="" />
+            <div className="container-pickup">
+              <img className="pickup" src={camionetas[modo]} alt="" />
+            </div>
           </div>
         </div>
       </main>

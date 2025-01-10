@@ -19,17 +19,19 @@ main {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  position: relative;
 }
 
 .slogan-img {
   width: 600px;
 }
+.container-pickup {
+  position: relative;
+}
 .pickup {
   position: absolute;
-  width: 900px;
+  width: 850px;
   bottom: -100px;
-  right: -200px;
+  left: 0;
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -62,9 +64,15 @@ main {
   .slogan-img {
     display: none;
   }
+
+  .container-pickup {
+    width: 100%;
+  }
+
   .pickup {
-    position: initial;
     width: 380px;
+    bottom: -15px;
+    left: -20px;
   }
 
   .slogan-img-mov {
