@@ -21,4 +21,11 @@
 }
 
 @media (max-width: 768px) {
+  .logo-gwm {
+    width: 90px;
+  }
+
+  .logo-bbva {
+    width: 70px;
+  }
 }

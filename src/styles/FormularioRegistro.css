@@ -90,5 +90,13 @@ input {
   .contenedor-formulario {
     width: 90%;
     margin: auto;
+    gap: 10px;
+    height: 530px;
+  }
+  .formulario {
+    gap: 10px;
+  }
+  .content-main {
+    gap: 0;
   }
 }

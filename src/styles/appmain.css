@@ -55,6 +55,7 @@ main {
     flex-direction: column;
     width: 100%;
     align-items: center;
+    gap: 0;
   }
   main {
     height: initial;
@@ -81,6 +82,7 @@ main {
     display: block;
     width: 85%;
     align-items: center;
+    margin-bottom: 30px;
   }
 
   .main-message {
