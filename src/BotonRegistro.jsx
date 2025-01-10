@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 const BotonRegistro = ({ modo }) => {
   return (
-    <button type="submit" className="btn-registro">
+    <button
+      type="submit"
+      className={modo === "iniciarSesion" ? "btn-hidden" : "btn-registro"}
+    >
       {modo == "crearCuenta"
         ? "REGÍSTRATE"
         : modo == "iniciarSesion"
-        ? "INICIAR SESIÓN"
+        ? ""
         : modo == "olvidoPassword"
         ? "ENVIAR CORREO"
         : ""}

@@ -1,9 +1,29 @@
 import Input from "./Input";
+import { useState } from "react";
 import BotonRegistro from "./BotonRegistro";
 import "./styles/FormularioRegistro.css";
 import PropTypes from "prop-types";
+import Turnstile from "react-turnstile";
 
-const FormularioRegistro = ({ modo, setModo }) => {
+const FormularioRegistro = ({
+  modo,
+  setModo,
+  onSubmit,
+  error,
+  message,
+  formDataInput,
+  handleChange,
+}) => {
+  const [token, setToken] = useState(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (token) {
+      // Aquí puedes enviar el token al backend para su verificación
+      console.log("Token recibido:", token);
+    } else {
+      console.error("Captcha no completado");
+    }
+  };
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
     switch (modo) {
@@ -18,6 +38,12 @@ const FormularioRegistro = ({ modo, setModo }) => {
               type: "password",
             },
           ],
+          btn: [
+            {
+              texto: "Botón Extra: Crear Cuenta",
+              accion: () => alert("Acción para Crear Cuenta"),
+            },
+          ],
           enlace: {
             message: "",
             texto: "¿Ya estás registrado? Inicia sesión",
@@ -30,6 +56,12 @@ const FormularioRegistro = ({ modo, setModo }) => {
             { id: "email", placeholder: "Correo electrónico", type: "email" },
             { id: "password", placeholder: "Contraseña", type: "password" },
           ],
+          btn: [
+            {
+              texto: "Botón Extra: Iniciar Sesión",
+              accion: () => alert("Acción para Iniciar Sesión"),
+            },
+          ],
           enlace: {
             message: "",
             texto: "¿Olvidaste tu contraseña?",
@@ -40,6 +72,12 @@ const FormularioRegistro = ({ modo, setModo }) => {
         return {
           campos: [
             { id: "email", placeholder: "Correo electrónico", type: "email" },
+          ],
+          btn: [
+            {
+              texto: "Botón Extra: Recuperar Contraseña",
+              accion: () => alert("Acción para Recuperar Contraseña"),
+            },
           ],
           enlace: {
             texto: "¿Aún no estás registrado? Regístrate",
@@ -52,11 +90,6 @@ const FormularioRegistro = ({ modo, setModo }) => {
   };
 
   const { campos, enlace } = obtenerCampos(); // Extraer campos y enlace dinámicos
-
-  const manejarEnvio = (e) => {
-    e.preventDefault();
-    alert(`Acción realizada: ${modo}`);
-  };
 
   return (
     <div className="contenedor-formulario">
@@ -71,7 +104,7 @@ const FormularioRegistro = ({ modo, setModo }) => {
         </div>
       )}
 
-      <form className="formulario" onSubmit={manejarEnvio}>
+      <form className="formulario" onSubmit={onSubmit}>
         <h2>
           {modo === "crearCuenta"
             ? ""
@@ -93,6 +126,8 @@ const FormularioRegistro = ({ modo, setModo }) => {
               id={campo.id}
               type={campo.type}
               placeholder={campo.placeholder}
+              value={formDataInput[campo.id]} // Enlaza el valor al estado correspondiente
+              onChange={handleChange} // Llama a handleChange cuando el valor cambie
               required
             />
           </div>
@@ -106,7 +141,13 @@ const FormularioRegistro = ({ modo, setModo }) => {
             {enlace.texto}
           </a>
         </div>
-        <BotonRegistro modo={modo} />
+        <Turnstile
+          sitekey="TU_SITE_KEY" // Usa la clave del sitio que obtuviste en Cloudflare
+          onVerify={setToken}
+        />
+        <BotonRegistro onSubmit={handleSubmit} modo={modo} />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {message && <p style={{ color: "green" }}>{message}</p>}
       </form>
     </div>
   );
@@ -114,6 +155,12 @@ const FormularioRegistro = ({ modo, setModo }) => {
 // Validación de props con PropTypes
 FormularioRegistro.propTypes = {
   modo: PropTypes.string.isRequired, // La prop "modo" debe ser un string obligatorio
-  setModo: PropTypes.func.isRequired, // La prop "setModo" debe ser una función obligatoria
+  setModo: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired, // La prop "setModo" debe ser una función obligatoria
+  message: PropTypes.func,
+  error: PropTypes.func,
+  formDataInput: PropTypes.func,
+  handleChange: PropTypes.func,
 };
+
 export default FormularioRegistro;

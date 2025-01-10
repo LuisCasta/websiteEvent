@@ -7,7 +7,7 @@ import DiagonalSection from "./DiagonalSection";
 import Contador from "./Contador";
 import GeneralData from "./GeneralData";
 
-const Login = () => {
+const Home = () => {
   return (
     <div>
       <header>
@@ -26,7 +26,7 @@ const Login = () => {
           <h2 className="count-title">Faltan</h2>
           <Contador />
           <h2 className="message-count">
-            PARA <strong> ACELERAR OPORTUNIDADES CON GWM Y BBVA</strong>, ¡TE
+            PARA <strong>ACELERAR OPORTUNIDADES CON GWM Y BBVA</strong>, ¡TE
             ESPERAMOS!
           </h2>
         </div>
@@ -38,4 +38,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Home;

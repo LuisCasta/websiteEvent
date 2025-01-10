@@ -3,18 +3,11 @@ import FormularioRegistro from "./FormularioRegistro";
 import Header from "./Header";
 import "./styles/appmain.css";
 import bg1 from "./assets/haval.png";
-import bg2 from "./assets/BG2.png";
-import bg3 from "./assets/BG3.png";
-import camionetaBlanca from "./assets/pkWhite.png";
-import camionetaGris from "./assets/pkgrey.png";
 import slogan from "./assets/Slogan.png";
 import camionetaNegra from "./assets/camionetaNegra.png";
 import { UseAuth } from "./UseAuth";
 import { useNavigate } from "react-router-dom";
 import camionetaResponsiveNegra from "./assets/auto01.png";
-import camionetaResponsiveBlanca from "./assets/auto02.png";
-import camionetaResponsiveGris from "./assets/auto03.png";
-import bckMobile from "./assets/bkmov1.png";
 import { registerUser } from "./index.js";
 
 const AppMain = () => {
@@ -83,7 +76,7 @@ const AppMain = () => {
     }
   };
 
-  const [modo, setModo] = useState("crearCuenta"); // Estado para el modo actual
+  const [modo, setModo] = useState("recoveryPassword"); // Estado para el modo actual
   const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivos móviles
 
   useEffect(() => {
@@ -96,16 +89,8 @@ const AppMain = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const fondos = {
-    crearCuenta: isMobile ? `url(${bckMobile})` : `url(${bg1})`, // Cambia el fondo según el modo
-    iniciarSesion: isMobile ? `url(${bckMobile})` : `url(${bg2})`,
-    olvidoPassword: isMobile ? `url(${bckMobile})` : `url(${bg3})`,
-  };
-
   const camionetas = {
-    crearCuenta: isMobile ? camionetaResponsiveNegra : camionetaNegra,
-    iniciarSesion: isMobile ? camionetaResponsiveBlanca : camionetaBlanca,
-    olvidoPassword: isMobile ? camionetaResponsiveGris : camionetaGris,
+    recoveryPassword: isMobile ? camionetaResponsiveNegra : camionetaNegra,
   };
 
   return (
@@ -114,7 +99,7 @@ const AppMain = () => {
       <main
         className="main"
         style={{
-          backgroundImage: fondos[modo], // Cambia el fondo según el modo
+          backgroundImage: { bg1 }, // Cambia el fondo según el modo
         }}
       >
         <div className="content-main">

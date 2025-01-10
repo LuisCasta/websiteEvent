@@ -1,16 +1,28 @@
-import Header from "./Header";
 import AppMain from "./AppMain";
 import Footer from "./Footer";
+import Home from "./Home";
+import { Routes, Route } from "react-router-dom";
+import ProtectedRouter from "./ProtectedRouter";
 import "./styles/App.css";
-// import Login from "./Login";
 
 const App = () => {
   return (
     <div className="app">
-      <Header />
-      <AppMain />
+      {/* Manejo de rutas */}
+      <Routes>
+        {/* Ruta protegida */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRouter>
+              <Home />
+            </ProtectedRouter>
+          }
+        />
+        {/* Ruta principal */}
+        <Route path="/" element={<AppMain />} />
+      </Routes>
       <Footer />
-      {/* <Login /> */}
     </div>
   );
 };

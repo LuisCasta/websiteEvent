@@ -83,9 +83,13 @@ input {
   color: #5d5d5d;
 }
 
+.btn-hidden {
+  display: none;
+}
 @media (max-width: 768px) {
   .contenedor-formulario {
-    width: 100%;
+    width: 90%;
     height: auto;
+    margin: auto;
   }
 }
