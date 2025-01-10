@@ -1,7 +1,11 @@
 import "./styles/footer.css";
-import social from "./assets/social.svg";
 import Slogan from "./assets/Slogan.png";
 import FooterNav from "./FooterNav";
+import fb from "./assets/fb.svg";
+import ig from "./assets/ig.svg";
+import ins from "./assets/in.svg";
+import x from "./assets/x.svg";
+import yt from "./assets/youtube.svg";
 
 const Footer = () => {
   return (
@@ -11,8 +15,20 @@ const Footer = () => {
         <div className="advices">
           <div className="container-info">
             <div className="container-legal">
-              <p className="legal-advices">Aviso legal</p>
-              <p className="legal-advices">Avisos de privacidad</p>
+              <a
+                target="_blank"
+                href="https://www.bbva.mx/personas/aviso-legal.html"
+                className="legal-advices"
+              >
+                Aviso legal
+              </a>
+              <a
+                target="_blank"
+                href="https://www.bbva.mx/personas/aviso-de-privacidad.html"
+                className="legal-advices"
+              >
+                Avisos de privacidad
+              </a>
             </div>
             <p className="address">
               © 2024 BBVA México, S.A., Institución de Banca Múltiple, Grupo
@@ -25,7 +41,24 @@ const Footer = () => {
         <div className="main-message-footer">
           <img className="slogan-footer" src={Slogan} alt="" />
           <div className="social-media">
-            <img src={social} alt="" />
+            <a target="_blank" href="https://www.facebook.com/bbvaenmexico/?1">
+              <img src={fb} alt="" />
+            </a>
+            <a target="_blank" href="https://x.com/BBVA_Mex/?1">
+              <img src={x} alt="" />
+            </a>
+            <a target="_blank" href="https://www.instagram.com/bbva_mex/?1">
+              <img src={ig} alt="" />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/company/bbva-mexico/"
+            >
+              <img src={ins} alt="" />
+            </a>
+            <a target="_blank" href="https://www.youtube.com/user/bbvabancomer">
+              <img src={yt} alt="" />
+            </a>
           </div>
         </div>
       </div>

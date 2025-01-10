@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: auto;
+  height: 600px;
   justify-content: center;
 }
 .formulario {
-  max-width: 400px;
+  /* max-width: 400px; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -89,7 +89,6 @@ input {
 @media (max-width: 768px) {
   .contenedor-formulario {
     width: 90%;
-    height: auto;
     margin: auto;
   }
 }
