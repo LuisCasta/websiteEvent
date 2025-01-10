@@ -44,7 +44,7 @@ const AppMain = () => {
 
   const { login } = UseAuth();
   const navigate = useNavigate();
-  console.log(UseAuth());
+  // console.log(UseAuth());
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     if (modo === "crearCuenta") {

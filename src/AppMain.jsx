@@ -45,13 +45,14 @@ const AppMain = () => {
       ...formDataInput,
       [id]: value,
     });
+    // console.log(id, value);
   };
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
   const { login } = UseAuth();
   const navigate = useNavigate();
-  console.log(UseAuth());
+  // console.log(UseAuth());
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     if (modo === "crearCuenta") {
@@ -60,7 +61,7 @@ const AppMain = () => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
       setError(null); // Limpiar errores previos
       setSuccessMessage(null); // Limpiar mensajes previos
-      if (formData.password !== formData.confirmPassword) {
+      if (formDataInput.password !== formDataInput.confirmPassword) {
         setError("Las contraseñas no coinciden");
         return;
       }

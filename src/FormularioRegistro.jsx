@@ -95,11 +95,11 @@ const FormularioRegistro = ({
     <div className="contenedor-formulario">
       {modo === "crearCuenta" && (
         <div className="message-form">
-          <h3 className="call-title">Regístrate en nuestro sitio web</h3>
+          <h3 className="call-title">Regístrate</h3>
           <p className="message-form-text">
-            Regístrate y conoce toda la información para poder asistir y
-            participar en la <b>PRIMERA CONVENCIÓN GWM FINANCE 2025</b> que BBVA
-            ha preparado para ti.
+            Conoce toda la información para participar en la{" "}
+            <b>PRIMERA CONVENCIÓN GWM FINANCE 2025</b> que BBVA ha preparado
+            para ti.
           </p>
         </div>
       )}
@@ -159,7 +159,7 @@ FormularioRegistro.propTypes = {
   onSubmit: PropTypes.func.isRequired, // La prop "setModo" debe ser una función obligatoria
   message: PropTypes.func,
   error: PropTypes.func,
-  formDataInput: PropTypes.func,
+  formDataInput: PropTypes.func.isRequired,
   handleChange: PropTypes.func,
 };
 

@@ -1,16 +1,16 @@
 import "./styles/footer.css";
-import Slogan from "./assets/Slogan.png";
-import FooterNav from "./FooterNav";
-import fb from "./assets/fb.svg";
-import ig from "./assets/ig.svg";
-import ins from "./assets/in.svg";
-import x from "./assets/x.svg";
-import yt from "./assets/youtube.svg";
+// import Slogan from "./assets/Slogan.png";
+// import FooterNav from "./FooterNav";
+// import fb from "./assets/fb.svg";
+// import ig from "./assets/ig.svg";
+// import ins from "./assets/in.svg";
+// import x from "./assets/x.svg";
+// import yt from "./assets/youtube.svg";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <FooterNav />
+      {/* <FooterNav /> */}
       <div className="container-footer">
         <div className="advices">
           <div className="container-info">
@@ -30,15 +30,15 @@ const Footer = () => {
                 Avisos de privacidad
               </a>
             </div>
-            <p className="address">
+            {/* <p className="address">
               © 2024 BBVA México, S.A., Institución de Banca Múltiple, Grupo
               Financiero BBVA México. Avenida Paseo de la Reforma 510, colonia
               Juárez <br /> código postal 06600, alcaldía Cuauhtémoc, Ciudad de
               México.
-            </p>
+            </p> */}
           </div>
         </div>
-        <div className="main-message-footer">
+        {/* <div className="main-message-footer">
           <img className="slogan-footer" src={Slogan} alt="" />
           <div className="social-media">
             <a target="_blank" href="https://www.facebook.com/bbvaenmexico/?1">
@@ -60,7 +60,7 @@ const Footer = () => {
               <img src={yt} alt="" />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

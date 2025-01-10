@@ -29,9 +29,9 @@ main {
 }
 .pickup {
   position: absolute;
-  width: 900px;
+  width: 800px;
   bottom: -100px;
-  left: 120px;
+  left: -20px;
   animation: fadeIn 1s ease-in-out;
 }
 
