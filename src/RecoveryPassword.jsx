@@ -5,16 +5,23 @@ import camionetaNegra from "./assets/camionetaNegra.png";
 import { recovery } from "./index.js";
 import "./styles/recovery-password.css";
 import { useSearchParams } from "react-router-dom";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const RecoveryPassword = () => {
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("token"); // Recupera el token de la URL
+  const tokenParam = searchParams.get("token"); // Recupera el token de la URL
+  const [captchaToken, setCaptchaToken] = useState("");
   const [message, setMessage] = useState("");
   const [values, setValues] = useState({
     email: "",
     password: "",
     token: "",
   });
+
+  const handleCaptchaVerify = (captchaToken) => {
+    console.log("Token generado:", captchaToken);
+    setCaptchaToken(captchaToken);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,19 +34,34 @@ const RecoveryPassword = () => {
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
-    if (token == null || token == "" || token == undefined) {
+    e.preventDefault();
+    if (!captchaToken) {
+      alert("Por favor, completa el CAPTCHA");
+      return;
+    }
+    // Envía el token junto con el formulario
+    console.log("Formulario enviado con token:", captchaToken);
+    if (!tokenParam) {
       setMessage("Token no proporcionado o inválido.");
+      setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
+      return;
+    }
+    if (tokenParam == null || tokenParam == "" || tokenParam == undefined) {
+      setMessage("Token no proporcionado o inválido.");
+      setTimeout(() => setMessage(""), 3000);
       return;
     }
     try {
       const result = await recovery({
         email: values.email,
         password: values.password,
-        token: token,
+        token: tokenParam,
       });
       result.message;
+      setTimeout(() => setMessage(""), 3000);
     } catch (err) {
-      err.message; // Mostrar el mensaje de error
+      err.message;
+      setTimeout(() => setMessage(""), 3000); // Mostrar el mensaje de error
     }
   };
 
@@ -77,10 +99,18 @@ const RecoveryPassword = () => {
                   required
                 />
               </div>
+              <Turnstile
+                siteKey="0x4AAAAAAA5HdJNb8hGl-r8p" // Reemplaza con tu Site Key
+                onVerify={handleCaptchaVerify}
+                options={{
+                  theme: "light", // Opcional: "light" o "dark"
+                  size: "normal", // Opcional: "normal", "compact", "invisible"
+                }}
+              />
               <button className="btn-registro">CREAR NUEVA CONTRASEÑA</button>
-              <p className={message ? "success-message" : ""}>
+              <div className={message ? "success-message" : ""}>
                 {message ? <p>{message}</p> : ""}
-              </p>
+              </div>
             </form>
           </div>
           <div className="main-message">
