@@ -9,7 +9,8 @@ import { Turnstile } from "@marsidev/react-turnstile";
 
 const RecoveryPassword = () => {
   const [searchParams] = useSearchParams();
-  const tokenParam = searchParams.get("token"); // Recupera el token de la URL
+  const tokenParam = searchParams.get("token");
+  console.log(tokenParam); // Recupera el token de la URL
   const [captchaToken, setCaptchaToken] = useState("");
   const [message, setMessage] = useState("");
   const [values, setValues] = useState({
@@ -34,10 +35,10 @@ const RecoveryPassword = () => {
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
-    if (!captchaToken) {
-      alert("Por favor, completa el CAPTCHA");
-      return;
-    }
+    // if (!captchaToken) {
+    //   alert("Por favor, completa el CAPTCHA");
+    //   return;
+    // }
     // Envía el token junto con el formulario
     console.log("Formulario enviado con token:", captchaToken);
     if (!tokenParam) {
