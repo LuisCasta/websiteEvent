@@ -1,10 +1,9 @@
 import Input from "./Input";
 import { useState } from "react";
 import BotonRegistro from "./BotonRegistro";
-import "./styles/FormularioRegistro.css";
 import PropTypes from "prop-types";
 import Turnstile from "react-turnstile";
-
+import "./styles/FormularioRegistro.css";
 const FormularioRegistro = ({
   modo,
   setModo,

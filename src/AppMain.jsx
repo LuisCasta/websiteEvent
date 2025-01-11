@@ -17,6 +17,7 @@ import camionetaResponsiveBlanca from "./assets/auto02.png";
 import camionetaResponsiveGris from "./assets/auto03.png";
 import bckMobile from "./assets/bkmov1.png";
 import { registerUser } from "./index.js";
+import { emailToken } from "./index.js";
 
 const AppMain = () => {
   // Auí empieza el código para comnsumir la api register
@@ -89,7 +90,30 @@ const AppMain = () => {
       login();
       navigate("/home", { replace: true }); // Redirigir a la página de inicio
     } else if (modo === "olvidoPassword") {
-      alert("Instrucciones enviadas al correo");
+      e.preventDefault();
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setError(null); // Limpiar errores previos
+      setSuccessMessage(null); // Limpiar mensajes previos
+      if (
+        formDataInput.email == "" ||
+        formDataInput.email == undefined ||
+        formDataInput.email == null
+      ) {
+        setError("Hubo un error, inténtalo de nuevo");
+        mostrarMensaje();
+        return; // Limpiar mensajes previos;
+      }
+      try {
+        const result = await emailToken({
+          email: formDataInput.email,
+        });
+        setSuccessMessage(result.message);
+        mostrarMensaje();
+        navigate("/", { replace: true });
+      } catch (err) {
+        setError(err.message);
+        mostrarMensaje(); // Mostrar el mensaje de error
+      }
     }
   };
 

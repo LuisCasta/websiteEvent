@@ -1,6 +1,7 @@
 import AppMain from "./AppMain";
 import Footer from "./Footer";
 import Home from "./Home";
+import RecoveryPassword from "./RecoveryPassword";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRouter from "./ProtectedRouter";
 import "./styles/App.css";
@@ -19,6 +20,7 @@ const App = () => {
             </ProtectedRouter>
           }
         />
+        <Route path="/recovery-password" element={<RecoveryPassword />} />
         {/* Ruta principal */}
         <Route path="/" element={<AppMain />} />
       </Routes>

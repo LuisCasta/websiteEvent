@@ -1,122 +1,92 @@
-import { useState, useEffect } from "react";
-import FormularioRegistro from "./FormularioRegistro";
+import { useState } from "react";
 import Header from "./Header";
-import "./styles/appmain.css";
-import bg1 from "./assets/haval.png";
 import slogan from "./assets/Slogan.png";
 import camionetaNegra from "./assets/camionetaNegra.png";
-import { UseAuth } from "./UseAuth";
-import { useNavigate } from "react-router-dom";
-import camionetaResponsiveNegra from "./assets/auto01.png";
-import { registerUser } from "./index.js";
+import { recovery } from "./index.js";
+import "./styles/recovery-password.css";
+import { useSearchParams } from "react-router-dom";
 
-const AppMain = () => {
-  // Auí empieza el código para comnsumir la api register
-  const [formData, setFormData] = useState({
+const RecoveryPassword = () => {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token"); // Recupera el token de la URL
+  const [message, setMessage] = useState("");
+  const [values, setValues] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    token: "",
   });
-  const campos = [
-    { id: "email", type: "email", placeholder: "Email" },
-    { id: "password", type: "password", placeholder: "Contraseña" },
-    {
-      id: "confirmPassword",
-      type: "password",
-      placeholder: "Confirmar Contraseña",
-    },
-  ];
-  const [formDataInput, setFormDataInput] = useState(
-    campos.reduce((acc, campo) => {
-      acc[campo.id] = ""; // Inicializa los valores de los inputs en vacío
-      return acc;
-    }, {})
-  );
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormDataInput({
-      ...formDataInput,
-      [id]: value,
-    });
-  };
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
 
-  const { login } = UseAuth();
-  const navigate = useNavigate();
-  // console.log(UseAuth());
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
-    if (modo === "crearCuenta") {
-      e.preventDefault();
-      // Auí empieza el código para comnsumir la api register
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-      setError(null); // Limpiar errores previos
-      setSuccessMessage(null); // Limpiar mensajes previos
-      if (formData.password !== formData.confirmPassword) {
-        setError("Las contraseñas no coinciden");
-        return;
-      }
-      try {
-        const result = await registerUser({
-          email: formDataInput.email,
-          password: formDataInput.password,
-        });
-        setSuccessMessage("Registro exitoso: " + result.message);
-      } catch (err) {
-        setError(err.message); // Mostrar el mensaje de error
-      }
-    } else if (modo === "iniciarSesion") {
-      alert("Inicio de sesión exitoso");
-      e.preventDefault();
-      login();
-      navigate("/home", { replace: true }); // Redirigir a la página de inicio
-    } else if (modo === "olvidoPassword") {
-      alert("Instrucciones enviadas al correo");
+    e.preventDefault();
+    if (token == null || token == "" || token == undefined) {
+      setMessage("Token no proporcionado o inválido.");
+      return;
     }
-  };
-
-  const [modo, setModo] = useState("recoveryPassword"); // Estado para el modo actual
-  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivos móviles
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Define el límite para vistas móviles
-    };
-
-    handleResize(); // Comprobar al cargar
-    window.addEventListener("resize", handleResize); // Escuchar cambios de tamaño
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const camionetas = {
-    recoveryPassword: isMobile ? camionetaResponsiveNegra : camionetaNegra,
+    try {
+      const result = await recovery({
+        email: values.email,
+        password: values.password,
+        token: token,
+      });
+      result.message;
+    } catch (err) {
+      err.message; // Mostrar el mensaje de error
+    }
   };
 
   return (
     <>
       <Header />
-      <main
-        className="main"
-        style={{
-          backgroundImage: { bg1 }, // Cambia el fondo según el modo
-        }}
-      >
+      <main className="main">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="" />
-          <FormularioRegistro
-            setModo={setModo}
-            modo={modo}
-            onSubmit={manejarAccion}
-            error={error}
-            message={successMessage}
-            formDataInput={formDataInput}
-            handleChange={handleChange} // Pasa la función de manejar cambios
-          />
+          <div className="contenedor-formulario">
+            <form className="formulario" action="" onSubmit={manejarAccion}>
+              <div className="message-form">
+                <h3 className="call-title">Recuperación de contraseña</h3>
+                <p className="message-form-text-pw">
+                  Crea una nueva contraseña
+                </p>
+              </div>
+              <div>
+                <input
+                  className="input-container"
+                  placeholder="Correo electrónico"
+                  onChange={handleChange}
+                  name="email"
+                  type="text"
+                  value={values.email}
+                  required
+                />
+                <input
+                  className="input-container"
+                  placeholder="Nueva contraseña"
+                  onChange={handleChange}
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  required
+                />
+              </div>
+              <button className="btn-registro">CREAR NUEVA CONTRASEÑA</button>
+              <p className={message ? "success-message" : ""}>
+                {message ? <p>{message}</p> : ""}
+              </p>
+            </form>
+          </div>
           <div className="main-message">
             <img className="slogan-img" src={slogan} alt="" />
             <div className="container-pickup">
-              <img className="pickup" src={camionetas[modo]} alt="" />
+              <img className="pickup" src={camionetaNegra} alt="" />
             </div>
           </div>
         </div>
@@ -125,4 +95,4 @@ const AppMain = () => {
   );
 };
 
-export default AppMain;
+export default RecoveryPassword;
