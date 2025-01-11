@@ -34,7 +34,6 @@ const RecoveryPassword = () => {
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
-    e.preventDefault();
     if (!captchaToken) {
       alert("Por favor, completa el CAPTCHA");
       return;
