@@ -50,12 +50,18 @@ const AppMain = () => {
   };
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-
+  const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
   const { login } = UseAuth();
   const navigate = useNavigate();
   // console.log(UseAuth());
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
+    const mostrarMensaje = () => {
+      setVisible(true); // Muestra el mensaje
+      setTimeout(() => {
+        setVisible(false); // Oculta el mensaje después de 3 segundos
+      }, 3000); // Tiempo en milisegundos (3 segundos)
+    };
     if (modo === "crearCuenta") {
       e.preventDefault();
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,16 +69,19 @@ const AppMain = () => {
       setSuccessMessage(null); // Limpiar mensajes previos
       if (formDataInput.password != formDataInput.confirmPassword) {
         setError("Las contraseñas no coinciden");
-        return alert("vuelve a intentarlo"); // Limpiar mensajes previos;
+        mostrarMensaje();
+        return; // Limpiar mensajes previos;
       }
       try {
         const result = await registerUser({
           email: formDataInput.email,
           password: formDataInput.password,
         });
-        setSuccessMessage("Registro exitoso: " + result.message);
+        setSuccessMessage(result.message);
+        mostrarMensaje();
       } catch (err) {
-        setError(err.message); // Mostrar el mensaje de error
+        setError(err.message);
+        mostrarMensaje(); // Mostrar el mensaje de error
       }
     } else if (modo === "iniciarSesion") {
       alert("Inicio de sesión exitoso");
@@ -127,7 +136,8 @@ const AppMain = () => {
             error={error}
             message={successMessage}
             formDataInput={formDataInput}
-            handleChange={handleChange} // Pasa la función de manejar cambios
+            handleChange={handleChange}
+            visible={visible} // Pasa la función de manejar cambios
           />
           <div className="main-message">
             <img className="slogan-img" src={slogan} alt="" />

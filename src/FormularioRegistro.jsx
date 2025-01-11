@@ -13,6 +13,7 @@ const FormularioRegistro = ({
   message,
   formDataInput,
   handleChange,
+  visible,
 }) => {
   const [token, setToken] = useState(null);
   const handleSubmit = (e) => {
@@ -24,6 +25,7 @@ const FormularioRegistro = ({
       console.error("Captcha no completado");
     }
   };
+
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
     switch (modo) {
@@ -146,8 +148,8 @@ const FormularioRegistro = ({
           onVerify={setToken}
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {message && <p style={{ color: "green" }}>{message}</p>}
+        {error && visible && <p className="error-message">{error}</p>}
+        {message && visible && <p className="success-message">{message}</p>}
       </form>
     </div>
   );
@@ -157,10 +159,11 @@ FormularioRegistro.propTypes = {
   modo: PropTypes.string.isRequired, // La prop "modo" debe ser un string obligatorio
   setModo: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired, // La prop "setModo" debe ser una función obligatoria
-  message: PropTypes.func,
-  error: PropTypes.func,
-  formDataInput: PropTypes.func.isRequired,
+  message: PropTypes.string,
+  error: PropTypes.string,
+  formDataInput: PropTypes.object.isRequired,
   handleChange: PropTypes.func,
+  visible: PropTypes.bool,
 };
 
 export default FormularioRegistro;

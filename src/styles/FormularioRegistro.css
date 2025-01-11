@@ -86,12 +86,36 @@ input {
 .btn-hidden {
   display: none;
 }
+
+.error-message {
+  color: #842029;
+  background-color: #f8d7da;
+  text-align: left;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.success-message {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  text-align: left;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
 @media (max-width: 768px) {
   .contenedor-formulario {
     width: 90%;
     margin: auto;
     gap: 10px;
-    height: 530px;
+    /* height: 526px; */
+    position: relative;
+    z-index: 100;
   }
   .formulario {
     gap: 10px;
