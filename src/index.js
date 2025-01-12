@@ -63,7 +63,7 @@ const API_URL_RECOVERY =
 // Función para recuperar 2da vista
 export const recovery = async (userData) => {
   try {
-    const response = await axios.patch(API_URL_RECOVERY, userData, {
+    const response = await axios.post(API_URL_RECOVERY, userData, {
       headers: {
         "Content-Type": "application/json", // Si la API requiere JSON
       },

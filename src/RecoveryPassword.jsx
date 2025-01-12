@@ -10,12 +10,12 @@ import { Turnstile } from "@marsidev/react-turnstile";
 const RecoveryPassword = () => {
   const [searchParams] = useSearchParams();
   const tokenParam = searchParams.get("token");
-  console.log(tokenParam); // Recupera el token de la URL
+  // console.log(tokenParam); // Recupera el token de la URL
   const [captchaToken, setCaptchaToken] = useState("");
   const [message, setMessage] = useState("");
   const [values, setValues] = useState({
-    email: "",
     password: "",
+    confirmPassword: "",
     token: "",
   });
 
@@ -41,11 +41,17 @@ const RecoveryPassword = () => {
     // }
     // Envía el token junto con el formulario
     console.log("Formulario enviado con token:", captchaToken);
+    if (values.confirmPassword !== values.password) {
+      setMessage("Las contrsaseñas no coinciden");
+      setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
+      return;
+    }
     if (!tokenParam) {
       setMessage("Token no proporcionado o inválido.");
       setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
       return;
     }
+
     if (tokenParam == null || tokenParam == "" || tokenParam == undefined) {
       setMessage("Token no proporcionado o inválido.");
       setTimeout(() => setMessage(""), 3000);
@@ -53,7 +59,6 @@ const RecoveryPassword = () => {
     }
     try {
       const result = await recovery({
-        email: values.email,
         password: values.password,
         token: tokenParam,
       });
@@ -82,11 +87,11 @@ const RecoveryPassword = () => {
               <div>
                 <input
                   className="input-container"
-                  placeholder="Correo electrónico"
+                  placeholder="Contraseña"
                   onChange={handleChange}
-                  name="email"
+                  name="password"
                   type="text"
-                  value={values.email}
+                  value={values.password}
                   required
                 />
                 <input
@@ -94,8 +99,8 @@ const RecoveryPassword = () => {
                   placeholder="Nueva contraseña"
                   onChange={handleChange}
                   type="password"
-                  name="password"
-                  value={values.password}
+                  name="confirmPassword"
+                  value={values.confirmPassword}
                   required
                 />
               </div>
