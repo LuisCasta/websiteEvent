@@ -32,9 +32,23 @@ const RecoveryPassword = () => {
     }));
   };
 
+  function sanitizeToken(token) {
+    if (typeof token !== "string") {
+      throw new Error("El token debe ser una cadena de texto.");
+    }
+
+    // Verificar si el token termina con un punto
+    if (token.endsWith(".")) {
+      return token.slice(0, -1); // Eliminar el último carácter
+    }
+
+    return token; // Devolver el token sin cambios
+  }
+
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
+    const tokenP = sanitizeToken(tokenParam);
     // if (!captchaToken) {
     //   alert("Por favor, completa el CAPTCHA");
     //   return;
@@ -46,13 +60,14 @@ const RecoveryPassword = () => {
       setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
       return;
     }
-    if (!tokenParam) {
+
+    if (!tokenP) {
       setMessage("Token no proporcionado o inválido.");
       setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
       return;
     }
 
-    if (tokenParam == null || tokenParam == "" || tokenParam == undefined) {
+    if (tokenP == null || tokenP == "" || tokenP == undefined) {
       setMessage("Token no proporcionado o inválido.");
       setTimeout(() => setMessage(""), 3000);
       return;
@@ -60,12 +75,13 @@ const RecoveryPassword = () => {
     try {
       const result = await recovery({
         password: values.password,
-        token: tokenParam,
+        token: tokenP,
       });
       result.message;
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
       err.message;
+      setMessage("Error");
       setTimeout(() => setMessage(""), 3000); // Mostrar el mensaje de error
     }
   };
