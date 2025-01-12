@@ -32,23 +32,13 @@ const RecoveryPassword = () => {
     }));
   };
 
-  function sanitizeToken(token) {
-    if (typeof token !== "string") {
-      throw new Error("El token debe ser una cadena de texto.");
-    }
-
-    // Verificar si el token termina con un punto
-    if (token.endsWith(".")) {
-      return token.slice(0, -1); // Eliminar el último carácter
-    }
-
-    return token; // Devolver el token sin cambios
-  }
-
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
-    const tokenP = sanitizeToken(tokenParam);
+    let tokenP = tokenParam;
+    if (tokenParam.endsWith(".")) {
+      tokenP = tokenParam.slice(0, -1); // Eliminar el último carácter
+    }
     // if (!captchaToken) {
     //   alert("Por favor, completa el CAPTCHA");
     //   return;
