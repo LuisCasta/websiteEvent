@@ -145,7 +145,9 @@ const FormularioRegistro = ({
         </div>
         <Turnstile
           sitekey={siteKey}
-          onSuccess={(newToken) => setToken(newToken)} // Guardar el token al completarse el CAPTCHA
+          onSuccess={(token) =>
+            console.log("CAPTCHA completado con éxito:", token)
+          }
           onError={() => setToken(null)} // Reiniciar el token si hay un error
           options={{
             action: "submit", // (opcional) define una acción para el CAPTCHA
