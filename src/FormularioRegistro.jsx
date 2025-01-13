@@ -143,7 +143,7 @@ const FormularioRegistro = ({
           </a>
         </div>
         <Turnstile
-          sitekey="TU_SITE_KEY" // Usa la clave del sitio que obtuviste en Cloudflare
+          sitekey="0x4AAAAAAA5HdJNb8hGl-r8p" // Usa la clave del sitio que obtuviste en Cloudflare
           onVerify={setToken}
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
