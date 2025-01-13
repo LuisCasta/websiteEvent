@@ -4,7 +4,6 @@ import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import Turnstile from "react-turnstile";
 import "./styles/FormularioRegistro.css";
-import { siteKey } from "./index.js";
 const FormularioRegistro = ({
   modo,
   setModo,
@@ -144,7 +143,8 @@ const FormularioRegistro = ({
           </a>
         </div>
         <Turnstile
-          sitekey={siteKey}
+          sitekey="0x4AAAAAAA5HdJNb8hGl-r8p"
+          size="invisible"
           onSuccess={(token) =>
             console.log("CAPTCHA completado con éxito:", token)
           }
