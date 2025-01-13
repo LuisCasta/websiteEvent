@@ -145,13 +145,9 @@ const FormularioRegistro = ({
         <Turnstile
           sitekey="0x4AAAAAAA5HdJNb8hGl-r8p"
           size="invisible"
-          onSuccess={(token) =>
+          onVerify={(token) =>
             console.log("CAPTCHA completado con éxito:", token)
           }
-          onError={() => setToken(null)} // Reiniciar el token si hay un error
-          options={{
-            action: "submit", // (opcional) define una acción para el CAPTCHA
-          }}
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
