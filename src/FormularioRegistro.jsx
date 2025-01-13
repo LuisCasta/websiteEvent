@@ -4,7 +4,7 @@ import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import Turnstile from "react-turnstile";
 import "./styles/FormularioRegistro.css";
-import siteKey from "./index.js";
+import { siteKey } from "./index.js";
 const FormularioRegistro = ({
   modo,
   setModo,
