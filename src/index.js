@@ -85,3 +85,25 @@ export const recovery = async (userData) => {
     }
   }
 };
+export const siteKey = "0x4AAAAAAA5HdJNb8hGl-r8p";
+export const validateCaptcha = async (captchaToken) => {
+  try {
+    const response = await axios.post(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      new URLSearchParams({
+        secret: siteKey,
+        response: captchaToken,
+      }).toString(),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+
+    return response.data.success;
+  } catch (error) {
+    console.error("Error al validar CAPTCHA:", error.message);
+    throw new Error("Error en la validación del CAPTCHA.");
+  }
+};

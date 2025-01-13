@@ -4,6 +4,7 @@ import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import Turnstile from "react-turnstile";
 import "./styles/FormularioRegistro.css";
+import siteKey from "./index.js";
 const FormularioRegistro = ({
   modo,
   setModo,
@@ -143,8 +144,12 @@ const FormularioRegistro = ({
           </a>
         </div>
         <Turnstile
-          sitekey="0x4AAAAAAA5HdJNb8hGl-r8p" // Usa la clave del sitio que obtuviste en Cloudflare
-          onVerify={setToken}
+          sitekey={siteKey}
+          onSuccess={(newToken) => setToken(newToken)} // Guardar el token al completarse el CAPTCHA
+          onError={() => setToken(null)} // Reiniciar el token si hay un error
+          options={{
+            action: "submit", // (opcional) define una acción para el CAPTCHA
+          }}
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
