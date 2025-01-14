@@ -107,3 +107,28 @@ export const validateCaptcha = async (captchaToken) => {
     throw new Error("Error en la validación del CAPTCHA.");
   }
 };
+
+const API_LOGIN = "https://apibbva.onrender.com/api/auth/login";
+export const loginUser = async (userData) => {
+  try {
+    const response = await axios.post(API_LOGIN, userData, {
+      headers: {
+        "Content-Type": "application/json", // Si la API requiere JSON
+      },
+    });
+    return response.data;
+    // Devolver los datos de la respuesta
+  } catch (error) {
+    // Manejar errores y devolver un mensaje adecuado
+    if (error.response) {
+      // Errores que vienen del servidor
+      throw new Error(error.response.data.message || "Error al iniciar sesión");
+    } else if (error.request) {
+      // No se recibió respuesta del servidor
+      throw new Error("No se pudo conectar al servidor");
+    } else {
+      // Otros errores
+      throw new Error("Error desconocido: " + error.message);
+    }
+  }
+};

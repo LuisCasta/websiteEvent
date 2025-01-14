@@ -92,7 +92,7 @@ const RecoveryPassword = () => {
               </div>
               <div>
                 <input
-                  className="input-container"
+                  className="input-container-recovery"
                   placeholder="Contraseña"
                   onChange={handleChange}
                   name="password"
@@ -101,7 +101,7 @@ const RecoveryPassword = () => {
                   required
                 />
                 <input
-                  className="input-container"
+                  className="input-container-recovery"
                   placeholder="Nueva contraseña"
                   onChange={handleChange}
                   type="password"

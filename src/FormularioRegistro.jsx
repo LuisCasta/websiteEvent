@@ -98,7 +98,7 @@ const FormularioRegistro = ({
         <div className="message-form">
           <h3 className="call-title">Regístrate</h3>
           <p className="message-form-text">
-            Conoce toda la información para participar en la{" "}
+            Conoce toda la información para participar en la
             <b>PRIMERA CONVENCIÓN GWM FINANCE 2025</b> que BBVA ha preparado
             para ti.
           </p>
@@ -116,8 +116,8 @@ const FormularioRegistro = ({
         {modo === "olvidoPassword" && (
           <div className="message-form">
             <p className="message-form-text-pw">
-              Escribe tu correo electrónico y recibirás un e-mail con las
-              indicaciones para recuperar tu contraseña
+              Escribe tu correo electrónico y te llegará un e-mail con las
+              indicaciones para recuperar tu contraseña.
             </p>
           </div>
         )}
@@ -151,7 +151,17 @@ const FormularioRegistro = ({
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
-        {message && visible && <p className="success-message">{message}</p>}
+        {message && visible && (
+          <p
+            className={
+              modo === "crearCuenta" ? "absolute-message" : "success-message"
+            }
+          >
+            {modo === "crearCuenta"
+              ? "Haz quedado registrado en nuestro sitio web Creando oportunidades 2025, en breve te haremos saber cuando puedes tener acceso para ver todas las características de este gran evento que estamos preparando para ti"
+              : message}
+          </p>
+        )}
       </form>
     </div>
   );

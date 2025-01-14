@@ -18,8 +18,13 @@ import camionetaResponsiveGris from "./assets/auto03.png";
 import bckMobile from "./assets/bkmov1.png";
 import { registerUser } from "./index.js";
 import { emailToken } from "./index.js";
-
+import { loginUser } from "./index.js";
 const AppMain = () => {
+  const [nombre, setNombre] = useState("");
+  const guardarEnLocalStorage = () => {
+    localStorage.setItem("nombre", nombre);
+    alert("¡Nombre guardado en Local Storage!");
+  };
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",
@@ -35,6 +40,7 @@ const AppMain = () => {
       placeholder: "Confirmar Contraseña",
     },
   ];
+
   const [formDataInput, setFormDataInput] = useState(
     campos.reduce((acc, campo) => {
       acc[campo.id] = ""; // Inicializa los valores de los inputs en vacío
@@ -61,7 +67,7 @@ const AppMain = () => {
       setVisible(true); // Muestra el mensaje
       setTimeout(() => {
         setVisible(false); // Oculta el mensaje después de 3 segundos
-      }, 3000); // Tiempo en milisegundos (3 segundos)
+      }, 5000); // Tiempo en milisegundos (3 segundos)
     };
     if (modo === "crearCuenta") {
       e.preventDefault();
@@ -87,8 +93,39 @@ const AppMain = () => {
     } else if (modo === "iniciarSesion") {
       alert("Inicio de sesión exitoso");
       e.preventDefault();
-      login();
-      navigate("/home", { replace: true }); // Redirigir a la página de inicio
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setError(null); // Limpiar errores previos
+      setSuccessMessage(null); // Limpiar mensajes previos
+      if (
+        formDataInput.email == "" ||
+        formDataInput.email == undefined ||
+        formDataInput.email == null
+      )
+        if (
+          formDataInput.password == "" ||
+          formDataInput.password == undefined ||
+          formDataInput.password == null
+        ) {
+          setError("Hubo un error, inténtalo de nuevo");
+          mostrarMensaje();
+          return; // Limpiar mensajes previos;
+        }
+      try {
+        const result = await loginUser({
+          email: formDataInput.email,
+          password: formDataInput.password,
+        });
+        setSuccessMessage(result.message);
+        mostrarMensaje();
+        login();
+        navigate("/home", { replace: true }); // Redirigir a la página de inicio
+        // Guardar datos relevantes en Local Storage
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
+      } catch (err) {
+        setError(err.message);
+        mostrarMensaje(); // Mostrar el mensaje de error
+      }
     } else if (modo === "olvidoPassword") {
       e.preventDefault();
       setFormData({ ...formData, [e.target.name]: e.target.value });
