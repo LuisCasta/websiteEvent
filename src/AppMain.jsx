@@ -20,11 +20,6 @@ import { registerUser } from "./index.js";
 import { emailToken } from "./index.js";
 import { loginUser } from "./index.js";
 const AppMain = () => {
-  const [nombre, setNombre] = useState("");
-  const guardarEnLocalStorage = () => {
-    localStorage.setItem("nombre", nombre);
-    alert("¡Nombre guardado en Local Storage!");
-  };
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",

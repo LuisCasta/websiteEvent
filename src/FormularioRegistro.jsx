@@ -2,8 +2,9 @@ import Input from "./Input";
 import { useState } from "react";
 import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
-import Turnstile from "react-turnstile";
+import ReCAPTCHA from "react-google-recaptcha";
 import "./styles/FormularioRegistro.css";
+
 const FormularioRegistro = ({
   modo,
   setModo,
@@ -24,6 +25,10 @@ const FormularioRegistro = ({
       console.error("Captcha no completado");
     }
   };
+
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
 
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
@@ -142,12 +147,10 @@ const FormularioRegistro = ({
             {enlace.texto}
           </a>
         </div>
-        <Turnstile
-          sitekey="0x4AAAAAAA5HdJNb8hGl-r8p"
+        <ReCAPTCHA
+          sitekey="6LcnprcqAAAAAAxYMaihpvEOJGSvmfAdQYSuPjBP"
+          onChange={onChange}
           size="invisible"
-          onVerify={(token) =>
-            console.log("CAPTCHA completado con éxito:", token)
-          }
         />
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
