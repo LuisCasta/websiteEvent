@@ -98,7 +98,7 @@ const FormularioRegistro = ({
   const { campos, enlace } = obtenerCampos(); // Extraer campos y enlace dinámicos
 
   return (
-    <div className="contenedor-formulario">
+    <div className="contenedor-formulario-register">
       {modo === "crearCuenta" && (
         <div className="message-form">
           <h3 className="call-title">Regístrate</h3>
@@ -152,6 +152,7 @@ const FormularioRegistro = ({
           onChange={onChange}
           size="invisible"
         />
+
         <BotonRegistro onSubmit={handleSubmit} modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
         {message && visible && (

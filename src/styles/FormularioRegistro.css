@@ -1,4 +1,4 @@
-.contenedor-formulario {
+.contenedor-formulario-register {
   width: 500px;
   padding: 20px;
   border-radius: 8px;
@@ -122,7 +122,7 @@ input {
 }
 
 @media (max-width: 768px) {
-  .contenedor-formulario {
+  .contenedor-formulario-register {
     width: 90%;
     margin: auto;
     gap: 10px;

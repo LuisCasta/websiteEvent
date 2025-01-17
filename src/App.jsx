@@ -21,6 +21,7 @@ const App = () => {
           }
         />
         <Route path="/recovery-password" element={<RecoveryPassword />} />
+
         {/* Ruta principal */}
         <Route path="/" element={<AppMain />} />
       </Routes>

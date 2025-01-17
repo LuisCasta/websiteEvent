@@ -6,8 +6,18 @@ import "./styles/login.css";
 import DiagonalSection from "./DiagonalSection";
 import Contador from "./Contador";
 import GeneralData from "./GeneralData";
+import ConfirmForm from "./ConfirmForm";
+import { useSearchParams } from "react-router-dom";
+// import { useState } from "react";
 
 const Home = () => {
+  const [searchParams] = useSearchParams();
+  const confirmParam = searchParams.get("step"); // Obtener el parámetro "confirm"
+
+  // Si el parámetro "confirm" está presente, renderiza el componente
+  if (confirmParam == "1") {
+    return <ConfirmForm />;
+  }
   return (
     <div>
       <header>

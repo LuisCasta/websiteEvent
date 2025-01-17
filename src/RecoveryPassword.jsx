@@ -39,10 +39,10 @@ const RecoveryPassword = () => {
     if (tokenParam.endsWith(".")) {
       tokenP = tokenParam.slice(0, -1); // Eliminar el último carácter
     }
-    if (!captchaToken) {
-      alert("Por favor, completa el CAPTCHA");
-      return;
-    }
+    // if (!captchaToken) {
+    //   alert("Por favor, completa el CAPTCHA");
+    //   return;
+    // }
     // Envía el token junto con el formulario
     console.log("Formulario enviado con token:", captchaToken);
     if (values.confirmPassword !== values.password) {
