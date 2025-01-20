@@ -118,7 +118,7 @@ const AppMain = () => {
         setSuccessMessage(result.message);
         mostrarMensaje();
         login();
-        navigate(`/home?${step}`, { replace: true }); // Redirigir a la página de inicio
+        navigate(`/home?step1`, { replace: true }); // Redirigir a la página de inicio
         // Guardar datos relevantes en Local Storage
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
