@@ -8,11 +8,14 @@ import { useSearchParams } from "react-router-dom";
 import Turnstile from "react-turnstile";
 
 const RecoveryPassword = () => {
+  const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
   const [searchParams] = useSearchParams();
   const tokenParam = searchParams.get("token");
   // console.log(tokenParam); // Recupera el token de la URL
   const [captchaToken, setCaptchaToken] = useState("");
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [values, setValues] = useState({
     password: "",
     confirmPassword: "",
@@ -35,19 +38,23 @@ const RecoveryPassword = () => {
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
+    const mostrarMensaje = () => {
+      setVisible(true); // Muestra el mensaje
+      setTimeout(() => {
+        setVisible(false); // Oculta el mensaje después de 3 segundos
+      }, 5000); // Tiempo en milisegundos (3 segundos)
+    };
+
     let tokenP = tokenParam;
     if (tokenParam.endsWith(".")) {
       tokenP = tokenParam.slice(0, -1); // Eliminar el último carácter
     }
-    // if (!captchaToken) {
-    //   alert("Por favor, completa el CAPTCHA");
-    //   return;
-    // }
+
     // Envía el token junto con el formulario
     console.log("Formulario enviado con token:", captchaToken);
     if (values.confirmPassword !== values.password) {
-      setMessage("Las contrsaseñas no coinciden");
-      setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
+      setErrorMessage("Las contrsaseñas no coinciden");
+      setTimeout(() => setMessage(""), 5000); // Limpia el mensaje después de 3 segundos
       return;
     }
 
@@ -67,12 +74,15 @@ const RecoveryPassword = () => {
         password: values.password,
         token: tokenP,
       });
-      result.message;
-      setTimeout(() => setMessage(""), 3000);
+      console.log(result);
+      setMessage(result.message.toString());
+      mostrarMensaje();
+      setTimeout(() => setMessage(""), 5000);
     } catch (err) {
       err.message;
-      setMessage("Error");
-      setTimeout(() => setMessage(""), 3000); // Mostrar el mensaje de error
+      setMessage("Error" + err.message);
+      mostrarMensaje();
+      // Mostrar el mensaje de error
     }
   };
 
@@ -121,8 +131,13 @@ const RecoveryPassword = () => {
                 }}
               />
               <button className="btn-registro">CREAR NUEVA CONTRASEÑA</button>
-              <div className={message ? "success-message" : ""}>
-                {message ? <p>{message}</p> : ""}
+              <div>
+                {/* {errorMessage && visible && (
+                  <p className="error-message">{errorMessage}</p>
+                )} */}
+                {message && visible && (
+                  <p className="success-message">{message}</p>
+                )}
               </div>
             </form>
           </div>

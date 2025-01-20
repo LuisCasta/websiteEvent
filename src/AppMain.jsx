@@ -19,12 +19,12 @@ import bckMobile from "./assets/bkmov1.png";
 import { registerUser } from "./index.js";
 import { emailToken } from "./index.js";
 import { loginUser } from "./index.js";
-// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const AppMain = () => {
-  // const [searchParams] = useSearchParams();
-  // const step = searchParams.get("step1") || searchParams.get("step2");
-
+  const [searchParams] = useSearchParams();
+  const step = searchParams.get("step1") || searchParams.get("step2");
+  console.log(step);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",
@@ -118,7 +118,7 @@ const AppMain = () => {
         setSuccessMessage(result.message);
         mostrarMensaje();
         login();
-        navigate(`/home?step1`, { replace: true }); // Redirigir a la página de inicio
+        navigate(`/home?${step}`, { replace: true }); // Redirigir a la página de inicio
         // Guardar datos relevantes en Local Storage
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));

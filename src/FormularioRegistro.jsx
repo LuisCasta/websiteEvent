@@ -152,7 +152,6 @@ const FormularioRegistro = ({
           onChange={onChange}
           size="invisible"
         />
-        {/* onSubmit={handleSubmit} */}
         <BotonRegistro modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
         {message && visible && (
