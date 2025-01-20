@@ -23,14 +23,10 @@ const Home = () => {
 
     // Eliminar step1 de los parámetros
     if (hasStep1) {
-      setTimeout(() => {
-        searchParams.delete("step1");
-      }, 5000);
+      searchParams.delete("step1");
     }
     if (hasStep2) {
-      setTimeout(() => {
-        searchParams.delete("step2");
-      }, 5000);
+      searchParams.delete("step2");
     }
     setTimeout(() => {
       setSearchParams(searchParams);
