@@ -83,7 +83,7 @@ const RecoveryPassword = () => {
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="" />
           <div className="contenedor-formulario">
-            <form className="formulario" action="" onSubmit={manejarAccion}>
+            <form className="formulario" onSubmit={manejarAccion}>
               <div className="message-form">
                 <h3 className="call-title">Recuperación de contraseña</h3>
                 <p className="message-form-text-pw">
@@ -92,6 +92,7 @@ const RecoveryPassword = () => {
               </div>
               <div>
                 <input
+                  key="1"
                   className="input-container-recovery"
                   placeholder="Contraseña"
                   onChange={handleChange}
@@ -101,6 +102,7 @@ const RecoveryPassword = () => {
                   required
                 />
                 <input
+                  key="2"
                   className="input-container-recovery"
                   placeholder="Nueva contraseña"
                   onChange={handleChange}

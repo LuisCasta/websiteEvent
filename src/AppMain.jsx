@@ -24,7 +24,7 @@ import { useSearchParams } from "react-router-dom";
 const AppMain = () => {
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
-  console.log(step);
+  // console.log(step);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",

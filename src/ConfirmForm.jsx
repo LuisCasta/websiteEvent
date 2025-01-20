@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import slogan from "./assets/Slogan.png";
 import azul from "./assets/azul.png";
 import { confirm } from "./index.js";
 import "./styles/asistencia.css";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
+import Header from "./Header.jsx";
 
-const RecoveryPassword = () => {
-  const [searchParams] = useSearchParams();
-  const tokenParam = searchParams.get("token");
+const ConfirmForm = () => {
+  // const [searchParams] = useSearchParams();
+  // const tokenParam = searchParams.get("token");
   const [message, setMessage] = useState("");
+  // Estado para almacenar el userId
+  const [userId, setUserId] = useState(null);
 
+  useEffect(() => {
+    // Recuperar el dato de localStorage
+    const userData = localStorage.getItem("user");
+
+    if (userData) {
+      // Parsear el JSON y obtener el id
+      const user = JSON.parse(userData);
+      setUserId(user.id); // Almacena el id en el estado
+    }
+  }, []);
+
+  console.log(userId);
   const fields = [
     // Título entre vuelos
     {
@@ -115,6 +130,7 @@ const RecoveryPassword = () => {
 
   const handleInputChange = (e) => {
     const { id, type, value, checked } = e.target;
+    console.log(e.target);
     setFormData((prev) => ({
       ...prev,
       [id]: type === "checkbox" ? checked : value,
@@ -123,19 +139,149 @@ const RecoveryPassword = () => {
 
   const manejarAccion = async (e) => {
     e.preventDefault();
-    let tokenP = tokenParam;
-    if (!tokenP || tokenP.endsWith(".")) {
-      tokenP = tokenP?.slice(0, -1) || "";
-    }
-
-    if (!tokenP) {
-      setMessage("Token no proporcionado o inválido.");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
+    const firstNameAirline = formData.airline_outbound; // Nombre de la aerolínea de ida
+    const firstFlightNumber = formData.flight_number_outbound; // Número de vuelo de ida
+    const firstDate = formData.date_outbound; // Fecha de vuelo de ida
+    const firstBoardingTime = formData.boarding_time_outbound; // Hora de abordaje de ida
+    const lastNameAirline = formData.airline_return; // Nombre de la aerolínea de regreso
+    const lastFlightNumber = formData.flight_number_return; // Número de vuelo de regreso
+    const lastDate = formData.date_return; // Fecha de vuelo de regreso
+    const lastBoardingTime = formData.boarding_time_return; // Hora de abordaje de regreso
+    const wantsRoom = formData.individual_room ? 1 : 0; // Si quiere habitación individual
+    const wantsToShare = formData.shared_room ? 1 : 0; // Si quiere compartir habitación
+    const emailCompanion = formData.companion_email; // Correo electrónico del acompañante
 
     try {
-      const result = await confirm({ token: tokenP });
+      const result = await confirm({
+        userId,
+        firstNameAirline,
+        firstFlightNumber,
+        firstDate,
+        firstBoardingTime,
+        lastNameAirline,
+        lastFlightNumber,
+        lastDate,
+        lastBoardingTime,
+        wantsRoom,
+        wantsToShare,
+        emailCompanion,
+      });
+
+      // VALIDACIÓN DE IDA
+      if (
+        firstNameAirline.email == "" ||
+        firstNameAirline.email == undefined ||
+        firstNameAirline.email == null
+      ) {
+        setMessage("Nombre de la Aerolínea(ida) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        firstFlightNumber.email == "" ||
+        firstFlightNumber.email == undefined ||
+        firstFlightNumber.email == null
+      ) {
+        setMessage("Número de vuelo(ida) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        firstDate.email == "" ||
+        firstDate.email == undefined ||
+        firstDate.email == null
+      ) {
+        setMessage("Fecha de vuelo(ida) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        firstBoardingTime.email == "" ||
+        firstBoardingTime.email == undefined ||
+        firstBoardingTime.email == null
+      ) {
+        setMessage("Hora de vuelo(ida) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+      // VALIDACIÓN DE VUELOS DE VUELTA
+      if (
+        lastNameAirline.email == "" ||
+        lastNameAirline.email == undefined ||
+        lastNameAirline.email == null
+      ) {
+        setMessage(
+          "Nombre de la Aerolínea(vuelta) no proporcionado o inválido."
+        );
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        lastFlightNumber.email == "" ||
+        lastFlightNumber.email == undefined ||
+        lastFlightNumber.email == null
+      ) {
+        setMessage("Número de vuelo(vuelta) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        lastDate.email == "" ||
+        lastDate.email == undefined ||
+        lastDate.email == null
+      ) {
+        setMessage("Fecha de vuelo(vuelta) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        lastBoardingTime.email == "" ||
+        lastBoardingTime.email == undefined ||
+        lastBoardingTime.email == null
+      ) {
+        setMessage("Hora de vuelo(vuelta) no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+      if (
+        wantsToShare.email == "" ||
+        wantsToShare.email == undefined ||
+        wantsToShare.email == null
+      ) {
+        setMessage(
+          "Información sobre compartir habitación no proporcionado o inválido."
+        );
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+      if (
+        wantsRoom.email == "" ||
+        wantsRoom.email == undefined ||
+        wantsRoom.email == null
+      ) {
+        setMessage(
+          "Información sobre habitación individual no proporcionado o inválido."
+        );
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
+      if (
+        emailCompanion.email == "" ||
+        emailCompanion.email == undefined ||
+        emailCompanion.email == null
+      ) {
+        setMessage("Correo acompañante no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 3000);
+        return;
+      }
+
       setMessage(result.message || "Confirmación exitosa.");
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
@@ -146,6 +292,7 @@ const RecoveryPassword = () => {
 
   return (
     <>
+      <Header />
       <main className="main">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
@@ -155,6 +302,13 @@ const RecoveryPassword = () => {
                 <h4 className="call-title-form">Confirma tu asistencia</h4>
               </div>
               {fields.map((field) => {
+                // if (
+                //   field.type === "text" ||
+                //   field.type === "date" ||
+                //   field.type === "time"
+                // ) {
+
+                // }
                 if (field.condition && !formData[field.condition]) {
                   return null;
                 }
@@ -179,11 +333,9 @@ const RecoveryPassword = () => {
                 if (field.type === "warning") {
                   return (
                     <>
-                      <div className="warning">
+                      <div key={field.id} className="warning">
                         <i className="bx bx-md bxs-error-circle bx-flip-vertical"></i>
-                        <p key={field.id} className="form-warning">
-                          {field.label}
-                        </p>
+                        <p className="form-warning">{field.label}</p>
                       </div>
                     </>
                   );
@@ -192,10 +344,13 @@ const RecoveryPassword = () => {
                 return (
                   <div key={field.id} className={field.id}>
                     {field.type === "checkbox" && (
-                      <label htmlFor={field.id}>{field.label}</label>
+                      <label key={field.label} htmlFor={field.id}>
+                        {field.label}
+                      </label>
                     )}
                     <input
                       className={field.class}
+                      key={field.id}
                       id={field.id}
                       type={field.type}
                       value={
@@ -234,4 +389,4 @@ const RecoveryPassword = () => {
   );
 };
 
-export default RecoveryPassword;
+export default ConfirmForm;

@@ -9,12 +9,16 @@
   margin: auto;
   display: flex;
   gap: 30px;
-  justify-content: center;
+  justify-content: left;
 }
 
 .container-legal {
   display: flex;
   gap: 20px;
+}
+
+.container-legal a {
+  text-decoration: none;
 }
 
 .container-info {

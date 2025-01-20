@@ -133,7 +133,7 @@ export const loginUser = async (userData) => {
   }
 };
 
-const API_CONFIRM = "https://apibbva.onrender.com/api/auth/register";
+const API_CONFIRM = "https://apibbva.onrender.com/api/event/confirm";
 
 // Función para confirmar asistencia
 export const confirm = async (userData) => {
