@@ -3,10 +3,11 @@ import slogan from "./assets/Slogan.png";
 import azul from "./assets/azul.png";
 import { confirm } from "./index.js";
 import "./styles/asistencia.css";
+import PropTypes from "prop-types";
 // import { useSearchParams } from "react-router-dom";
 import Header from "./Header.jsx";
 
-const ConfirmForm = () => {
+const ConfirmForm = ({ onComplete }) => {
   // const [searchParams] = useSearchParams();
   // const tokenParam = searchParams.get("token");
   const [message, setMessage] = useState("");
@@ -24,7 +25,7 @@ const ConfirmForm = () => {
     }
   }, []);
 
-  console.log(userId);
+  // console.log(userId);
   const fields = [
     // Título entre vuelos
     {
@@ -38,19 +39,28 @@ const ConfirmForm = () => {
       label: "Nombre de la aerolínea",
       type: "text",
       class: "input",
+      isRequired: "required",
     },
     {
       id: "flight_number_outbound",
       label: "Número de vuelo",
       type: "text",
       class: "input",
+      isRequired: "required",
     },
-    { id: "date_outbound", label: "Fecha", type: "date", class: "input" },
+    {
+      id: "date_outbound",
+      label: "Fecha",
+      type: "date",
+      class: "input",
+      isRequired: "required",
+    },
     {
       id: "boarding_time_outbound",
       label: "Hora de abordaje (ida)",
       type: "time",
       class: "input",
+      isRequired: "required",
     },
     // Título entre vuelos
     {
@@ -64,19 +74,28 @@ const ConfirmForm = () => {
       label: "Nombre de la aerolínea",
       type: "text",
       class: "input",
+      isRequired: "required",
     },
     {
       id: "flight_number_return",
       label: "Número de vuelo",
       type: "text",
       class: "input",
+      isRequired: "required",
     },
-    { id: "date_return", label: "Fecha", type: "date", class: "input" },
+    {
+      id: "date_return",
+      label: "Fecha",
+      type: "date",
+      class: "input",
+      isRequired: "required",
+    },
     {
       id: "boarding_time_return",
       label: "Hora de abordaje",
       type: "time",
       class: "input",
+      isRequired: "required",
     },
     // Aviso antes de las preguntas adicionales
     {
@@ -150,6 +169,7 @@ const ConfirmForm = () => {
     const wantsRoom = formData.individual_room ? 1 : 0; // Si quiere habitación individual
     const wantsToShare = formData.shared_room ? 1 : 0; // Si quiere compartir habitación
     const emailCompanion = formData.companion_email; // Correo electrónico del acompañante
+    // const nameCompanion = formData.companion_email; // Correo electrónico del acompañante
 
     try {
       const result = await confirm({
@@ -169,9 +189,9 @@ const ConfirmForm = () => {
 
       // VALIDACIÓN DE IDA
       if (
-        firstNameAirline.email == "" ||
-        firstNameAirline.email == undefined ||
-        firstNameAirline.email == null
+        firstNameAirline == "" ||
+        firstNameAirline == undefined ||
+        firstNameAirline == null
       ) {
         setMessage("Nombre de la Aerolínea(ida) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
@@ -179,29 +199,25 @@ const ConfirmForm = () => {
       }
 
       if (
-        firstFlightNumber.email == "" ||
-        firstFlightNumber.email == undefined ||
-        firstFlightNumber.email == null
+        firstFlightNumber == "" ||
+        firstFlightNumber == undefined ||
+        firstFlightNumber == null
       ) {
         setMessage("Número de vuelo(ida) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
         return;
       }
 
-      if (
-        firstDate.email == "" ||
-        firstDate.email == undefined ||
-        firstDate.email == null
-      ) {
+      if (firstDate == "" || firstDate == undefined || firstDate == null) {
         setMessage("Fecha de vuelo(ida) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
         return;
       }
 
       if (
-        firstBoardingTime.email == "" ||
-        firstBoardingTime.email == undefined ||
-        firstBoardingTime.email == null
+        firstBoardingTime == "" ||
+        firstBoardingTime == undefined ||
+        firstBoardingTime == null
       ) {
         setMessage("Hora de vuelo(ida) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
@@ -209,9 +225,9 @@ const ConfirmForm = () => {
       }
       // VALIDACIÓN DE VUELOS DE VUELTA
       if (
-        lastNameAirline.email == "" ||
-        lastNameAirline.email == undefined ||
-        lastNameAirline.email == null
+        lastNameAirline == "" ||
+        lastNameAirline == undefined ||
+        lastNameAirline == null
       ) {
         setMessage(
           "Nombre de la Aerolínea(vuelta) no proporcionado o inválido."
@@ -221,38 +237,34 @@ const ConfirmForm = () => {
       }
 
       if (
-        lastFlightNumber.email == "" ||
-        lastFlightNumber.email == undefined ||
-        lastFlightNumber.email == null
+        lastFlightNumber == "" ||
+        lastFlightNumber == undefined ||
+        lastFlightNumber == null
       ) {
         setMessage("Número de vuelo(vuelta) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
         return;
       }
 
-      if (
-        lastDate.email == "" ||
-        lastDate.email == undefined ||
-        lastDate.email == null
-      ) {
+      if (lastDate == "" || lastDate == undefined || lastDate == null) {
         setMessage("Fecha de vuelo(vuelta) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
         return;
       }
 
       if (
-        lastBoardingTime.email == "" ||
-        lastBoardingTime.email == undefined ||
-        lastBoardingTime.email == null
+        lastBoardingTime == "" ||
+        lastBoardingTime == undefined ||
+        lastBoardingTime == null
       ) {
         setMessage("Hora de vuelo(vuelta) no proporcionado o inválido.");
         setTimeout(() => setMessage(""), 3000);
         return;
       }
       if (
-        wantsToShare.email == "" ||
-        wantsToShare.email == undefined ||
-        wantsToShare.email == null
+        wantsToShare == "" ||
+        wantsToShare == undefined ||
+        wantsToShare == null
       ) {
         setMessage(
           "Información sobre compartir habitación no proporcionado o inválido."
@@ -260,11 +272,7 @@ const ConfirmForm = () => {
         setTimeout(() => setMessage(""), 3000);
         return;
       }
-      if (
-        wantsRoom.email == "" ||
-        wantsRoom.email == undefined ||
-        wantsRoom.email == null
-      ) {
+      if (wantsRoom == "" || wantsRoom == undefined || wantsRoom == null) {
         setMessage(
           "Información sobre habitación individual no proporcionado o inválido."
         );
@@ -272,22 +280,13 @@ const ConfirmForm = () => {
         return;
       }
 
-      if (
-        emailCompanion.email == "" ||
-        emailCompanion.email == undefined ||
-        emailCompanion.email == null
-      ) {
-        setMessage("Correo acompañante no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
-        return;
-      }
-
       setMessage(result.message || "Confirmación exitosa.");
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
-      setMessage("Error al confirmar." + err);
+      setMessage(err.toString());
       setTimeout(() => setMessage(""), 3000);
     }
+    onComplete();
   };
 
   return (
@@ -387,6 +386,9 @@ const ConfirmForm = () => {
       </main>
     </>
   );
+};
+ConfirmForm.propTypes = {
+  onComplete: PropTypes.func,
 };
 
 export default ConfirmForm;

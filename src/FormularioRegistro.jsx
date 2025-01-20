@@ -1,5 +1,5 @@
 import Input from "./Input";
-import { useState } from "react";
+// import { useState } from "react";
 import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -15,16 +15,16 @@ const FormularioRegistro = ({
   handleChange,
   visible,
 }) => {
-  const [token, setToken] = useState(null);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (token) {
-      // Aquí puedes enviar el token al backend para su verificación
-      console.log("Token recibido:", token);
-    } else {
-      console.error("Captcha no completado");
-    }
-  };
+  // const [token, setToken] = useState(null);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (token) {
+  //     // Aquí puedes enviar el token al backend para su verificación
+  //     console.log("Token recibido:", token);
+  //   } else {
+  //     console.error("Captcha no completado");
+  //   }
+  // };
 
   function onChange(value) {
     console.log("Captcha value:", value);
@@ -152,8 +152,8 @@ const FormularioRegistro = ({
           onChange={onChange}
           size="invisible"
         />
-
-        <BotonRegistro onSubmit={handleSubmit} modo={modo} />
+        {/* onSubmit={handleSubmit} */}
+        <BotonRegistro modo={modo} />
         {error && visible && <p className="error-message">{error}</p>}
         {message && visible && (
           <p

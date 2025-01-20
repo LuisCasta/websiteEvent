@@ -7,26 +7,28 @@ import DiagonalSection from "./DiagonalSection";
 import Contador from "./Contador";
 import GeneralData from "./GeneralData";
 import ConfirmForm from "./ConfirmForm";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import { useState } from "react";
 
 const Home = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const step = queryParams.get("step");
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  // Verificar si existe el parámetro step1
+  const hasStep1 = searchParams.has("step1");
+  console.log(hasStep1);
   const handleFormCompleted = () => {
     // Eliminar el parámetro 'step' de la URL
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.delete("step");
-    window.history.replaceState({}, "", `/home?${urlParams.toString()}`);
+    console.log("Formulario enviado");
+
+    // Eliminar step1 de los parámetros
+    searchParams.delete("step1");
+    setSearchParams(searchParams);
   };
 
   // Si el parámetro "confirm" está presente, renderiza el componente
-  if (step == "2") {
-    return <ConfirmForm onConplete={handleFormCompleted} />;
-  }
-  return (
+
+  return hasStep1 ? (
+    <ConfirmForm onComplete={handleFormCompleted} />
+  ) : (
     <div>
       <header>
         <Nav />
