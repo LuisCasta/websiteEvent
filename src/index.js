@@ -160,3 +160,32 @@ export const confirm = async (userData) => {
     }
   }
 };
+
+const API_CONFIRM_DECLINE =
+  "https://apibbva.onrender.com/api/event/confirmOrDecline";
+
+// Función para confirmar asistencia
+export const confirmDecline = async (userData) => {
+  try {
+    const response = await axios.post(API_CONFIRM_DECLINE, userData, {
+      headers: {
+        "Content-Type": "application/json", // Si la API requiere JSON
+      },
+    });
+    return response.data; // Devolver los datos de la respuesta
+  } catch (error) {
+    // Manejar errores y devolver un mensaje adecuado
+    if (error.response) {
+      // Errores que vienen del servidor
+      throw new Error(
+        error.response.data.message || "Error al confirmar habitación"
+      );
+    } else if (error.request) {
+      // No se recibió respuesta del servidor
+      throw new Error("No se pudo conectar al servidor");
+    } else {
+      // Otros errores
+      throw new Error("Error desconocido: " + error.message);
+    }
+  }
+};

@@ -7,6 +7,7 @@ import DiagonalSection from "./DiagonalSection";
 import Contador from "./Contador";
 import GeneralData from "./GeneralData";
 import ConfirmForm from "./ConfirmForm";
+import DeclineConfirm from "./DeclineConfirm";
 import { useSearchParams } from "react-router-dom";
 // import { useState } from "react";
 
@@ -14,21 +15,39 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   // Verificar si existe el parámetro step1
   const hasStep1 = searchParams.has("step1");
-  console.log(hasStep1);
+  const hasStep2 = searchParams.has("step2");
+
   const handleFormCompleted = () => {
     // Eliminar el parámetro 'step' de la URL
     console.log("Formulario enviado");
 
     // Eliminar step1 de los parámetros
-    searchParams.delete("step1");
-    setSearchParams(searchParams);
+    if (hasStep1) {
+      setTimeout(() => {
+        searchParams.delete("step1");
+      }, 5000);
+    }
+    if (hasStep2) {
+      setTimeout(() => {
+        searchParams.delete("step2");
+      }, 5000);
+    }
+    setTimeout(() => {
+      setSearchParams(searchParams);
+    }, 5000);
   };
 
   // Si el parámetro "confirm" está presente, renderiza el componente
 
-  return hasStep1 ? (
-    <ConfirmForm onComplete={handleFormCompleted} />
-  ) : (
+  // Renderizado condicional
+  if (hasStep1) {
+    return <ConfirmForm onComplete={handleFormCompleted} />;
+  }
+
+  if (hasStep2) {
+    return <DeclineConfirm onComplete={handleFormCompleted} />;
+  }
+  return (
     <div>
       <header>
         <Nav />
