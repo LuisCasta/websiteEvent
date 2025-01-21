@@ -3,7 +3,7 @@
   background-size: cover;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  height: 100vh;
+  height: 1050px;
   display: flex;
 }
 .content-main {
@@ -106,12 +106,12 @@
   height: 526px;
   justify-content: center;
 }
-.formulario {
+.formulario-2 {
   /* max-width: 400px; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
   width: 100%;
 }
 .message-form-text {
@@ -239,6 +239,14 @@
   font-weight: 700;
 }
 
+.confirm-container,
+.decline-container {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .contenedor-formulario-confirm {
     width: 90%;
@@ -248,8 +256,8 @@
     position: relative;
     z-index: 100;
   }
-  .formulario {
-    gap: 10px;
+  .formulario-2 {
+    gap: 20px;
   }
   .content-main {
     gap: 0;

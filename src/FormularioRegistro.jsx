@@ -15,17 +15,6 @@ const FormularioRegistro = ({
   handleChange,
   visible,
 }) => {
-  // const [token, setToken] = useState(null);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (token) {
-  //     // Aquí puedes enviar el token al backend para su verificación
-  //     console.log("Token recibido:", token);
-  //   } else {
-  //     console.error("Captcha no completado");
-  //   }
-  // };
-
   function onChange(value) {
     console.log("Captcha value:", value);
   }

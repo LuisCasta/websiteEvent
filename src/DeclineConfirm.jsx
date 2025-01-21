@@ -7,71 +7,60 @@ import PropTypes from "prop-types";
 import Header from "./Header.jsx";
 
 const DeclineConfirm = ({ onComplete }) => {
-  // const [searchParams] = useSearchParams();
-  // const tokenParam = searchParams.get("token");
   const [message, setMessage] = useState("");
   const [tokenUser, setUserToken] = useState(null);
-  // Estado para almacenar el userId
   const [userId, setUserId] = useState(null);
+  const [response, setResponse] = useState(null);
 
   useEffect(() => {
-    // Recuperar el dato de localStorage
     const userData = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     if (userData) {
-      // Parsear el JSON y obtener el id
       const user = JSON.parse(userData);
-      setUserId(user.id); // Almacena el id en el estado
+      setUserId(user.id);
     }
     if (token) {
-      // Parsear el JSON y obtener el id
-      const tokenUsuario = JSON.parse(token);
-      setUserToken(tokenUsuario); // Almacena el id en el estado
+      setUserToken(token);
     }
   }, []);
-
-  const [response, setResponse] = useState(null); // `null` significa que no hay selección aún
-
-  const handleAccept = () => {
-    setResponse(true); // Valor `true` para aceptar
-  };
-
-  const handleDecline = () => {
-    setResponse(false); // Valor `false` para declinar
-  };
 
   const manejarAccion = async (e) => {
     e.preventDefault();
     if (response === null) {
       alert("Por favor, selecciona una opción antes de continuar.");
-    } else {
-      // Llamar la función `onSubmit` pasando la respuesta seleccionada
-      const responseValue = response ? 1 : 0;
-      onComplete(responseValue);
-
-      try {
-        const result = await confirmDecline({
-          userId,
-          isConfirm: responseValue,
-          token: tokenUser,
-        });
-
-        // VALIDACIÓN DE IDA
-        if (userId == "" || userId == undefined || userId == null) {
-          setMessage("Usuario no proporcionado o inválido.");
-          setTimeout(() => setMessage(""), 3000);
-          return;
-        }
-
-        setMessage(result.message || "Confirmación exitosa.");
-        setTimeout(() => setMessage(""), 3000);
-      } catch (err) {
-        setMessage(err.toString());
-        setTimeout(() => setMessage(""), 3000);
-      }
-      onComplete();
+      return;
     }
+
+    const responseValue = response === "accept" ? 1 : 0;
+
+    try {
+      const result = await confirmDecline({
+        userId,
+        isConfirm: responseValue,
+        token: tokenUser,
+      });
+
+      if (!userId) {
+        setMessage("Usuario no proporcionado o inválido.");
+        setTimeout(() => setMessage(""), 5000);
+        return;
+      }
+
+      if (!tokenUser) {
+        setMessage("Token no válido o no proporcionado.");
+        setTimeout(() => setMessage(""), 5000);
+        return;
+      }
+
+      setMessage(result.message || "Confirmación exitosa.");
+      setTimeout(() => setMessage(""), 5000);
+    } catch (err) {
+      setMessage(err.toString());
+      setTimeout(() => setMessage(""), 5000);
+    }
+
+    onComplete(responseValue);
   };
 
   return (
@@ -81,29 +70,39 @@ const DeclineConfirm = ({ onComplete }) => {
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
           <div className="contenedor-formulario-decline">
-            <form className="formulario" onSubmit={manejarAccion}>
+            <form className="formulario-2" onSubmit={manejarAccion}>
               <div className="message-form">
-                <h4 className="call-title-form">¿Aceptas la invitación?</h4>
+                <h4 className="call-title-form">
+                  Solicitud para compartir habitación
+                </h4>
+                <p>Una persona ha solicitado compartir habitación contigo</p>
               </div>
               <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={response === true}
-                    onChange={handleAccept}
-                  />
-                  Aceptar
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={response === false}
-                    onChange={handleDecline}
-                  />
-                  Declinar
-                </label>
+                <div className="confirm-container">
+                  <label>
+                    <input
+                      type="radio"
+                      name="response"
+                      value="accept"
+                      checked={response === "accept"}
+                      onChange={(e) => setResponse(e.target.value)}
+                    />
+                  </label>
+                  <span>Acepto la invitación a compartir habitación</span>
+                </div>
+                <div className="decline-container">
+                  <label>
+                    <input
+                      className="radio"
+                      type="radio"
+                      name="response"
+                      value="decline"
+                      checked={response === "decline"}
+                      onChange={(e) => setResponse(e.target.value)}
+                    />
+                  </label>
+                  <span>Declino la invitación a compartir habitación</span>
+                </div>
               </div>
               <button type="submit" className="btn-registro">
                 CONFIRMAR ASISTENCIA
@@ -126,6 +125,7 @@ const DeclineConfirm = ({ onComplete }) => {
     </>
   );
 };
+
 DeclineConfirm.propTypes = {
   onComplete: PropTypes.func,
 };

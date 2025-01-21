@@ -23,8 +23,8 @@ import { useSearchParams } from "react-router-dom";
 
 const AppMain = () => {
   const [searchParams] = useSearchParams();
-  const step = searchParams.get("step1") || searchParams.get("step2");
-  console.log(step);
+  const isStep1 = searchParams.has("step1");
+  const isStep2 = searchParams.has("step2");
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",
@@ -118,7 +118,13 @@ const AppMain = () => {
         setSuccessMessage(result.message);
         mostrarMensaje();
         login();
-        navigate(`/home?step1`, { replace: true }); // Redirigir a la página de inicio
+        if (isStep1) {
+          navigate("/home?step1");
+        } else if (isStep2) {
+          navigate("/home?step2");
+        } else {
+          navigate(`/home`, { replace: true }); // Redirigir a la página de inicio
+        }
         // Guardar datos relevantes en Local Storage
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));

@@ -8,13 +8,15 @@ import { useSearchParams } from "react-router-dom";
 import Turnstile from "react-turnstile";
 
 const RecoveryPassword = () => {
-  const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
+  const [messageData, setMessageData] = useState({
+    text: "",
+    type: "", // "success" o "error"
+  }); // Estado para controlar la visibilidad
+  const [visible, setVisible] = useState(false);
   const [searchParams] = useSearchParams();
   const tokenParam = searchParams.get("token");
   // console.log(tokenParam); // Recupera el token de la URL
-  const [captchaToken, setCaptchaToken] = useState("");
-  const [message, setMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [captchaToken, setCaptchaToken] = useState("");
 
   const [values, setValues] = useState({
     password: "",
@@ -24,7 +26,7 @@ const RecoveryPassword = () => {
 
   const handleCaptchaVerify = (captchaToken) => {
     console.log("Token generado:", captchaToken);
-    setCaptchaToken(captchaToken);
+    // setCaptchaToken(captchaToken);
   };
 
   const handleChange = (e) => {
@@ -38,35 +40,39 @@ const RecoveryPassword = () => {
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
     e.preventDefault();
-    const mostrarMensaje = () => {
-      setVisible(true); // Muestra el mensaje
-      setTimeout(() => {
-        setVisible(false); // Oculta el mensaje después de 3 segundos
-      }, 5000); // Tiempo en milisegundos (3 segundos)
-    };
-
+    setVisible(true);
     let tokenP = tokenParam;
+
+    if (tokenP == null || tokenP == undefined || tokenP == "") {
+      setMessageData({
+        text: "No hay token para validar la contraseña",
+        type: "error",
+      });
+      setTimeout(() => setVisible(false), 5000);
+      return;
+    }
+
     if (tokenParam.endsWith(".")) {
       tokenP = tokenParam.slice(0, -1); // Eliminar el último carácter
     }
 
     // Envía el token junto con el formulario
-    console.log("Formulario enviado con token:", captchaToken);
+    // console.log("Formulario enviado con token:", captchaToken);
     if (values.confirmPassword !== values.password) {
-      setErrorMessage("Las contrsaseñas no coinciden");
-      setTimeout(() => setMessage(""), 5000); // Limpia el mensaje después de 3 segundos
+      setMessageData({
+        text: "Las contraseñas no coinciden",
+        type: "error",
+      });
+      setTimeout(() => setVisible(false), 5000);
+      // setTimeout(() => setErrorMessage(""), 5000); // Limpia el mensaje después de 3 segundos
       return;
     }
-
-    if (!tokenP) {
-      setMessage("Token no proporcionado o inválido.");
-      setTimeout(() => setMessage(""), 3000); // Limpia el mensaje después de 3 segundos
-      return;
-    }
-
     if (tokenP == null || tokenP == "" || tokenP == undefined) {
-      setMessage("Token no proporcionado o inválido.");
-      setTimeout(() => setMessage(""), 3000);
+      setMessageData({
+        text: "Token no proporcionado o inválido.",
+        type: "error",
+      });
+      setTimeout(() => setVisible(false), 5000);
       return;
     }
     try {
@@ -75,14 +81,17 @@ const RecoveryPassword = () => {
         token: tokenP,
       });
       console.log(result);
-      setMessage(result.message.toString());
-      mostrarMensaje();
-      setTimeout(() => setMessage(""), 5000);
+      setMessageData({
+        text: "Contraseña actualizada con éxito",
+        type: "success",
+      });
+      setTimeout(() => setVisible(false), 5000);
     } catch (err) {
-      err.message;
-      setMessage("Error" + err.message);
-      mostrarMensaje();
-      // Mostrar el mensaje de error
+      setMessageData({
+        text: err.message.toString(),
+        type: "error",
+      });
+      setTimeout(() => setVisible(false), 5000);
     }
   };
 
@@ -132,11 +141,16 @@ const RecoveryPassword = () => {
               />
               <button className="btn-registro">CREAR NUEVA CONTRASEÑA</button>
               <div>
-                {/* {errorMessage && visible && (
-                  <p className="error-message">{errorMessage}</p>
-                )} */}
-                {message && visible && (
-                  <p className="success-message">{message}</p>
+                {visible && (
+                  <p
+                    className={
+                      messageData.type === "success"
+                        ? "success-message"
+                        : "error-message-2"
+                    }
+                  >
+                    {messageData.text}
+                  </p>
                 )}
               </div>
             </form>
