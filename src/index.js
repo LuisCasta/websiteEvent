@@ -189,3 +189,32 @@ export const confirmDecline = async (userData) => {
     }
   }
 };
+
+const API_DATA_COMPANION =
+  "https://apibbva.onrender.com/api/event/getInvitationData";
+
+// Función para confirmar asistencia
+export const dataUserCompanion = async (userData) => {
+  try {
+    const response = await axios.post(API_DATA_COMPANION, userData, {
+      headers: {
+        "Content-Type": "application/json", // Si la API requiere JSON
+      },
+    });
+    return response.data; // Devolver los datos de la respuesta
+  } catch (error) {
+    // Manejar errores y devolver un mensaje adecuado
+    if (error.response) {
+      // Errores que vienen del servidor
+      throw new Error(
+        error.response.data.message || "Error al cargar datos de la persona"
+      );
+    } else if (error.request) {
+      // No se recibió respuesta del servidor
+      throw new Error("No se pudo conectar al servidor");
+    } else {
+      // Otros errores
+      throw new Error("Error desconocido: " + error.message);
+    }
+  }
+};

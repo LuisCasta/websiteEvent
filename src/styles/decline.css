@@ -246,9 +246,17 @@
   gap: 10px;
   align-items: center;
 }
-
+.p-host {
+  text-align: left;
+  margin-top: 20px;
+  font-weight: 700;
+  color: #5d5d5d;
+}
+.container-data-host {
+  text-align: left;
+}
 @media (max-width: 768px) {
-  .contenedor-formulario-confirm {
+  .contenedor-formulario-decline {
     width: 90%;
     margin: auto;
     gap: 10px;
