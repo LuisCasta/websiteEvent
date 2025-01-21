@@ -23,8 +23,7 @@ import { useSearchParams } from "react-router-dom";
 
 const AppMain = () => {
   const [searchParams] = useSearchParams();
-  const isStep1 = searchParams.has("step1");
-  const isStep2 = searchParams.has("step2");
+  const step = searchParams.get("step");
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",
@@ -118,10 +117,10 @@ const AppMain = () => {
         setSuccessMessage(result.message);
         mostrarMensaje();
         login();
-        if (isStep1) {
-          navigate("/home?step1");
-        } else if (isStep2) {
-          navigate("/home?step2");
+        if (step == "1") {
+          navigate("/home?step=1");
+        } else if (step == "2") {
+          navigate("/home?step=2");
         } else {
           navigate(`/home`, { replace: true }); // Redirigir a la página de inicio
         }

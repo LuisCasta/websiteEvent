@@ -14,19 +14,17 @@ import { useSearchParams } from "react-router-dom";
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   // Verificar si existe el parámetro step1
-  const hasStep1 = searchParams.has("step1");
-  const hasStep2 = searchParams.has("step2");
-
+  const step = searchParams.get("step");
   const handleFormCompleted = () => {
     // Eliminar el parámetro 'step' de la URL
     console.log("Formulario enviado");
 
     // Eliminar step1 de los parámetros
-    if (hasStep1) {
-      searchParams.delete("step1");
+    if (step == "1") {
+      searchParams.delete("step");
     }
-    if (hasStep2) {
-      searchParams.delete("step2");
+    if (step == "2") {
+      searchParams.delete("step");
     }
     setTimeout(() => {
       setSearchParams(searchParams);
@@ -36,11 +34,11 @@ const Home = () => {
   // Si el parámetro "confirm" está presente, renderiza el componente
 
   // Renderizado condicional
-  if (hasStep1) {
+  if (step == "1") {
     return <ConfirmForm onComplete={handleFormCompleted} />;
   }
 
-  if (hasStep2) {
+  if (step == "2") {
     return <DeclineConfirm onComplete={handleFormCompleted} />;
   }
   return (
