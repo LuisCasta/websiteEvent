@@ -6,8 +6,10 @@ import { recovery } from "./index.js";
 import "./styles/recovery-password.css";
 import { useSearchParams } from "react-router-dom";
 import Turnstile from "react-turnstile";
+import { useNavigate } from "react-router-dom";
 
 const RecoveryPassword = () => {
+  const navigate = useNavigate();
   const [messageData, setMessageData] = useState({
     text: "",
     type: "", // "success" o "error"
@@ -49,6 +51,10 @@ const RecoveryPassword = () => {
         type: "error",
       });
       setTimeout(() => setVisible(false), 5000);
+      setTimeout(
+        () => setValues({ password: "", confirmPassword: "" }), // Limpiar inputs
+        5000
+      );
       return;
     }
 
@@ -73,6 +79,10 @@ const RecoveryPassword = () => {
         type: "error",
       });
       setTimeout(() => setVisible(false), 5000);
+      setTimeout(
+        () => setValues({ password: "", confirmPassword: "" }), // Limpiar inputs
+        5000
+      );
       return;
     }
     try {
@@ -80,18 +90,27 @@ const RecoveryPassword = () => {
         password: values.password,
         token: tokenP,
       });
-      console.log(result);
+      // console.log(result);
       setMessageData({
         text: "Contraseña actualizada con éxito",
         type: "success",
       });
       setTimeout(() => setVisible(false), 5000);
+      setTimeout(
+        () => setValues({ password: "", confirmPassword: "" }), // Limpiar inputs
+        5000
+      );
+      setTimeout(() => navigate("/?sesion=true"), 5000);
     } catch (err) {
       setMessageData({
         text: err.message.toString(),
         type: "error",
       });
       setTimeout(() => setVisible(false), 5000);
+      setTimeout(
+        () => setValues({ password: "", confirmPassword: "" }), // Limpiar inputs
+        5000
+      );
     }
   };
 
@@ -116,7 +135,7 @@ const RecoveryPassword = () => {
                   placeholder="Contraseña"
                   onChange={handleChange}
                   name="password"
-                  type="text"
+                  type="password"
                   value={values.password}
                   required
                 />

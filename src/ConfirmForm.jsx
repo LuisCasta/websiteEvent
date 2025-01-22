@@ -194,7 +194,7 @@ const ConfirmForm = ({ onComplete }) => {
         firstNameAirline == null
       ) {
         setMessage("Nombre de la Aerolínea(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
@@ -204,13 +204,13 @@ const ConfirmForm = ({ onComplete }) => {
         firstFlightNumber == null
       ) {
         setMessage("Número de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
       if (firstDate == "" || firstDate == undefined || firstDate == null) {
         setMessage("Fecha de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
@@ -220,7 +220,7 @@ const ConfirmForm = ({ onComplete }) => {
         firstBoardingTime == null
       ) {
         setMessage("Hora de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
       // VALIDACIÓN DE VUELOS DE VUELTA
@@ -232,7 +232,7 @@ const ConfirmForm = ({ onComplete }) => {
         setMessage(
           "Nombre de la Aerolínea(vuelta) no proporcionado o inválido."
         );
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
@@ -242,13 +242,13 @@ const ConfirmForm = ({ onComplete }) => {
         lastFlightNumber == null
       ) {
         setMessage("Número de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
       if (lastDate == "" || lastDate == undefined || lastDate == null) {
         setMessage("Fecha de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
@@ -258,7 +258,7 @@ const ConfirmForm = ({ onComplete }) => {
         lastBoardingTime == null
       ) {
         setMessage("Hora de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
       if (
@@ -269,24 +269,35 @@ const ConfirmForm = ({ onComplete }) => {
         setMessage(
           "Información sobre compartir habitación no proporcionado o inválido."
         );
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
       if (wantsRoom == "" || wantsRoom == undefined || wantsRoom == null) {
         setMessage(
           "Información sobre habitación individual no proporcionado o inválido."
         );
-        setTimeout(() => setMessage(""), 3000);
+        setTimeout(() => setMessage(""), 5000);
         return;
       }
 
       setMessage(result.message || "Confirmación exitosa.");
-      setTimeout(() => setMessage(""), 3000);
+      setTimeout(() => setMessage(""), 5000);
+      setTimeout(() => resetForm(), 5000);
     } catch (err) {
       setMessage(err.toString());
-      setTimeout(() => setMessage(""), 3000);
+      setTimeout(() => setMessage(""), 5000);
+      setTimeout(() => resetForm(), 5000);
     }
     onComplete();
+  };
+
+  const resetForm = () => {
+    setFormData(
+      fields.reduce((acc, field) => {
+        acc[field.id] = field.type === "checkbox" ? false : "";
+        return acc;
+      }, {})
+    );
   };
 
   return (

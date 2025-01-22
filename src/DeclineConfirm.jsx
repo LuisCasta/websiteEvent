@@ -105,19 +105,19 @@ const DeclineConfirm = ({ onComplete }) => {
               <div className="container-data-host">
                 <p className="tilte-host">
                   <b>Nombre:</b>
-                  {companionData.name}
+                  {"" + companionData.name}
                 </p>
                 <p className="tilte-host">
                   <b>Empresa:</b>
-                  {companionData.company}
+                  {"" + companionData.company}
                 </p>
                 <p className="tilte-host">
                   <b>Puesto:</b>
-                  {companionData.position}
+                  {"" + companionData.position}
                 </p>
                 <p className="tilte-host">
                   <b>Correo electrónico:</b>
-                  {companionData.email}
+                  {"" + companionData.email}
                 </p>
               </div>
               <div>

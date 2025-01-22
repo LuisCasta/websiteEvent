@@ -24,6 +24,8 @@ import { useSearchParams } from "react-router-dom";
 const AppMain = () => {
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
+  const recovery = searchParams.get("sesion");
+  console.log(recovery);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",
@@ -74,6 +76,7 @@ const AppMain = () => {
       setError(null); // Limpiar errores previos
       setSuccessMessage(null); // Limpiar mensajes previos
       if (formDataInput.password != formDataInput.confirmPassword) {
+        setFormDataInput({ email: "", password: "", confirmPassword: "" }); // Limpiar inputs
         setError("Las contraseñas no coinciden");
         mostrarMensaje();
         return; // Limpiar mensajes previos;
@@ -85,6 +88,7 @@ const AppMain = () => {
         });
         setSuccessMessage(result.message);
         mostrarMensaje();
+        setFormDataInput({ email: "", password: "", confirmPassword: "" }); // Limpiar inputs
       } catch (err) {
         setError(err.message);
         mostrarMensaje(); // Mostrar el mensaje de error
@@ -105,6 +109,7 @@ const AppMain = () => {
           formDataInput.password == undefined ||
           formDataInput.password == null
         ) {
+          setFormDataInput({ email: "", password: "" }); // Limpiar inputs
           setError("Hubo un error, inténtalo de nuevo");
           mostrarMensaje();
           return; // Limpiar mensajes previos;
@@ -122,14 +127,18 @@ const AppMain = () => {
         } else if (step == "2") {
           navigate("/home?step=2");
         } else {
-          navigate(`/home`, { replace: true }); // Redirigir a la página de inicio
+          navigate("/home", { replace: true }); // Redirigir a la página de inicio
         }
         // Guardar datos relevantes en Local Storage
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
+        setFormDataInput({ email: "", password: "" }); // Limpiar inputs
       } catch (err) {
         setError(err.message);
         mostrarMensaje(); // Mostrar el mensaje de error
+        setTimeout(() => {
+          setFormDataInput({ email: "", password: "" }); // Limpiar inputs
+        }, 5000);
       }
     } else if (modo === "olvidoPassword") {
       e.preventDefault();
@@ -150,9 +159,14 @@ const AppMain = () => {
           email: formDataInput.email,
         });
         setSuccessMessage(result.message);
+        setFormDataInput({ email: "" }); // Limpiar inputs
         mostrarMensaje();
         navigate("/", { replace: true });
       } catch (err) {
+        setTimeout(() => {
+          setFormDataInput({ email: "" }); // Limpiar inputs
+        }, 5000);
+        // Limpiar inputs
         setError(err.message);
         mostrarMensaje(); // Mostrar el mensaje de error
       }
@@ -160,8 +174,13 @@ const AppMain = () => {
   };
 
   const [modo, setModo] = useState("crearCuenta"); // Estado para el modo actual
-  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivos móviles
 
+  useEffect(() => {
+    if (recovery === "true") {
+      setModo("iniciarSesion");
+    }
+  }, [recovery]);
+  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivos móviles
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768); // Define el límite para vistas móviles

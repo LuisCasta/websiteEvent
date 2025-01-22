@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   // Verificar si existe el parámetro step1
   const step = searchParams.get("step");
   const handleFormCompleted = () => {
