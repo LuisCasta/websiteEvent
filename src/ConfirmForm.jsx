@@ -113,7 +113,7 @@ const ConfirmForm = ({ onComplete }) => {
       });
 
       setMessageData({
-        text: "Confirmación de asistencia exitosa. Si haz solicitado una habitación compartida, en breve te notificaremos la respuesta",
+        text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
         type: "success",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
