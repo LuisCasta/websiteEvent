@@ -10,7 +10,11 @@ import Header from "./Header.jsx";
 const ConfirmForm = ({ onComplete }) => {
   // const [searchParams] = useSearchParams();
   // const tokenParam = searchParams.get("token");
-  const [message, setMessage] = useState("");
+  const [messageData, setMessageData] = useState({
+    text: "",
+    type: "", // "success" o "error"
+  }); // Estado para controlar la visibilidad
+
   // Estado para almacenar el userId
   const [userId, setUserId] = useState(null);
 
@@ -54,10 +58,14 @@ const ConfirmForm = ({ onComplete }) => {
 
     // Validación 8: Fecha del vuelo de ida no debe ser mayor al 10 de marzo de 2025
     if (selectedFirstDate > limitDate) {
-      setMessage(
-        "La fecha del vuelo de ida no debe ser mayor al 10 de marzo, de lo contrario se perderá del evento."
-      );
-      setTimeout(() => setMessage(""), 5000);
+      setMessageData({
+        text: "La fecha del vuelo de ida no debe ser mayor al 10 de marzo, de lo contrario se perderá del evento.",
+        type: "error",
+      });
+
+      setTimeout(() => setMessageData(""), 5000);
+      setTimeout(() => resetForm(), 4000);
+
       return;
     }
 
@@ -65,25 +73,31 @@ const ConfirmForm = ({ onComplete }) => {
     if (selectedFirstDate.toDateString() === limitDate.toDateString()) {
       const [hours, minutes] = firstBoardingTime.split(":").map(Number);
       if (hours > 13 || (hours === 13 && minutes > 0)) {
-        setMessage(
-          "Recuerde que debe estar antes de la 1:00 pm para poder asistir al evento."
-        );
-        setTimeout(() => setMessage(""), 5000);
+        setMessageData({
+          text: "Recuerde que debe estar antes de la 1:00 pm para poder asistir al evento.",
+          type: "error",
+        });
+        setTimeout(() => setMessageData(""), 5000);
+        setTimeout(() => resetForm(), 4000);
+
         return false;
       }
     }
 
     // Validación 10: Fecha del vuelo de regreso no menor a la de ida
     if (selectedLastDate < selectedFirstDate) {
-      setMessage(
-        "La fecha del vuelo de regreso no puede ser anterior a la fecha del vuelo de ida."
-      );
-      setTimeout(() => setMessage(""), 5000);
+      setMessageData({
+        text: "La fecha del vuelo de regreso no puede ser anterior a la fecha del vuelo de ida.",
+        type: "error",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      setTimeout(() => resetForm(), 4000);
+
       return;
     }
 
     try {
-      const result = await confirm({
+      await confirm({
         userId,
         firstNameAirline: formData.airline_outbound,
         firstFlightNumber: formData.flight_number_outbound,
@@ -98,16 +112,27 @@ const ConfirmForm = ({ onComplete }) => {
         emailCompanion: formData.companion_email,
       });
 
-      setMessage(result.message || "Confirmación exitosa.");
-      setTimeout(() => setMessage(""), 5000);
+      setMessageData({
+        text: "Confirmación de asistencia exitosa. Si haz solicitado una habitación compartida, en breve te notificaremos la respuesta",
+        type: "success",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
       setTimeout(() => resetForm(), 5000);
     } catch (err) {
-      setTimeout(() => setMessage(err.message), 100);
       setTimeout(
-        () => setMessage("Te rediccionaremos a la página de inicio"),
+        () => setMessageData({ text: err.message, type: "error" }),
+        100
+      );
+      setTimeout(() => resetForm(), 5000);
+      setTimeout(
+        () =>
+          setMessageData({
+            text: "Te rediccionaremos a la página de inicio",
+            type: "success",
+          }),
         3000
       );
-      setTimeout(() => setMessage(""), 5000);
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
       setTimeout(() => resetForm(), 5000);
     }
     onComplete();
@@ -200,10 +225,16 @@ const ConfirmForm = ({ onComplete }) => {
                 );
               })}
               <button className="btn-registro">CONFIRMAR ASISTENCIA</button>
-              {message && (
-                <div className="success-message">
-                  <p>{message}</p>
-                </div>
+              {messageData.text && (
+                <p
+                  className={
+                    messageData.type == "error"
+                      ? "error-message-2"
+                      : "success-message"
+                  }
+                >
+                  {messageData.text}
+                </p>
               )}
             </form>
           </div>

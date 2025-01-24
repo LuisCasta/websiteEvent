@@ -24,7 +24,7 @@ import { useSearchParams } from "react-router-dom";
 const AppMain = () => {
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
-  const recovery = searchParams.get("sesion");
+  const inicio = searchParams.get("iniciarsesion");
   // console.log(recovery);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
@@ -176,10 +176,11 @@ const AppMain = () => {
   const [modo, setModo] = useState("crearCuenta"); // Estado para el modo actual
 
   useEffect(() => {
-    if (recovery === "true") {
+    if (inicio === "true" || step == "1" || step == "2") {
       setModo("iniciarSesion");
     }
-  }, [recovery]);
+  }, [inicio, step]);
+
   const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivos móviles
   useEffect(() => {
     const handleResize = () => {

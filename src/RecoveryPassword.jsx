@@ -12,7 +12,7 @@ const RecoveryPassword = () => {
   const navigate = useNavigate();
   const [messageData, setMessageData] = useState({
     text: "",
-    type: "sicne", // "success" o "error"
+    type: "", // "success" o "error"
   }); // Estado para controlar la visibilidad
   const [visible, setVisible] = useState(false);
   const [searchParams] = useSearchParams();
@@ -89,7 +89,7 @@ const RecoveryPassword = () => {
       type: "success",
     });
     try {
-      const result = await recovery({
+      await recovery({
         password: values.password,
         token: tokenP,
       });
@@ -114,7 +114,7 @@ const RecoveryPassword = () => {
         5000
       );
 
-      setTimeout(() => navigate("/?sesion=true"), 8000);
+      setTimeout(() => navigate("/?iniciarsesion=true"), 8000);
     } catch (err) {
       setMessageData({
         text: err.message,
