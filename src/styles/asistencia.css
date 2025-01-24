@@ -28,11 +28,11 @@
 .container-pickup {
   position: relative;
 }
-.pickup {
+.pickup-confirm {
   position: absolute;
-  width: 800px;
-  bottom: -100px;
-  left: -20px;
+  width: 900px;
+  bottom: 0;
+  left: -50px;
   animation: fadeIn 1s ease-in-out;
 }
 

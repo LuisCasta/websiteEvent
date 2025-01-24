@@ -4,7 +4,7 @@ import azul from "./assets/azul.png";
 import { confirm } from "./index.js";
 import "./styles/asistencia.css";
 import PropTypes from "prop-types";
-// import { useSearchParams } from "react-router-dom";
+import { fields } from "./fields.js";
 import Header from "./Header.jsx";
 
 const ConfirmForm = ({ onComplete }) => {
@@ -25,121 +25,6 @@ const ConfirmForm = ({ onComplete }) => {
     }
   }, []);
 
-  // console.log(userId);
-  const fields = [
-    // Título entre vuelos
-    {
-      id: "title_go",
-      label: "Información del vuelo de ida",
-      type: "title",
-    },
-    // Información del vuelo de ida
-    {
-      id: "airline_outbound",
-      label: "Nombre de la aerolínea",
-      type: "text",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "flight_number_outbound",
-      label: "Número de vuelo",
-      type: "text",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "date_outbound",
-      label: "Fecha",
-      type: "date",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "boarding_time_outbound",
-      label: "Hora de abordaje (ida)",
-      type: "time",
-      class: "input",
-      isRequired: "required",
-    },
-    // Título entre vuelos
-    {
-      id: "title_return",
-      label: "Información del vuelo de regreso",
-      type: "title",
-    },
-    // Información del vuelo de regreso
-    {
-      id: "airline_return",
-      label: "Nombre de la aerolínea",
-      type: "text",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "flight_number_return",
-      label: "Número de vuelo",
-      type: "text",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "date_return",
-      label: "Fecha",
-      type: "date",
-      class: "input",
-      isRequired: "required",
-    },
-    {
-      id: "boarding_time_return",
-      label: "Hora de abordaje",
-      type: "time",
-      class: "input",
-      isRequired: "required",
-    },
-    // Aviso antes de las preguntas adicionales
-    {
-      id: "notice_questions",
-      label:
-        " Las habitaciones reservadas serán compartidas con los asistentes del evento. En caso de preferir una habitación individual, tendrá un cargo adicional que correrá por cuenta de los asistentes.",
-      type: "notice",
-    },
-    {
-      id: "notice_price",
-      label: "La habitación individual tendrá un costo adicional de $0.00 MXN",
-      type: "warning",
-    },
-    // Preguntas adicionales
-    {
-      id: "individual_room",
-      label: "¿Te gustaría que reservemos una habitación individual para ti?",
-      type: "checkbox",
-      class: "input",
-    },
-    {
-      id: "shared_room",
-      label:
-        "¿Te gustaría compartir tu habitación con algún asistente específico?",
-      type: "checkbox",
-      class: "input",
-    },
-    // Información del acompañante
-    {
-      id: "companion_name",
-      label: "Nombre del acompañante",
-      type: "text",
-      condition: "shared_room",
-      class: "input",
-    },
-    {
-      id: "companion_email",
-      label: "Correo electrónico del acompañante",
-      type: "email",
-      condition: "shared_room",
-      class: "input",
-    },
-  ];
-
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => {
       acc[field.id] = field.type === "checkbox" ? false : "";
@@ -149,7 +34,7 @@ const ConfirmForm = ({ onComplete }) => {
 
   const handleInputChange = (e) => {
     const { id, type, value, checked } = e.target;
-    console.log(e.target);
+    // console.log(e.target);
     setFormData((prev) => ({
       ...prev,
       [id]: type === "checkbox" ? checked : value,
@@ -158,133 +43,70 @@ const ConfirmForm = ({ onComplete }) => {
 
   const manejarAccion = async (e) => {
     e.preventDefault();
-    const firstNameAirline = formData.airline_outbound; // Nombre de la aerolínea de ida
-    const firstFlightNumber = formData.flight_number_outbound; // Número de vuelo de ida
     const firstDate = formData.date_outbound; // Fecha de vuelo de ida
     const firstBoardingTime = formData.boarding_time_outbound; // Hora de abordaje de ida
-    const lastNameAirline = formData.airline_return; // Nombre de la aerolínea de regreso
-    const lastFlightNumber = formData.flight_number_return; // Número de vuelo de regreso
     const lastDate = formData.date_return; // Fecha de vuelo de regreso
-    const lastBoardingTime = formData.boarding_time_return; // Hora de abordaje de regreso
-    const wantsRoom = formData.individual_room ? 1 : 0; // Si quiere habitación individual
-    const wantsToShare = formData.shared_room ? 1 : 0; // Si quiere compartir habitación
-    const emailCompanion = formData.companion_email; // Correo electrónico del acompañante
-    // const nameCompanion = formData.companion_email; // Correo electrónico del acompañante
+
+    // Fecha límite: 10 de marzo de 2025
+    const limitDate = new Date("2025-03-10");
+    const selectedFirstDate = new Date(firstDate);
+    const selectedLastDate = new Date(lastDate);
+
+    // Validación 8: Fecha del vuelo de ida no debe ser mayor al 10 de marzo de 2025
+    if (selectedFirstDate > limitDate) {
+      setMessage(
+        "La fecha del vuelo de ida no debe ser mayor al 10 de marzo, de lo contrario se perderá del evento."
+      );
+      setTimeout(() => setMessage(""), 5000);
+      return;
+    }
+
+    // Validación específica: Hora del vuelo de ida antes de la 1:00 PM el 10 de marzo
+    if (selectedFirstDate.toDateString() === limitDate.toDateString()) {
+      const [hours, minutes] = firstBoardingTime.split(":").map(Number);
+      if (hours > 13 || (hours === 13 && minutes > 0)) {
+        setMessage(
+          "Recuerde que debe estar antes de la 1:00 pm para poder asistir al evento."
+        );
+        setTimeout(() => setMessage(""), 5000);
+        return false;
+      }
+    }
+
+    // Validación 10: Fecha del vuelo de regreso no menor a la de ida
+    if (selectedLastDate < selectedFirstDate) {
+      setMessage(
+        "La fecha del vuelo de regreso no puede ser anterior a la fecha del vuelo de ida."
+      );
+      setTimeout(() => setMessage(""), 5000);
+      return;
+    }
 
     try {
       const result = await confirm({
         userId,
-        firstNameAirline,
-        firstFlightNumber,
+        firstNameAirline: formData.airline_outbound,
+        firstFlightNumber: formData.flight_number_outbound,
         firstDate,
         firstBoardingTime,
-        lastNameAirline,
-        lastFlightNumber,
+        lastNameAirline: formData.airline_return,
+        lastFlightNumber: formData.flight_number_return,
         lastDate,
-        lastBoardingTime,
-        wantsRoom,
-        wantsToShare,
-        emailCompanion,
+        lastBoardingTime: formData.boarding_time_return,
+        wantsRoom: formData.individual_room ? 1 : 0,
+        wantsToShare: formData.shared_room ? 1 : 0,
+        emailCompanion: formData.companion_email,
       });
-
-      // VALIDACIÓN DE IDA
-      if (
-        firstNameAirline == "" ||
-        firstNameAirline == undefined ||
-        firstNameAirline == null
-      ) {
-        setMessage("Nombre de la Aerolínea(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (
-        firstFlightNumber == "" ||
-        firstFlightNumber == undefined ||
-        firstFlightNumber == null
-      ) {
-        setMessage("Número de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (firstDate == "" || firstDate == undefined || firstDate == null) {
-        setMessage("Fecha de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (
-        firstBoardingTime == "" ||
-        firstBoardingTime == undefined ||
-        firstBoardingTime == null
-      ) {
-        setMessage("Hora de vuelo(ida) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-      // VALIDACIÓN DE VUELOS DE VUELTA
-      if (
-        lastNameAirline == "" ||
-        lastNameAirline == undefined ||
-        lastNameAirline == null
-      ) {
-        setMessage(
-          "Nombre de la Aerolínea(vuelta) no proporcionado o inválido."
-        );
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (
-        lastFlightNumber == "" ||
-        lastFlightNumber == undefined ||
-        lastFlightNumber == null
-      ) {
-        setMessage("Número de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (lastDate == "" || lastDate == undefined || lastDate == null) {
-        setMessage("Fecha de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-
-      if (
-        lastBoardingTime == "" ||
-        lastBoardingTime == undefined ||
-        lastBoardingTime == null
-      ) {
-        setMessage("Hora de vuelo(vuelta) no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-      if (
-        wantsToShare == "" ||
-        wantsToShare == undefined ||
-        wantsToShare == null
-      ) {
-        setMessage(
-          "Información sobre compartir habitación no proporcionado o inválido."
-        );
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
-      if (wantsRoom == "" || wantsRoom == undefined || wantsRoom == null) {
-        setMessage(
-          "Información sobre habitación individual no proporcionado o inválido."
-        );
-        setTimeout(() => setMessage(""), 5000);
-        return;
-      }
 
       setMessage(result.message || "Confirmación exitosa.");
       setTimeout(() => setMessage(""), 5000);
       setTimeout(() => resetForm(), 5000);
     } catch (err) {
-      setMessage(err.toString());
+      setTimeout(() => setMessage(err.message), 100);
+      setTimeout(
+        () => setMessage("Te rediccionaremos a la página de inicio"),
+        3000
+      );
       setTimeout(() => setMessage(""), 5000);
       setTimeout(() => resetForm(), 5000);
     }
@@ -312,13 +134,6 @@ const ConfirmForm = ({ onComplete }) => {
                 <h4 className="call-title-form">Confirma tu asistencia</h4>
               </div>
               {fields.map((field) => {
-                // if (
-                //   field.type === "text" ||
-                //   field.type === "date" ||
-                //   field.type === "time"
-                // ) {
-
-                // }
                 if (field.condition && !formData[field.condition]) {
                   return null;
                 }
@@ -375,6 +190,11 @@ const ConfirmForm = ({ onComplete }) => {
                       }
                       placeholder={field.label}
                       onChange={handleInputChange}
+                      required={
+                        ["text", "time", "date"].includes(field.type)
+                          ? field.isRequired
+                          : false
+                      }
                     />
                   </div>
                 );
@@ -390,7 +210,7 @@ const ConfirmForm = ({ onComplete }) => {
           <div className="main-message">
             <img className="slogan-img" src={slogan} alt="Slogan" />
             <div className="container-pickup">
-              <img className="pickup" src={azul} alt="Pickup" />
+              <img className="pickup-confirm" src={azul} alt="Pickup" />
             </div>
           </div>
         </div>

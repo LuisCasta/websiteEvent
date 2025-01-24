@@ -12,14 +12,13 @@ const RecoveryPassword = () => {
   const navigate = useNavigate();
   const [messageData, setMessageData] = useState({
     text: "",
-    type: "", // "success" o "error"
+    type: "sicne", // "success" o "error"
   }); // Estado para controlar la visibilidad
   const [visible, setVisible] = useState(false);
   const [searchParams] = useSearchParams();
   const tokenParam = searchParams.get("token");
   // console.log(tokenParam); // Recupera el token de la URL
   // const [captchaToken, setCaptchaToken] = useState("");
-
   const [values, setValues] = useState({
     password: "",
     confirmPassword: "",
@@ -85,25 +84,40 @@ const RecoveryPassword = () => {
       );
       return;
     }
+    setMessageData({
+      text: "Validando...",
+      type: "success",
+    });
     try {
       const result = await recovery({
         password: values.password,
         token: tokenP,
       });
+
       // console.log(result);
-      setMessageData({
-        text: "Contraseña actualizada con éxito",
-        type: "success",
-      });
-      setTimeout(() => setVisible(false), 5000);
+      setTimeout(() => {
+        setMessageData({
+          text: "Contraseña actualizada con éxito",
+          type: "success",
+        });
+      }, 100);
+      setTimeout(() => {
+        setMessageData({
+          text: "Se te redigirá a la panatalla de Inicio de sesión",
+          type: "success",
+        });
+      }, 4000);
+
+      setTimeout(() => setVisible(false), 8000);
       setTimeout(
         () => setValues({ password: "", confirmPassword: "" }), // Limpiar inputs
         5000
       );
-      setTimeout(() => navigate("/?sesion=true"), 5000);
+
+      setTimeout(() => navigate("/?sesion=true"), 8000);
     } catch (err) {
       setMessageData({
-        text: err.message.toString(),
+        text: err.message,
         type: "error",
       });
       setTimeout(() => setVisible(false), 5000);
@@ -160,12 +174,12 @@ const RecoveryPassword = () => {
               />
               <button className="btn-registro">CREAR NUEVA CONTRASEÑA</button>
               <div>
-                {visible && (
+                {visible && messageData.text && (
                   <p
                     className={
-                      messageData.type === "success"
-                        ? "success-message"
-                        : "error-message-2"
+                      messageData.type == "error"
+                        ? "error-message-2"
+                        : "success-message"
                     }
                   >
                     {messageData.text}

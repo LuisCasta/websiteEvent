@@ -270,4 +270,7 @@
   .content-main {
     gap: 0;
   }
+  .main {
+    height: auto;
+  }
 }

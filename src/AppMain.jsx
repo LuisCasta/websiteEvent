@@ -25,7 +25,7 @@ const AppMain = () => {
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
   const recovery = searchParams.get("sesion");
-  console.log(recovery);
+  // console.log(recovery);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
     email: "",

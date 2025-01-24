@@ -18,7 +18,7 @@ const Home = () => {
   const step = searchParams.get("step");
   const handleFormCompleted = () => {
     // Eliminar el parámetro 'step' de la URL
-    console.log("Formulario enviado");
+    // console.log("Formulario enviado");
 
     // Eliminar step1 de los parámetros
     if (step == "1") {
