@@ -104,20 +104,20 @@ const DeclineConfirm = ({ onComplete }) => {
               </div>
               <div className="container-data-host">
                 <p className="tilte-host">
-                  <b>Nombre:</b>
-                  {"" + companionData.name}
+                  <b>Nombre: </b>
+                  {"" + companionData?.name}
                 </p>
                 <p className="tilte-host">
-                  <b>Empresa:</b>
-                  {"" + companionData.company}
+                  <b>Empresa: </b>
+                  {"" + companionData?.company}
                 </p>
                 <p className="tilte-host">
-                  <b>Puesto:</b>
-                  {"" + companionData.position}
+                  <b>Puesto: </b>
+                  {"" + companionData?.position}
                 </p>
                 <p className="tilte-host">
-                  <b>Correo electrónico:</b>
-                  {"" + companionData.email}
+                  <b>Correo electrónico: </b>
+                  {"" + companionData?.email}
                 </p>
               </div>
               <div>
@@ -131,7 +131,9 @@ const DeclineConfirm = ({ onComplete }) => {
                       onChange={(e) => setResponse(e.target.value)}
                     />
                   </label>
-                  <span>Acepto la invitación a compartir habitación</span>
+                  <span className="room-title">
+                    Acepto la invitación a compartir habitación
+                  </span>
                 </div>
                 <div className="decline-container">
                   <label>
@@ -144,7 +146,9 @@ const DeclineConfirm = ({ onComplete }) => {
                       onChange={(e) => setResponse(e.target.value)}
                     />
                   </label>
-                  <span>Declino la invitación a compartir habitación</span>
+                  <span className="room-title">
+                    Declino la invitación a compartir habitación
+                  </span>
                 </div>
               </div>
               <button type="submit" className="btn-registro">

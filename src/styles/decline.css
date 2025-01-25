@@ -273,4 +273,7 @@
   .main {
     height: auto;
   }
+  .room-title {
+    text-align: left;
+  }
 }

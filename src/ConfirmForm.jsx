@@ -64,8 +64,7 @@ const ConfirmForm = ({ onComplete }) => {
       });
 
       setTimeout(() => setMessageData(""), 5000);
-      setTimeout(() => resetForm(), 4000);
-
+      // setTimeout(() => resetForm(), 4000);
       return;
     }
 
@@ -78,7 +77,7 @@ const ConfirmForm = ({ onComplete }) => {
           type: "error",
         });
         setTimeout(() => setMessageData(""), 5000);
-        setTimeout(() => resetForm(), 4000);
+        // setTimeout(() => resetForm(), 4000);
 
         return false;
       }
@@ -91,7 +90,7 @@ const ConfirmForm = ({ onComplete }) => {
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
-      setTimeout(() => resetForm(), 4000);
+      // setTimeout(() => resetForm(), 4000);
 
       return;
     }
@@ -112,11 +111,22 @@ const ConfirmForm = ({ onComplete }) => {
         emailCompanion: formData.companion_email,
       });
 
-      setMessageData({
-        text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
-        type: "success",
-      });
-      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      setMessageData(
+        {
+          text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
+          type: "success",
+        },
+        100
+      );
+      setTimeout(
+        () =>
+          setMessageData({
+            text: "Te rediccionaremos a la página de inicio",
+            type: "success",
+          }),
+        4000
+      );
+      setTimeout(() => setMessageData({ text: "", type: "" }), 8000);
       setTimeout(() => resetForm(), 5000);
     } catch (err) {
       setTimeout(
