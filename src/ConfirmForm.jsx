@@ -82,7 +82,6 @@ const ConfirmForm = ({ onComplete }) => {
         return false;
       }
     }
-
     // Validación 10: Fecha del vuelo de regreso no menor a la de ida
     if (selectedLastDate < selectedFirstDate) {
       setMessageData({
@@ -91,7 +90,6 @@ const ConfirmForm = ({ onComplete }) => {
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
       // setTimeout(() => resetForm(), 4000);
-
       return;
     }
 
@@ -110,6 +108,14 @@ const ConfirmForm = ({ onComplete }) => {
         wantsToShare: formData.shared_room ? 1 : 0,
         emailCompanion: formData.companion_email,
       });
+      setTimeout(
+        () =>
+          setMessageData({
+            text: "Espera un monmento estamos confirmando tu asistencia...",
+            type: "success",
+          }),
+        3000
+      );
 
       setMessageData(
         {

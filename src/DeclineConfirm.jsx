@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import Header from "./Header.jsx";
 
 const DeclineConfirm = ({ onComplete }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
   const [tokenUser, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [response, setResponse] = useState(null);
@@ -52,10 +52,13 @@ const DeclineConfirm = ({ onComplete }) => {
   const manejarAccion = async (e) => {
     e.preventDefault();
     if (response === null) {
-      alert("Por favor, selecciona una opción antes de continuar.");
+      setMessage({
+        text: "Por favor selecciona una opción antes de continuar",
+        type: "error",
+      });
+      setTimeout(() => setMessage({ text: "", type: "" }), 5000);
       return;
     }
-
     const responseValue = response === "accept" ? 1 : 0;
 
     try {
@@ -66,22 +69,31 @@ const DeclineConfirm = ({ onComplete }) => {
       });
 
       if (!userId) {
-        setMessage("Usuario no proporcionado o inválido.");
-        setTimeout(() => setMessage(""), 5000);
+        setMessage({
+          text: "Usuario no proporcionado o inválido.",
+          type: "error",
+        });
+        setTimeout(() => ({ text: "", type: "" }), 5000);
         return;
       }
 
       if (!tokenUser) {
-        setMessage("Token no válido o no proporcionado.");
-        setTimeout(() => setMessage(""), 5000);
+        setMessage({
+          text: "Token no válido o no proporcionado.",
+          type: "error",
+        });
+        setTimeout(() => ({ text: "", type: "" }), 5000);
         return;
       }
 
-      setMessage(result.message || "Confirmación exitosa.");
-      setTimeout(() => setMessage(""), 5000);
+      setMessage({
+        text: result.message || "Confirmación exitosa.",
+        type: "success",
+      });
+      setTimeout(() => ({ text: "", type: "" }), 5000);
     } catch (err) {
-      setMessage(err.toString());
-      setTimeout(() => setMessage(""), 5000);
+      setMessage({ text: err.toString(), type: "" });
+      setTimeout(() => ({ text: "", type: "" }), 5000);
     }
     onComplete(responseValue);
   };
@@ -150,25 +162,35 @@ const DeclineConfirm = ({ onComplete }) => {
                     Declino la invitación a compartir habitación
                   </span>
                 </div>
-              </div>
-              <button type="submit" className="btn-registro">
-                CONFIRMAR ASISTENCIA
-              </button>
-              {message && (
-                <div className="success-message">
-                  <p>{message}</p>
+                <button type="submit" className="btn-registro-decline">
+                  CONFIRMAR ASISTENCIA
+                </button>
+                <div className="container-message-decline">
+                  {message.text && (
+                    <p
+                      className={
+                        message.type == "success"
+                          ? "success-message-2"
+                          : "error-message-2"
+                      }
+                    >
+                      {message.text}
+                    </p>
+                  )}
+                  {
+                    // Renderizado condicional
+                    (loading ? <p>Cargando datos...</p> : "",
+                    error ? <p>Error: {error}</p> : "",
+                    !companionData ? (
+                      <p className="error-message-2">
+                        No se encontraron datos del acompañante.
+                      </p>
+                    ) : (
+                      ""
+                    ))
+                  }
                 </div>
-              )}
-              {
-                // Renderizado condicional
-                (loading ? <p>Cargando datos...</p> : "",
-                error ? <p>Error: {error}</p> : "",
-                !companionData ? (
-                  <p>No se encontraron datos del acompañante.</p>
-                ) : (
-                  ""
-                ))
-              }
+              </div>
             </form>
           </div>
           <div className="main-message">
