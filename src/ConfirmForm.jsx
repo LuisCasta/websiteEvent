@@ -89,7 +89,17 @@ const ConfirmForm = ({ onComplete }) => {
       // setTimeout(() => resetForm(), 4000);
       return;
     }
+    // Validación 8: Fecha del vuelo de regreso no debe ser menor al 10 de marzo de 2025
+    if (selectedLastDate < limitDate) {
+      setMessageData({
+        text: "La fecha del vuelo de regreso no debe ser menor al 10 de marzo, de lo contrario se perderá del evento.",
+        type: "error",
+      });
 
+      setTimeout(() => setMessageData(""), 5000);
+      // setTimeout(() => resetForm(), 4000);
+      return;
+    }
     // Validación específica: Hora del vuelo de ida antes de la 1:00 PM el 10 de marzo
     if (selectedFirstDate.toDateString() === limitDate.toDateString()) {
       const [hours, minutes] = firstBoardingTime.split(":").map(Number);
@@ -133,47 +143,41 @@ const ConfirmForm = ({ onComplete }) => {
       setTimeout(
         () =>
           setMessageData({
-            text: "Espera un monmento estamos confirmando tu asistencia...",
+            text: "Espera un momento estamos confirmando tu asistencia...",
             type: "success",
           }),
-        3000
-      );
-
-      setMessageData(
-        {
-          text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
-          type: "success",
-        },
         100
       );
+      setTimeout(() => {
+        setMessageData({
+          text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
+          type: "success",
+        });
+      }, 1000);
+
       setTimeout(
         () =>
           setMessageData({
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        4000
+        5000
       );
-      setTimeout(() => setMessageData({ text: "", type: "" }), 8000);
+      setTimeout(() => {
+        setTimeout(() => setMessageData({ text: "", type: "" }), 12000);
+        onComplete();
+      }, 2000);
+
       setTimeout(() => resetForm(), 5000);
     } catch (err) {
       setTimeout(
         () => setMessageData({ text: err.message, type: "error" }),
         100
       );
-      setTimeout(() => resetForm(), 5000);
-      setTimeout(
-        () =>
-          setMessageData({
-            text: "Te rediccionaremos a la página de inicio",
-            type: "success",
-          }),
-        3000
-      );
+      // setTimeout(() => resetForm(), 5000);
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
-      setTimeout(() => resetForm(), 5000);
+      // setTimeout(() => resetForm(), 5000);
     }
-    onComplete();
   };
 
   const resetForm = () => {
@@ -262,7 +266,7 @@ const ConfirmForm = ({ onComplete }) => {
                   </div>
                 );
               })}
-              <button className="btn-registro">CONFIRMAR ASISTENCIA</button>
+              <button className="btn-registro">ENVIAR SOLICITUD</button>
               {messageData.text && (
                 <p
                   className={

@@ -85,12 +85,35 @@ const DeclineConfirm = ({ onComplete }) => {
         setTimeout(() => ({ text: "", type: "" }), 5000);
         return;
       }
+      setTimeout(
+        () =>
+          setMessage({
+            text: "Espera un momento estamos confirmando...",
+            type: "success",
+          }),
+        100
+      );
+      setTimeout(() => {
+        setMessage({
+          text: result.message || "Confirmación exitosa.",
+          type: "success",
+        });
+      }, 1000);
 
-      setMessage({
-        text: result.message || "Confirmación exitosa.",
-        type: "success",
-      });
-      setTimeout(() => ({ text: "", type: "" }), 5000);
+      setTimeout(
+        () =>
+          setMessage({
+            text: "Te rediccionaremos a la página de inicio",
+            type: "success",
+          }),
+        3000
+      );
+      setTimeout(() => {
+        setMessage({ text: "", type: "" });
+        onComplete();
+      }, 24000);
+
+      // setTimeout(() => ({ text: "", type: "" }), 5000);
     } catch (err) {
       setMessage({ text: err.toString(), type: "" });
       setTimeout(() => ({ text: "", type: "" }), 5000);

@@ -44,9 +44,20 @@ input {
   cursor: pointer;
 }
 
-/* .btn-registro:hover {
-  background-color: #0056b3;
-} */
+.terminos {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 3px;
+}
+.terminos label {
+  font-size: 12px;
+  line-height: 20px;
+  color: #646464;
+}
+.terms-input {
+  width: 20px;
+}
 
 .call-title {
   font-size: 2rem;

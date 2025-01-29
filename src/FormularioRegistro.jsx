@@ -129,6 +129,13 @@ const FormularioRegistro = ({
             />
           </div>
         ))}
+        {modo === "crearCuenta" && (
+          <div className="terminos">
+            <input className="terms-input" id="terms" type="checkbox" />
+            <label htmlFor="terms">Acepto términos y condiciones</label>
+          </div>
+        )}
+
         <div className="form-footer">
           <a
             onClick={enlace.accion}
