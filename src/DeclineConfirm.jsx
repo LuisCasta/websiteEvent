@@ -200,7 +200,7 @@ const DeclineConfirm = ({ onComplete }) => {
                       {message.text}
                     </p>
                   )}
-                  {
+                  {/* {
                     // Renderizado condicional
                     (loading ? <p>Cargando datos...</p> : "",
                     error ? <p>Error: {error}</p> : "",
@@ -211,7 +211,7 @@ const DeclineConfirm = ({ onComplete }) => {
                     ) : (
                       ""
                     ))
-                  }
+                  } */}
                 </div>
               </div>
             </form>
