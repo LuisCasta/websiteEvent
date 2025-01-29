@@ -27,9 +27,8 @@ const Home = () => {
     if (step == "2") {
       searchParams.delete("step");
     }
-    setTimeout(() => {
-      setSearchParams(searchParams);
-    }, 9000);
+
+    setSearchParams(searchParams);
   };
 
   // Si el parámetro "confirm" está presente, renderiza el componente
