@@ -26,8 +26,8 @@ const DeclineConfirm = ({ onComplete }) => {
   }, []);
 
   const [companionData, setCompanionData] = useState(null); // Almacena los datos obtenidos
-  const [loading, setLoading] = useState(true); // Estado de carga
-  const [error, setError] = useState(null); // Estado de error
+  // const [loading, setLoading] = useState(true); // Estado de carga
+  // const [error, setError] = useState(null); // Estado de error
 
   useEffect(() => {
     const fetchCompanionData = async () => {
@@ -106,7 +106,7 @@ const DeclineConfirm = ({ onComplete }) => {
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        12000
+        7000
       );
       setTimeout(() => {
         setMessage({ text: "", type: "" });

@@ -29,7 +29,7 @@ const Home = () => {
     }
     setTimeout(() => {
       setSearchParams(searchParams);
-    }, 15000);
+    }, 12000);
   };
 
   // Si el parámetro "confirm" está presente, renderiza el componente
