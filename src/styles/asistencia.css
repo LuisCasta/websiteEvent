@@ -169,24 +169,6 @@
   color: #282727;
 }
 
-.form-footer {
-  display: flex;
-  justify-content: left;
-}
-
-.form-footer:hover {
-  text-decoration: underline #2978b5;
-}
-.ready-btn-login {
-  color: #2978b5;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-align: left;
-}
-
 .message-form-text-pw {
   /* font-size: 0.5rem; */
   color: #5d5d5d;

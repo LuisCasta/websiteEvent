@@ -61,6 +61,8 @@ const FormularioRegistro = ({
             message: "",
             texto: "¿Olvidaste tu contraseña?",
             accion: () => setModo("olvidoPassword"),
+            text: "¿Aún no estás registrado? regístrate aquí.",
+            action: () => setModo("crearCuenta"),
           },
         };
       case "olvidoPassword":
@@ -135,6 +137,15 @@ const FormularioRegistro = ({
           >
             {enlace.texto}
           </a>
+          {modo === "iniciarSesion" && (
+            <a
+              onClick={enlace.action}
+              className="ready-btn-login"
+              id="create-account"
+            >
+              {enlace.text}
+            </a>
+          )}
         </div>
         <ReCAPTCHA
           sitekey="6LcnprcqAAAAAAxYMaihpvEOJGSvmfAdQYSuPjBP"

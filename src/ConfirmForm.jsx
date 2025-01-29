@@ -38,11 +38,33 @@ const ConfirmForm = ({ onComplete }) => {
 
   const handleInputChange = (e) => {
     const { id, type, value, checked } = e.target;
-    // console.log(e.target);
-    setFormData((prev) => ({
-      ...prev,
-      [id]: type === "checkbox" ? checked : value,
-    }));
+    // // console.log(e.target);
+    // setFormData((prev) => ({
+    //   ...prev,
+    //   [id]: type === "checkbox" ? checked : value,
+    // }));
+    setFormData((prev) => {
+      // Lógica para checkboxes exclusivos
+      if (id === "individual_room" && checked) {
+        return {
+          ...prev,
+          individual_room: true,
+          shared_room: false,
+        };
+      }
+      if (id === "shared_room" && checked) {
+        return {
+          ...prev,
+          shared_room: true,
+          individual_room: false,
+        };
+      }
+
+      return {
+        ...prev,
+        [id]: type === "checkbox" ? checked : value,
+      };
+    });
   };
 
   const manejarAccion = async (e) => {

@@ -63,12 +63,11 @@ input {
 
 .form-footer {
   display: flex;
-  justify-content: left;
+  /* align-items: flex-end; */
+  flex-direction: column;
+  gap: 10px;
 }
 
-.form-footer:hover {
-  text-decoration: underline #2978b5;
-}
 .ready-btn-login {
   color: #2978b5;
   border: none;
@@ -77,6 +76,7 @@ input {
   font-size: 0.7rem;
   font-weight: 700;
   text-align: left;
+  text-decoration: none;
 }
 
 .message-form-text-pw {
