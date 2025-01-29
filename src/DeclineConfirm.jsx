@@ -98,7 +98,7 @@ const DeclineConfirm = ({ onComplete }) => {
           text: result.message || "Confirmación exitosa.",
           type: "success",
         });
-      }, 1000);
+      }, 2000);
 
       setTimeout(
         () =>
@@ -106,19 +106,19 @@ const DeclineConfirm = ({ onComplete }) => {
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        3000
+        12000
       );
       setTimeout(() => {
         setMessage({ text: "", type: "" });
         onComplete();
-      }, 24000);
+      }, 12000);
 
       // setTimeout(() => ({ text: "", type: "" }), 5000);
     } catch (err) {
       setMessage({ text: err.toString(), type: "" });
       setTimeout(() => ({ text: "", type: "" }), 5000);
     }
-    onComplete(responseValue);
+    // onComplete(responseValue);
   };
 
   return (
