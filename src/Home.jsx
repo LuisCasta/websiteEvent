@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import NavHome from "./Navhome";
 import portada from "./assets/BG_Largo.png";
 import slogan from "./assets/Slogan.png";
 import pickgris from "./assets/pkgrey.png";
@@ -44,7 +44,7 @@ const Home = () => {
   return (
     <div>
       <header>
-        <Nav />
+        <NavHome />
         <div className="container-portada">
           <img src={portada} alt="" />
           <div className="portada-content">

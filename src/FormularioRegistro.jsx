@@ -4,6 +4,7 @@ import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./styles/FormularioRegistro.css";
+import { useTestMode } from "./TestMode.jsx";
 
 const FormularioRegistro = ({
   modo,
@@ -18,7 +19,7 @@ const FormularioRegistro = ({
   function onChange(value) {
     console.log("Captcha value:", value);
   }
-
+  const { isTestMode } = useTestMode();
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
     switch (modo) {
@@ -129,21 +130,24 @@ const FormularioRegistro = ({
             />
           </div>
         ))}
-        {modo === "crearCuenta" && (
+
+        {modo === "crearCuenta" && isTestMode && (
           <div className="terminos">
             <input className="terms-input" id="terms" type="checkbox" />
             <label htmlFor="terms">Acepto términos y condiciones</label>
           </div>
         )}
-
         <div className="form-footer">
-          <a
-            onClick={enlace.accion}
-            className="ready-btn-login"
-            id="login-btn-register"
-          >
-            {enlace.texto}
-          </a>
+          {modo === "crearCuenta" && isTestMode && (
+            <a
+              onClick={enlace.accion}
+              className="ready-btn-login"
+              id="login-btn-register"
+            >
+              {enlace.texto}
+            </a>
+          )}
+
           {modo === "iniciarSesion" && (
             <a
               onClick={enlace.action}

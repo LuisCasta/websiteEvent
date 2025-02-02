@@ -4,29 +4,33 @@ import Home from "./Home";
 import RecoveryPassword from "./RecoveryPassword";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRouter from "./ProtectedRouter";
+import { TestModeProvider } from "./TestMode.jsx"; // Importar el proveedor
+
 import "./styles/App.css";
 
 const App = () => {
   return (
-    <div className="app">
-      {/* Manejo de rutas */}
-      <Routes>
-        {/* Ruta protegida */}
-        <Route
-          path="/home"
-          element={
-            <ProtectedRouter>
-              <Home />
-            </ProtectedRouter>
-          }
-        />
-        <Route path="/recovery-password" element={<RecoveryPassword />} />
+    <TestModeProvider>
+      <div className="app">
+        {/* Manejo de rutas */}
+        <Routes>
+          {/* Ruta protegida */}
+          <Route
+            path="/home"
+            element={
+              <ProtectedRouter>
+                <Home />
+              </ProtectedRouter>
+            }
+          />
+          <Route path="/recovery-password" element={<RecoveryPassword />} />
 
-        {/* Ruta principal */}
-        <Route path="/" element={<AppMain />} />
-      </Routes>
-      <Footer />
-    </div>
+          {/* Ruta principal */}
+          <Route path="/" element={<AppMain />} />
+        </Routes>
+        <Footer />
+      </div>
+    </TestModeProvider>
   );
 };
 
