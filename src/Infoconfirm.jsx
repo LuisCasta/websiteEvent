@@ -1,3 +1,5 @@
+import "../src/styles/infoconfirm.css";
+
 const InformConfirm = () => {
   return (
     <div className="confirm-section">

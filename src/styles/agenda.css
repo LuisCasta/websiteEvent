@@ -1,14 +1,14 @@
 .container-agenda {
-  padding-top: 60px;
   background-image: url("../assets/Rayas.png");
-  height: 100vh;
   background-position: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .content-agenda {
   width: 70%;
   display: flex;
-  margin: auto;
+  margin: 50px auto;
   justify-content: center;
 }
 

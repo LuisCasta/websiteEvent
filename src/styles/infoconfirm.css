@@ -1,0 +1,78 @@
+.confirm-section {
+  background-image: url("../assets/Rayas.png");
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-setion {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: 250px auto;
+}
+.confirm-text {
+  text-align: left;
+}
+
+.confirm-text h3 {
+  font-size: 2rem;
+  margin: 20px auto;
+  color: #0d366b;
+}
+
+.confirm-text p {
+  font-size: 1.2rem;
+  color: #0d366b;
+  font-weight: 100;
+}
+
+.pasos-confirm {
+  text-align: right;
+}
+
+.pasos-confirm h3 {
+  color: #0d366b;
+}
+
+.ul-confirm li {
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  text-align: right;
+  justify-content: right;
+  align-items: center;
+  gap: 15px;
+  color: #0d366b;
+  font-weight: 600;
+}
+
+.ul-confirm li span {
+  background-color: #0076bd;
+  color: #fff;
+  padding: 5px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  font-weight: 600;
+}
+
+.confirm-btn {
+  background-color: #0076bd;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 1.3rem;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 50px;
+  margin-top: 30px;
+  cursor: pointer;
+}
