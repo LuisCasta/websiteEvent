@@ -14,6 +14,7 @@ import locate from "./locate.png";
 import calendar from "./calendar.png";
 import clock from "./clock.png";
 import van from "./Van.png";
+import vestimenta from "./vestimenta.png";
 
 export default {
   homeIco,
@@ -32,4 +33,5 @@ export default {
   calendar,
   clock,
   van,
+  vestimenta,
 };

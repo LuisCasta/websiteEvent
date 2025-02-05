@@ -20,8 +20,10 @@ const Agenda = () => {
               horario: "17:30 - 19:30",
               text: (
                 <p className="p-horario">
-                  Plenaria: <br /> Pablo Sadek - Director Banca Automotriz BBVA
-                  México <br />
+                  Plenaria:
+                  <br />
+                  Pablo Sadek - Director Banca Automotriz BBVA México
+                  <br />
                   Carlos Serrano - Economista en Jefe BBVA México
                 </p>
               ),
@@ -83,7 +85,7 @@ const Agenda = () => {
           ],
         };
       default:
-        return { horario: [], enlace: {} };
+        return { horario: [] };
     }
   };
   const { horarios } = obtenerHorario();

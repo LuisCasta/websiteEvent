@@ -1,0 +1,31 @@
+.dresscode-container {
+  background-image: url("../assets/Rayas.png");
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-dresscode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  gap: 100px;
+}
+
+.content-dresscode h2 {
+  font-size: 3rem;
+}
+
+.img-container-dresscode img {
+  width: 100%;
+}
+
+.p-dresscode {
+  text-align: left;
+  color: #0e3668;
+}

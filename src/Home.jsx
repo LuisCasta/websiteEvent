@@ -10,6 +10,7 @@ import Agenda from "./Agenda";
 import InformConfirm from "./Infoconfirm";
 import Transport from "./Transport";
 // import { useState } from "react";
+import Dresscode from "./Dresscode";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,6 +64,7 @@ const Home = () => {
       <Agenda />
       <InformConfirm />
       <Transport />
+      <Dresscode />
     </div>
   );
 };
