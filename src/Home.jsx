@@ -11,6 +11,7 @@ import InformConfirm from "./Infoconfirm";
 import Transport from "./Transport";
 // import { useState } from "react";
 import Dresscode from "./Dresscode";
+import Consejos from "./Consejos";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -65,6 +66,7 @@ const Home = () => {
       <InformConfirm />
       <Transport />
       <Dresscode />
+      <Consejos />
     </div>
   );
 };

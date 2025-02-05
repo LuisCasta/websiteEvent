@@ -124,7 +124,7 @@ const DeclineConfirm = ({ onComplete }) => {
   return (
     <>
       <Header />
-      <main className="main">
+      <main className="main-decline">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
           <div className="contenedor-formulario-decline">

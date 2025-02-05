@@ -19,6 +19,7 @@
 
 .content-dresscode h2 {
   font-size: 3rem;
+  color: #0e3668;
 }
 
 .img-container-dresscode img {
@@ -28,4 +29,11 @@
 .p-dresscode {
   text-align: left;
   color: #0e3668;
+  font-size: 1.5rem;
+}
+
+.container-p {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

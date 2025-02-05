@@ -1,0 +1,54 @@
+.consejo-container {
+  background-image: url("../../src/assets/Transportacion.png");
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-consejo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  gap: 100px;
+}
+
+.text-consejo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  color: #fff;
+}
+.text-consejo h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.content-consejo h2 {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.img-container-consejo img {
+  width: 100%;
+}
+
+.p-consejo {
+  text-align: left;
+  color: #fff;
+}
+
+.container-p-consejo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-p-consejo p {
+  font-size: 1.5rem;
+}
