@@ -13,6 +13,7 @@ import bkgeneral from "./Generalidades.png";
 import locate from "./locate.png";
 import calendar from "./calendar.png";
 import clock from "./clock.png";
+import van from "./van.png";
 
 export default {
   homeIco,
@@ -30,4 +31,5 @@ export default {
   locate,
   calendar,
   clock,
+  van,
 };

@@ -7,91 +7,87 @@ const Agenda = () => {
     switch (checkDay) {
       case "lunes":
         return {
-          calendario: [
-            { horario: "12:00 - 15:00", text: "Check In en Grand Velas" },
-            { horario: "15:00 - 17:00", text: "Comida" },
+          horarios: [
             {
-              horario: "17:00 - 17:30",
-              text: "Tiempo libre para arreglo personal",
+              horario: "12:00 - 15:00",
+              text: <p className="p-horario">Check In en Grand Velas</p>,
+            },
+            {
+              horario: "15:00 - 17:00",
+              text: <p className="p-horario">Comida</p>,
             },
             {
               horario: "17:30 - 19:30",
-              text: "Plenaria",
-            },
-            {
-              horario: "19:30 - 19:45",
-              text: "Traslados a Terraza del Mar",
+              text: (
+                <p className="p-horario">
+                  Plenaria: <br /> Pablo Sadek - Director Banca Automotriz BBVA
+                  México <br />
+                  Carlos Serrano - Economista en Jefe BBVA México
+                </p>
+              ),
             },
             {
               horario: "20:00 - 21:00",
-              text: "Coctel",
+              text: <p className="p-horario">Coctel</p>,
             },
             {
               horario: "21:00 - 22:30",
-              text: "Cena",
+              text: <p className="p-horario">Cena</p>,
             },
           ],
         };
       case "martes":
         return {
-          calendario: [
-            { horario: "12:00 - 15:00", text: "Check In en Grand Velas" },
-            { horario: "15:00 - 17:00", text: "Comida" },
+          horarios: [
             {
-              horario: "17:00 - 17:30",
-              text: "Tiempo libre para arreglo personal",
+              horario: "08:00 - 09:00",
+              text: <p className="p-horario">Desayuno</p>,
             },
             {
-              horario: "17:30 - 19:30",
-              text: "Plenaria",
+              horario: "09:00 - 10:00",
+              text: <p className="p-horario">Presentación nuevos productos</p>,
             },
             {
-              horario: "19:30 - 19:45",
-              text: "Traslados a Terraza del Mar",
+              horario: "10:00 - 12:00",
+              text: <p className="p-horario">Rally</p>,
             },
             {
-              horario: "20:00 - 21:00",
-              text: "Coctel",
+              horario: "12:00 - 17:30",
+              text: <p className="p-horario">Tiempo libre</p>,
             },
             {
-              horario: "21:00 - 22:30",
-              text: "Cena",
+              horario: "17:30 - 18:00",
+              text: <p className="p-horario">Foto grupal</p>,
+            },
+            {
+              horario: "18:00 - 18:30",
+              text: <p className="p-horario">Cocktail</p>,
+            },
+            {
+              horario: "18:30 - 23:00",
+              text: <p className="p-horario">Cena de clausura y premiación</p>,
             },
           ],
         };
       case "miercoles":
         return {
-          calendario: [
-            { horario: "12:00 - 15:00", text: "Check In en Grand Velas" },
-            { horario: "15:00 - 17:00", text: "Comida" },
+          horarios: [
             {
-              horario: "17:00 - 17:30",
-              text: "Tiempo libre para arreglo personal",
-            },
-            {
-              horario: "17:30 - 19:30",
-              text: "Plenaria",
-            },
-            {
-              horario: "19:30 - 19:45",
-              text: "Traslados a Terraza del Mar",
-            },
-            {
-              horario: "20:00 - 21:00",
-              text: "Coctel",
-            },
-            {
-              horario: "21:00 - 22:30",
-              text: "Cena",
+              horario: "7:00 - 12:00",
+              text: (
+                <p className="p-horario">
+                  Desayuno <br /> Check out <br /> Traslados de regreso
+                </p>
+              ),
             },
           ],
         };
       default:
-        return { horario: [] };
+        return { horario: [], enlace: {} };
     }
   };
-  const { calendario } = obtenerHorario();
-  //   console.log(calendario);
+  const { horarios } = obtenerHorario();
+
   return (
     <>
       <div className="container-agenda">
@@ -106,22 +102,35 @@ const Agenda = () => {
         </div>
         <div className="options-agenda">
           <div className="container-buttons">
-            <button>
-              Lunes <br /> 11
+            <button
+              onClick={() => setCheckDay("lunes")}
+              className={checkDay === "lunes" ? "active-color" : "color-grey"}
+            >
+              LUNES <br /> 11
             </button>
-            <button>
-              Martes <br /> 12
+            <button
+              onClick={() => setCheckDay("martes")}
+              className={checkDay === "martes" ? "active-color" : "color-grey"}
+            >
+              MARTES <br /> 12
             </button>
-            <button>
-              Miércoles <br /> 13
+            <button
+              onClick={() => setCheckDay("miercoles")}
+              className={
+                checkDay === "miercoles" ? "active-color" : "color-grey"
+              }
+            >
+              MIÉRCOLES <br /> 13
             </button>
           </div>
-          <table>
-            {/* {calendario.map((horario) => {
-              //   <th>{horario.horario}</th>;
-              <p>{horario.text}</p>;
-            })} */}
-          </table>
+          <div className="horario">
+            {horarios.map((horario, index) => (
+              <div className="container-horario-check" key={index}>
+                <p className="horario-class">{horario.horario}</p>
+                {horario.text}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

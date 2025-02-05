@@ -7,6 +7,8 @@ import ConfirmForm from "./ConfirmForm";
 import DeclineConfirm from "./DeclineConfirm";
 import { useSearchParams } from "react-router-dom";
 import Agenda from "./Agenda";
+import InformConfirm from "./Infoconfirm";
+import Transport from "./Transport";
 // import { useState } from "react";
 
 const Home = () => {
@@ -57,12 +59,10 @@ const Home = () => {
           </div>
         </div>
       </header>
-      <div>
-        <DiagonalSection />
-      </div>
-      <div>
-        <Agenda />
-      </div>
+      <DiagonalSection />
+      <Agenda />
+      <InformConfirm />
+      <Transport />
     </div>
   );
 };

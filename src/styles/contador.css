@@ -52,7 +52,7 @@
   flex-direction: column;
   padding: 20px;
   position: absolute;
-  top: 0;
+  top: -10px;
 }
 
 .line:first-child .title-numbers {

@@ -1,0 +1,29 @@
+.container-transport {
+  background-image: url("../../src/assets/Transportacion.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.content-transport {
+  width: 70%;
+  margin: auto;
+  align-items: center;
+}
+
+.content-transport {
+  color: #fff;
+}
+
+.content-transport h2 {
+  font-size: 4rem;
+  padding-top: 50px;
+}
+
+.content-transport p {
+  margin-top: 100px;
+  font-size: 1.5rem;
+  text-align: left;
+  font-weight: 100;
+  margin-bottom: 100px;
+}

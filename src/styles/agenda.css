@@ -19,13 +19,57 @@
   justify-content: center;
 }
 
-.container-buttons button {
+.color-grey {
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
-  color: #082046;
+  color: #a1a1a1;
+  font-weight: 600;
 }
 
 .div {
   margin: 20px auto;
+}
+
+.div h2 {
+  font-size: 3rem;
+  color: #0e3668;
+}
+.div p {
+  font-size: 1.5rem;
+  color: #0e3668;
+  font-weight: 600;
+  margin: 20px auto;
+}
+
+.container-horario-check {
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #082046;
+}
+
+.horario {
+  width: 70%;
+  margin: auto;
+}
+.p-horario {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0e3668;
+}
+.active-color {
+  color: #0d366b;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.horario-class {
+  font-size: 2rem;
+  color: #0a5b9e;
+  font-weight: 700;
 }
