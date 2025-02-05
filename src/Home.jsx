@@ -1,14 +1,12 @@
 import NavHome from "./Navhome";
-import portada from "./assets/BG_Largo.png";
 import slogan from "./assets/Slogan.png";
 import pickgris from "./assets/pkgrey.png";
 import "./styles/login.css";
 import DiagonalSection from "./DiagonalSection";
-import Contador from "./Contador";
-import GeneralData from "./GeneralData";
 import ConfirmForm from "./ConfirmForm";
 import DeclineConfirm from "./DeclineConfirm";
 import { useSearchParams } from "react-router-dom";
+import Agenda from "./Agenda";
 // import { useState } from "react";
 
 const Home = () => {
@@ -45,27 +43,25 @@ const Home = () => {
     <div>
       <header>
         <NavHome />
-        <div className="container-portada">
-          <img src={portada} alt="" />
-          <div className="portada-content">
-            <img className="slogan" src={slogan} alt="" />
-            <img className="pickup-gris" src={pickgris} alt="" />
+        <div className="container-portada-2">
+          <div className="portada-content-2">
+            <div className="content-slogan">
+              <img className="slogan-home" src={slogan} alt="" />
+            </div>
+            <div className="msg-h2">
+              <h2>Evento dirigido a Dueños, Directores de Marca y F&J</h2>
+            </div>
+            <div className="content-pickup">
+              <img className="pickup-gris-home" src={pickgris} alt="" />
+            </div>
           </div>
         </div>
       </header>
       <div>
         <DiagonalSection />
-        <div className="contador-container">
-          <h2 className="count-title">Faltan</h2>
-          <Contador />
-          <h2 className="message-count">
-            PARA <strong>ACELERAR OPORTUNIDADES CON GWM Y BBVA</strong>, ¡TE
-            ESPERAMOS!
-          </h2>
-        </div>
       </div>
       <div>
-        <GeneralData />
+        <Agenda />
       </div>
     </div>
   );

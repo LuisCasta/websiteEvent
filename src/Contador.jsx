@@ -3,7 +3,7 @@ import "./styles/contador.css";
 
 const Contador = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-01-30") - +new Date();
+    const difference = +new Date("2025-03-30") - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {
@@ -37,9 +37,7 @@ const Contador = () => {
 
     timerComponents.push(
       <div className="line" key={interval}>
-        <p className="numbers">
-          {timeLeft[interval].toString().padStart(2, "0")}
-        </p>
+        <p> {timeLeft[interval].toString().padStart(2, "0")}</p>
         <p className="title-numbers">{interval} </p>
       </div>
     );
@@ -47,7 +45,7 @@ const Contador = () => {
 
   return (
     <div className="contador">
-      {timerComponents.length ? timerComponents : <span>Times up!</span>}
+      {timerComponents.length ? timerComponents : <span>¡Es Hoy!</span>}
     </div>
   );
 };

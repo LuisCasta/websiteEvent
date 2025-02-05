@@ -1,34 +1,88 @@
 .diagonal-section {
-  background-color: #fff;
   position: relative;
   overflow: hidden;
+  padding: 40px;
 }
-
+.container-general {
+  background-image: url("../assets/generalidades-2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+}
 .container-pasos {
-  width: 80%;
-  padding: 5%;
+  width: 70%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: auto;
   overflow: hidden;
   position: relative;
   z-index: 2;
+  flex-direction: column;
 }
 
-.paso1 {
-  width: 200rem;
+.container-pasos h2 {
+  font-size: 3rem;
+  color: #fff;
 }
-.paso2 {
-  width: 200rem;
+.container-pasos p {
+  font-size: 1.5rem;
+  color: #fff;
 }
-
 .triangulo {
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
 }
+
+.text-info-p {
+  font-size: 1.2rem;
+}
+
+.middle {
+  font-size: 1.5rem;
+}
+.lg {
+  font-size: 2rem;
+}
+.info-container {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 10px;
+  color: #fff;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.date,
+.locate {
+  border-bottom: 1px solid white;
+}
+
+.info img {
+  width: 50px;
+}
+
+.date img {
+  width: 50px;
+  height: 50px;
+}
+
+.contador-container-home h4 {
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .container-pasos {
     display: none;

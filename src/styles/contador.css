@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  height: 370px;
+  align-items: end;
+  position: relative;
 }
 
 .line {
@@ -10,36 +13,60 @@
   flex-direction: column;
 }
 
-.numbers {
+.line {
   font-size: 50px;
   font-weight: bold;
   color: #fff;
-  background-color: #1b2650;
-  width: 110px;
-  height: 90px;
-  line-height: 100px;
+  background-color: #00cfd2;
+  width: 120px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px auto;
   font-weight: lighter;
-  border-radius: 25px;
+  border-radius: 25px 0 25px 0;
   position: relative;
+  border: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
-.numbers::after {
-  content: "";
-  width: 110px;
-  height: 5px;
-  position: absolute;
-  background-color: #e9f7f8;
-}
-
-.title-numbers {
-  font-size: 20px;
+.line:first-child {
+  font-size: 100px;
   font-weight: bold;
-  color: #068585;
+  color: #fff;
+  background-color: #00cfd2;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  font-weight: lighter;
+  border-radius: 25px 0 25px 0;
+  position: relative;
+  border: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+}
+
+.line:first-child .title-numbers {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.title-numbers {
+  font-size: 15px;
+  font-weight: bold;
   text-transform: uppercase;
+}
+.text-date {
+  color: #00cfd2;
 }
 
 .count-title {

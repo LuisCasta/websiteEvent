@@ -1,7 +1,3 @@
-/* .navbar-title {
-  width: 80%;
-} */
-
 .navbar-home {
   background-image: linear-gradient(#0c3a6a, #026baf);
 }
@@ -17,10 +13,15 @@
   list-style: none;
   color: white;
   cursor: pointer;
+  display: flex;
+  text-align: left;
+  gap: 15px;
+  padding: 12px;
+  align-items: center;
 }
 .container-menu {
   position: relative;
-  width: 200px;
+  width: 220px;
   display: flex;
   justify-content: right;
 }
@@ -33,12 +34,13 @@
 }
 
 .abrir {
-  background-color: #0264a3;
+  padding: 20px;
+  background-color: #0265a3c8;
   display: block;
   position: absolute;
   width: 100%;
   z-index: 100;
-  bottom: -113.6px;
+  bottom: -548px;
 }
 
 .active {
@@ -46,6 +48,12 @@
   position: relative;
   display: flex;
   justify-content: center;
+}
+.msg-h2 {
+  display: flex;
+  justify-content: center;
+  margin: 50px 10px auto;
+  color: #fff;
 }
 
 .active::after {
@@ -57,7 +65,54 @@
   background-color: #fff;
   margin: auto;
 }
+.logo-gwm-2 {
+  width: 150px;
+  position: relative;
+  right: -100px;
+}
+.logo-bbva-2 {
+  width: 150px;
+}
 
+.container-portada-2 {
+  background-image: url("../../src/assets/haval.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.content-slogan {
+  display: flex;
+  justify-content: left;
+  margin: auto;
+}
+
+.slogan-home {
+  width: 70%;
+}
+
+.content-pickup {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.content-pickup img {
+  width: 90%;
+}
+.portada-content-2 {
+  width: 70%;
+}
+
+.btn-nav {
+  background-color: #83a5c1;
+  outline: none;
+  border: none;
+  color: #fff;
+}
 @media (max-width: 768px) {
   .navbar-title ul {
     flex-direction: column;
