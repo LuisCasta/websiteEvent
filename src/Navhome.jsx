@@ -10,7 +10,6 @@ const NavHome = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
 
     if (storedUser) {
       setUser(JSON.parse(storedUser)); // Recupera los datos del usuario
