@@ -54,3 +54,19 @@
 .container-p-consejo p {
   font-size: 1.5rem;
 }
+
+@media (max-width: 768px) {
+  .content-consejo {
+    width: 90%;
+    gap: 10px;
+  }
+  .container-p-consejo p {
+    font-size: 0.8rem;
+  }
+  .text-consejo h3 {
+    font-size: 0.8rem;
+  }
+  .content-consejo h2 {
+    font-size: 1.8rem;
+  }
+}

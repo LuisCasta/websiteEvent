@@ -1,8 +1,8 @@
 .main {
   background-image: url("../assets/BG3.png");
   background-size: cover;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
   height: auto;
   display: flex;
 }

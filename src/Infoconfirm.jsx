@@ -1,9 +1,32 @@
 import "../src/styles/infoconfirm.css";
+import { useState, useEffect } from "react";
 
 const InformConfirm = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div className="confirm-section">
-      <div className="container-setion">
+      <div className="container-section">
         <div className="confirm-text">
           <h3>
             Asiste a la <br /> PRIMERA CONVENCIÓN <br /> GWM FINANCE 2025,{" "}
@@ -15,38 +38,79 @@ const InformConfirm = () => {
           </p>
           <button className="confirm-btn">CONFIRMAR ASISTENCIA</button>
         </div>
-        <div className="pasos-confirm">
-          <h3>
-            Sigue los siguientes pasos <br /> para registrarte:
-          </h3>
-          <ul className="ul-confirm">
-            <li>
-              <p>Revisa la información general del evento.</p> <span>1</span>
-            </li>
-            <li>
-              <p>Revisa las fechas de vuelos disponibles.</p> <span>2</span>
-            </li>
-            <li>
-              <p>
-                Compra tus vuelos. Pero antes de hacerlo por favor revisa el
-                documento con información importante que debes considerar
-                <br /> para la compra.
-              </p>
-              <span>3</span>
-            </li>
-            <li>
-              <p>
-                Una vez que cuentes con la información de tus vuelos, <br />
-                da clic en CONFIRMAR ASISTENCIA y regístrala.
-              </p>
-              <span>4</span>
-            </li>
-            <li>
-              <p>¡Listo! Te esperamos en la CONVENCIÓN GWM FINANCE</p>
-              <span>5</span>
-            </li>
-          </ul>
-        </div>
+        {!isMobile ? (
+          <div className="pasos-confirm">
+            <h3>
+              Sigue los siguientes pasos <br /> para registrarte:
+            </h3>
+            <ul className="ul-confirm">
+              <li>
+                <p>Revisa la información general del evento.</p> <span>1</span>
+              </li>
+              <li>
+                <p>Revisa las fechas de vuelos disponibles.</p> <span>2</span>
+              </li>
+              <li>
+                <p>
+                  Compra tus vuelos. Pero antes de hacerlo por favor revisa el
+                  documento con información importante que debes considerar
+                  <br /> para la compra.
+                </p>
+                <span>3</span>
+              </li>
+              <li>
+                <p>
+                  Una vez que cuentes con la información de tus vuelos, <br />
+                  da clic en <b>CONFIRMAR ASISTENCIA</b> y regístrala.
+                </p>
+                <span>4</span>
+              </li>
+              <li>
+                <p>
+                  ¡Listo! Te esperamos en la <b> CONVENCIÓN GWM FINANCE</b>
+                </p>
+                <span>5</span>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="pasos-confirm">
+            <h3>
+              Sigue los siguientes pasos <br /> para registrarte:
+            </h3>
+            <ul className="ul-confirm">
+              <li>
+                <span>1</span>
+                <p>Revisa la información general del evento.</p>
+              </li>
+              <li>
+                <span>2</span>
+                <p>Revisa las fechas de vuelos disponibles.</p>
+              </li>
+              <li>
+                <span>3</span>
+                <p>
+                  Compra tus vuelos. Pero antes de hacerlo por favor revisa el
+                  documento con información importante que debes considerar
+                  <br /> para la compra.
+                </p>
+              </li>
+              <li>
+                <span>4</span>
+                <p>
+                  Una vez que cuentes con la información de tus vuelos, <br />
+                  da clic en <b>CONFIRMAR ASISTENCIA</b> y regístrala.
+                </p>
+              </li>
+              <li>
+                <span>5</span>
+                <p>
+                  ¡Listo! Te esperamos en la <b> CONVENCIÓN GWM FINANCE</b>
+                </p>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

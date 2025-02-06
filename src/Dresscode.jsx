@@ -1,6 +1,29 @@
 import "../src/styles/dresscode.css";
 import images from "../src/assets/images";
+import { useEffect, useState } from "react";
 const Dresscode = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <div className="dresscode-container">
@@ -22,7 +45,10 @@ const Dresscode = () => {
             </p>
           </div>
           <div className="img-container-dresscode">
-            <img src={images.vestimenta} alt="" />
+            <img
+              src={isMobile ? images.mobilvestimenta : images.vestimenta}
+              alt=""
+            />
           </div>
         </div>
       </div>

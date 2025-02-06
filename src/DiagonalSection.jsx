@@ -5,14 +5,13 @@ const DiagonalSection = () => {
   return (
     <>
       <div className="container-general">
-        <div className="diagonal-section">
-          <div className="container-pasos">
-            <div className="text-diagonal">
-              <h2>Generales de Evento</h2>
-              <p>Vive una experiencia única</p>
-            </div>
+        <div className="container-pasos">
+          <div className="text-diagonal">
+            <h2>Generales de Evento</h2>
+            <p>Vive una experiencia única</p>
           </div>
         </div>
+
         <div className="info-container">
           <div className="info-general">
             <div className="date info">

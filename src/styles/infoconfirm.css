@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.container-setion {
+.container-section {
   display: flex;
   align-items: center;
   width: 70%;
@@ -61,6 +61,9 @@
   font-weight: 600;
 }
 
+.ul-confirm li p {
+  font-weight: 100;
+}
 .confirm-btn {
   background-color: #0076bd;
   padding-right: 10px;
@@ -75,4 +78,43 @@
   border-radius: 50px;
   margin-top: 30px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container-section {
+    flex-direction: column;
+    margin: 30px auto;
+    width: 90%;
+  }
+  .confirm-btn {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .confirm-text h3 {
+    font-size: 1.5rem;
+  }
+  .confirm-text p {
+    font-size: 1rem;
+  }
+  .ul-confirm li {
+    text-align: left;
+    justify-content: left;
+  }
+  .ul-confirm li p {
+    font-size: 0.8rem;
+  }
+  .pasos-confirm {
+    text-align: left;
+  }
+  .pasos-confirm h3 {
+    padding-left: 45px;
+  }
+  .ul-confirm li span {
+    font-size: 0.5rem;
+    padding: 10px;
+  }
 }

@@ -20,11 +20,32 @@
   font-size: 4rem;
   padding-top: 50px;
 }
+/* 
+.img-transport img {
+  width: 100%;
+} */
 
 .content-transport p {
-  margin-top: 101px;
   font-size: 1.5rem;
   text-align: left;
   font-weight: 100;
-  margin-bottom: 100px;
+  margin: 50px auto;
+}
+
+@media (max-width: 768px) {
+  .content-transport h2 {
+    font-size: 2rem;
+    padding-top: 50px;
+  }
+  .content-transport {
+    width: 90%;
+  }
+  .content-transport p {
+    font-size: 0.8rem;
+    margin: 20px auto;
+  }
+  .img-transport img {
+    width: 80%;
+    margin: 50px auto;
+  }
 }

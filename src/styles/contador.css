@@ -81,6 +81,20 @@
 
 @media (max-width: 768px) {
   .contador {
-    flex-direction: column;
+  }
+  .line:first-child {
+    width: 150px;
+    height: 150px;
+    font-size: 4rem;
+    font-weight: 700;
+    top: 60px;
+  }
+  .line:first-child .title-numbers {
+    font-size: 2rem;
+  }
+  .line {
+    font-size: 1.5rem;
+    width: 100px;
+    height: 100px;
   }
 }

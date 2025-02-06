@@ -38,3 +38,17 @@
   flex-direction: column;
   gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .content-dresscode {
+    width: 90%;
+    gap: 10px;
+  }
+  .p-dresscode {
+    font-size: 0.8rem;
+  }
+  .content-dresscode h2 {
+    font-size: 2rem;
+    white-space: nowrap;
+  }
+}

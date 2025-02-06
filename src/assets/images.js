@@ -16,6 +16,8 @@ import clock from "./clock.png";
 import van from "./Van.png";
 import vestimenta from "./Vestimenta.png";
 import consejos from "./Consejos.png";
+import mobilvestimenta from "./vestimentamovil.png";
+import beach from "./beachmovil.png";
 
 export default {
   homeIco,
@@ -36,4 +38,6 @@ export default {
   van,
   vestimenta,
   consejos,
+  mobilvestimenta,
+  beach,
 };

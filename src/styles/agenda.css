@@ -72,4 +72,38 @@
   font-size: 1.3rem;
   color: #0a5b9e;
   font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .content-agenda {
+    width: 90%;
+    margin: auto;
+    padding-top: 0;
+  }
+  .horario {
+    width: 90%;
+    margin: 20px auto;
+  }
+  .div p {
+    font-size: 1rem;
+  }
+  .active-color {
+    font-size: 1rem;
+  }
+  .color-grey {
+    font-size: 1rem;
+  }
+  .horario-class {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .container-horario-check {
+    gap: 20px;
+    padding: 7px;
+  }
+  .p-horario {
+    font-size: 1rem;
+    font-weight: 500;
+  }
 }

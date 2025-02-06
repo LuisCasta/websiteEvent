@@ -1,6 +1,28 @@
 import "../src/styles/consejos.css";
 import images from "./assets/images";
+import { useEffect, useState } from "react";
 const Consejos = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       <div className="consejo-container">
@@ -35,7 +57,7 @@ const Consejos = () => {
             </p>
           </div>
           <div className="img-container-consejo">
-            <img src={images.consejos} alt="" />
+            <img src={isMobile ? images.beach : images.consejos} alt="" />
           </div>
         </div>
       </div>
