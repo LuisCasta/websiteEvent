@@ -1,9 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-scroll"; // Importa Link de react-scroll
 import "./styles/navhome.css";
 import images from "../src/assets/images";
 
 const NavHome = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // Recupera los datos del usuario
+    } else {
+      navigate("/"); // Si no hay usuario, manda a login
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Borra los datos del usuario
+    setUser(null); // Limpia el estado
+    navigate("/"); // Redirige al login
+  };
+
   const menuItems = [
     {
       icon: <img className="icon-img" src={images.homeIco} />,
@@ -48,10 +69,11 @@ const NavHome = () => {
     {
       icon: <img className="icon-img" src={images.logoutIco} />,
       text: "Cerrar sesión",
+      action: handleLogout, // Agregar función para logout
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -66,13 +88,24 @@ const NavHome = () => {
             <button className="btn-nav" onClick={toggleMenu}>
               <i className="bx bx-menu bx-md"></i>
             </button>
-            <div className={isOpen ? "cerrar" : "abrir"}>
+            <div className={isOpen ? "abrir" : "cerrar"}>
               <ul>
                 {menuItems.map((item, index) => (
                   <li className="list-nav" key={index}>
-                    <Link to={item.section} smooth={true} duration={500}>
-                      {item.icon} <span>{item.text}</span>
-                    </Link>
+                    {item.action ? (
+                      <a onClick={item.action} className="logout-btn">
+                        {item.icon} <span>{item.text}</span>
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.section}
+                        smooth={true}
+                        duration={500}
+                        onClick={toggleMenu}
+                      >
+                        {item.icon} <span>{item.text}</span>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

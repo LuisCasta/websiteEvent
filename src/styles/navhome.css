@@ -55,7 +55,20 @@
   position: absolute;
   width: 100%;
   z-index: 100;
-  bottom: -654px;
+  bottom: -654px; /* Si quieres que aparezca, debes cambiar este valor */
+  transition: bottom 0.2s ease-in-out;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .active {
