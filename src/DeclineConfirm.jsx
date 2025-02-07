@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import slogan from "./assets/Slogan.png";
-import azul from "./assets/azul.png";
+import azul from "./assets/pkWhite.png";
 import { confirmDecline, dataUserCompanion } from "./index.js";
 import "./styles/decline.css";
 import PropTypes from "prop-types";

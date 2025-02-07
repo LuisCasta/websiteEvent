@@ -9,6 +9,7 @@
   gap: 20px;
   height: 600px;
   justify-content: center;
+  z-index: 200;
 }
 .formulario {
   /* max-width: 400px; */
@@ -87,6 +88,24 @@ input {
   font-size: 0.7rem;
   font-weight: 700;
   text-align: left;
+  text-decoration: none;
+}
+.btn-init-container {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 5px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.ready-btn-login-ini {
+  color: #2978b5;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.7rem;
+  font-weight: 700;
   text-decoration: none;
 }
 

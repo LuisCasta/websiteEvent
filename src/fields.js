@@ -79,7 +79,8 @@ export const fields = [
   },
   {
     id: "notice_price",
-    label: "La habitación individual tendrá un costo adicional de $0.00 MXN",
+    label:
+      "La habitación individual tendrá un costo adicional de $16,900.00 MXN",
     type: "warning",
   },
   // Preguntas adicionales
@@ -92,7 +93,7 @@ export const fields = [
   {
     id: "shared_room",
     label:
-      "¿Te gustaría compartir tu habitación con algún asistente específico?",
+      "¿Te gustaría compartir tu habitación con algún asistente específico? Al hacerlo autorizas que tu nombre y correo sea compartido con el destinatario",
     type: "checkbox",
     class: "input",
   },

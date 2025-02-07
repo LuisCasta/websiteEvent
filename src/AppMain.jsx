@@ -9,7 +9,7 @@ import bg3 from "./assets/BG3.png";
 import camionetaBlanca from "./assets/pkWhite.png";
 import camionetaGris from "./assets/pkgrey.png";
 import slogan from "./assets/Slogan.png";
-import camionetaNegra from "./assets/camionetaNegra.png";
+import camionetaNegra from "./assets/Capa_16.png";
 import { UseAuth } from "./UseAuth";
 import { useNavigate } from "react-router-dom";
 import camionetaResponsiveNegra from "./assets/auto01.png";
@@ -76,7 +76,7 @@ const AppMain = () => {
       setError(null); // Limpiar errores previos
       setSuccessMessage(null); // Limpiar mensajes previos
       if (formDataInput.password != formDataInput.confirmPassword) {
-        setFormDataInput({ email: "", password: "", confirmPassword: "" }); // Limpiar inputs
+        // setFormDataInput({ email: "", password: "", confirmPassword: "" }); // Limpiar inputs
         setError("Las contraseñas no coinciden");
         mostrarMensaje();
         return; // Limpiar mensajes previos;
@@ -89,6 +89,11 @@ const AppMain = () => {
         setSuccessMessage(result.message);
         mostrarMensaje();
         setFormDataInput({ email: "", password: "", confirmPassword: "" }); // Limpiar inputs
+        login();
+        navigate("/home", { replace: true }); // Redirigir a la página de inicio
+        // Guardar datos relevantes en Local Storage
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
       } catch (err) {
         setError(err.message);
         mostrarMensaje(); // Mostrar el mensaje de error
@@ -136,9 +141,9 @@ const AppMain = () => {
       } catch (err) {
         setError(err.message);
         mostrarMensaje(); // Mostrar el mensaje de error
-        setTimeout(() => {
-          setFormDataInput({ email: "", password: "" }); // Limpiar inputs
-        }, 5000);
+        // setTimeout(() => {
+        //   setFormDataInput({ email: "", password: "" }); // Limpiar inputs
+        // }, 5000);
       }
     } else if (modo === "olvidoPassword") {
       e.preventDefault();

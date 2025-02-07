@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import slogan from "./assets/Slogan.png";
-import camionetaNegra from "./assets/camionetaNegra.png";
+import images from "./assets/images.js";
 import { recovery } from "./index.js";
 import "./styles/recovery-password.css";
 import { useSearchParams } from "react-router-dom";
@@ -191,7 +191,7 @@ const RecoveryPassword = () => {
           <div className="main-message">
             <img className="slogan-img" src={slogan} alt="" />
             <div className="container-pickup">
-              <img className="pickup" src={camionetaNegra} alt="" />
+              <img className="pickup" src={images.auto} alt="" />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import slogan from "./assets/Slogan.png";
-import azul from "./assets/azul.png";
+import azul from "./assets/auto_verde.png";
 import { confirm } from "./index.js";
 import "./styles/asistencia.css";
 import PropTypes from "prop-types";
@@ -8,6 +8,7 @@ import { fields } from "./fields.js";
 import Header from "./Header.jsx";
 
 const ConfirmForm = ({ onComplete }) => {
+  const [isOpen, setIsOpen] = useState(false);
   // const [searchParams] = useSearchParams();
   // const tokenParam = searchParams.get("token");
   const [messageData, setMessageData] = useState({
@@ -81,7 +82,7 @@ const ConfirmForm = ({ onComplete }) => {
     // Validación 8: Fecha del vuelo de ida no debe ser mayor al 10 de marzo de 2025
     if (selectedFirstDate > limitDate) {
       setMessageData({
-        text: "La fecha del vuelo de ida no debe ser mayor al 10 de marzo, de lo contrario se perderá del evento.",
+        text: "La fecha del vuelo de ida no deberá ser posterior al 10 de marzo, de lo contrario te perderás la convención.",
         type: "error",
       });
 
@@ -103,15 +104,27 @@ const ConfirmForm = ({ onComplete }) => {
     // Validación específica: Hora del vuelo de ida antes de la 1:00 PM el 10 de marzo
     if (selectedFirstDate.toDateString() === limitDate.toDateString()) {
       const [hours, minutes] = firstBoardingTime.split(":").map(Number);
-      if (hours > 13 || (hours === 13 && minutes > 0)) {
+      if (hours >= 13 || (hours === 13 && minutes > 0)) {
         setMessageData({
-          text: "Recuerde que debe estar antes de la 1:00 pm para poder asistir al evento.",
+          text: "Te recomendamos llegar al aeropuerto de Cancún antes de las 13:00 horas para tomar el transporte que te llevará hacia el hotel, de lo contrario el traslado será por su",
           type: "error",
         });
         setTimeout(() => setMessageData(""), 5000);
         // setTimeout(() => resetForm(), 4000);
 
-        return false;
+        // return;
+      }
+    }
+    // Validación específica: Hora del vuelo de ida antes de la 1:00 PM el 10 de marzo
+    if (selectedFirstDate.toDateString() === limitDate.toDateString()) {
+      const [hours, minutes] = firstBoardingTime.split(":").map(Number);
+      if (hours > 13 || (hours === 13 && minutes > 0)) {
+        setMessageData({
+          text: "Te recomendamos llegar al aeropuerto de Cancún antes de las 13:00 horas para tomar el transporte que te llevará hacia el hotel, de lo contrario el traslado será por tu cuenta",
+          type: "error",
+        });
+        setTimeout(() => setMessageData(""), 5000);
+        // setTimeout(() => resetForm(), 4000);
       }
     }
     // Validación 10: Fecha del vuelo de regreso no menor a la de ida
@@ -150,7 +163,7 @@ const ConfirmForm = ({ onComplete }) => {
       );
       setTimeout(() => {
         setMessageData({
-          text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta",
+          text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta.",
           type: "success",
         });
       }, 1000);
@@ -161,7 +174,7 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        5000
+        7000
       );
       setTimeout(() => {
         setTimeout(() => setMessageData({ text: "", type: "" }), 12000);
@@ -266,7 +279,16 @@ const ConfirmForm = ({ onComplete }) => {
                   </div>
                 );
               })}
-              <button className="btn-registro">ENVIAR SOLICITUD</button>
+              <div className="label-terms">
+                <input className="create-type" type="checkbox" id="terminos" />
+                <label htmlFor="terminos" onClick={() => setIsOpen(true)}>
+                  Leí y acepto los{" "}
+                  <b style={{ borderBottom: "1px solid #000" }}>
+                    términos y condiciones
+                  </b>
+                </label>
+              </div>
+              <button className="btn-registro">CONFIRMAR ASISTENCIA</button>
               {messageData.text && (
                 <p
                   className={
@@ -286,6 +308,33 @@ const ConfirmForm = ({ onComplete }) => {
               <img className="pickup-confirm" src={azul} alt="Pickup" />
             </div>
           </div>
+        </div>
+        <div className="container">
+          {isOpen && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <h2>Términos y condiciones</h2>
+                <p>
+                  Lorem ipsum odor amet, consectetuer adipiscing elit. Magna
+                  quisque aliquam imperdiet quisque; nisl ultricies inceptos.
+                  Sagittis auctor vitae sem; primis turpis congue vel? Vel
+                  senectus vitae donec ipsum pellentesque eleifend fames. Nulla
+                  orci ullamcorper nibh commodo egestas aliquet nascetur velit?
+                  Lacinia fames ex a semper faucibus mauris faucibus. Gravida
+                  curabitur facilisis venenatis felis phasellus placerat
+                  vehicula. Efficitur est enim litora dolor nisi vestibulum. Est
+                  sollicitudin faucibus blandit sapien ornare potenti cubilia.
+                  Taciti sem nisi consequat ad curae platea tortor cubilia
+                </p>
+                <button
+                  className="open-modal-btn"
+                  onClick={() => setIsOpen(false)}
+                >
+                  continuar
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </>

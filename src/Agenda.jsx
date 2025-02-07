@@ -38,7 +38,7 @@ const Agenda = () => {
             },
             {
               horario: "20:00 - 21:00",
-              text: <p className="p-horario">Coctel</p>,
+              text: <p className="p-horario">Cóctel</p>,
             },
             {
               horario: "21:00 - 22:30",
@@ -124,7 +124,7 @@ const Agenda = () => {
             },
             {
               horario: "20:00 - 21:00",
-              text: <p className="p-horario">Coctel</p>,
+              text: <p className="p-horario">Cóctel</p>,
             },
             {
               horario: "21:00 - 22:30",
@@ -146,7 +146,7 @@ const Agenda = () => {
             },
             {
               horario: "11:00 - 15:00",
-              text: <p className="p-horario">Experiencia con chef Michelín</p>,
+              text: <p className="p-horario">Experiencia con chef Michelin</p>,
             },
             {
               horario: "15:00 - 17:30",
@@ -158,7 +158,7 @@ const Agenda = () => {
             },
             {
               horario: "18:00 - 18:30",
-              text: <p className="p-horario">Cocktail</p>,
+              text: <p className="p-horario">Cóctel</p>,
             },
             {
               horario: "18:30 - 23:00",
@@ -202,19 +202,19 @@ const Agenda = () => {
             onClick={() => setCheckDay("lunes")}
             className={checkDay === "lunes" ? "active-color" : "color-grey"}
           >
-            LUNES <br /> 11
+            LUNES <br /> 10
           </button>
           <button
             onClick={() => setCheckDay("martes")}
             className={checkDay === "martes" ? "active-color" : "color-grey"}
           >
-            MARTES <br /> 12
+            MARTES <br /> 11
           </button>
           <button
             onClick={() => setCheckDay("miercoles")}
             className={checkDay === "miercoles" ? "active-color" : "color-grey"}
           >
-            MIÉRCOLES <br /> 13
+            MIÉRCOLES <br /> 12
           </button>
         </div>
         <div className="horario">

@@ -30,9 +30,9 @@
 }
 .pickup-confirm {
   position: absolute;
-  width: 900px;
-  bottom: 0;
-  left: -50px;
+  width: 800px;
+  bottom: 100px;
+  left: 20px;
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -172,6 +172,7 @@
 .message-form-text-pw {
   /* font-size: 0.5rem; */
   color: #5d5d5d;
+  margin: 20px auto;
 }
 
 .btn-hidden {
@@ -186,6 +187,7 @@
 
 .individual_room label {
   text-align: left;
+  font-size: 0.8rem;
 }
 
 .shared_room {
@@ -196,6 +198,7 @@
 }
 
 .shared_room label {
+  font-size: 0.8rem;
   text-align: left;
 }
 .success-message {
@@ -222,13 +225,89 @@
 .warning {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  background-color: #d3edfc;
+  color: #053066;
+  padding: 10px;
 }
 
 .form-warning {
   text-align: left;
   font-size: 0.7rem;
   font-weight: 700;
+}
+
+.label-terms {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.label-terms label {
+  text-align: left;
+  font-size: 0.8rem;
+}
+.create-type {
+  width: 20px;
+}
+
+/* Crear modal estilos */
+/* Fondo opaco detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contenedor del modal */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0px 5px 15px rgba(6, 0, 73, 0.3);
+}
+.modal-content h2 {
+  margin-bottom: 50px;
+}
+
+.modal-content button {
+  margin-top: 50px;
+}
+/* Botón de cerrar */
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Botón para abrir el modal */
+.open-modal-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.open-modal-btn:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {

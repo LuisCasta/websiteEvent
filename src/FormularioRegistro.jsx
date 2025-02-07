@@ -4,7 +4,7 @@ import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./styles/FormularioRegistro.css";
-import { useTestMode } from "./TestMode.jsx";
+// import { useTestMode } from "./TestMode.jsx";
 
 const FormularioRegistro = ({
   modo,
@@ -19,7 +19,7 @@ const FormularioRegistro = ({
   function onChange(value) {
     console.log("Captcha value:", value);
   }
-  const { isTestMode } = useTestMode();
+  // const { isTestMode } = useTestMode();
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
     switch (modo) {
@@ -80,6 +80,8 @@ const FormularioRegistro = ({
           enlace: {
             texto: "¿Aún no estás registrado? Regístrate",
             accion: () => setModo("crearCuenta"),
+            accionIniciar: () => setModo("iniciarSesion"),
+            textIniciar: "Inicia sesión",
           },
         };
       default:
@@ -112,10 +114,7 @@ const FormularioRegistro = ({
         </h2>
         {modo === "olvidoPassword" && (
           <div className="message-form">
-            <p className="message-form-text-pw">
-              Escribe tu correo electrónico y te llegará un e-mail con las
-              indicaciones para recuperar tu contraseña.
-            </p>
+            <p className="message-form-text-pw">Crea una nueva contraseña</p>
           </div>
         )}
         {campos.map((campo) => (
@@ -131,14 +130,14 @@ const FormularioRegistro = ({
           </div>
         ))}
 
-        {modo === "crearCuenta" && isTestMode && (
+        {/* {modo === "crearCuenta" && (
           <div className="terminos">
             <input className="terms-input" id="terms" type="checkbox" />
             <label htmlFor="terms">Acepto términos y condiciones</label>
           </div>
-        )}
+        )} */}
         <div className="form-footer">
-          {modo === "crearCuenta" && isTestMode && (
+          {modo === "crearCuenta" && (
             <a
               onClick={enlace.accion}
               className="ready-btn-login"
@@ -147,15 +146,30 @@ const FormularioRegistro = ({
               {enlace.texto}
             </a>
           )}
-
+          {modo === "olvidoPassword" && (
+            <div className="btn-init-container">
+              <a
+                onClick={enlace.accionIniciar}
+                className="ready-btn-login-ini"
+                id="login-btn-init"
+              >
+                {enlace.textIniciar}
+              </a>
+            </div>
+          )}
           {modo === "iniciarSesion" && (
-            <a
-              onClick={enlace.action}
-              className="ready-btn-login"
-              id="create-account"
-            >
-              {enlace.text}
-            </a>
+            <div className="btn-init-container">
+              <a
+                onClick={enlace.action}
+                className="ready-btn-login-ini"
+                id="create-account"
+              >
+                {enlace.text}
+              </a>
+              <a className="ready-btn-login-ini" onClick={enlace.accion}>
+                {enlace.texto}
+              </a>
+            </div>
           )}
         </div>
         <ReCAPTCHA

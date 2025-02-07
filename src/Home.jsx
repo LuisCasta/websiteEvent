@@ -24,7 +24,9 @@ const Home = () => {
     if (step == "2") {
       searchParams.delete("step");
     }
-    setSearchParams(searchParams);
+    setTimeout(() => {
+      setSearchParams(searchParams);
+    }, 12000);
   };
 
   if (step == "1") {
