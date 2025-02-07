@@ -3,7 +3,7 @@ import "./styles/contador.css";
 
 const Contador = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-03-30") - +new Date();
+    const difference = +new Date("2025-03-10") - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {

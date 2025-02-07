@@ -35,6 +35,9 @@ const Dresscode = () => {
               siguiente código:
             </p>
             <p className="p-dresscode">
+              <b>Plenaria:</b> business casual.
+            </p>
+            <p className="p-dresscode">
               <b>Para el día:</b> ropa ligera, fresca y calzado cómodo.
             </p>
             <p className="p-dresscode">

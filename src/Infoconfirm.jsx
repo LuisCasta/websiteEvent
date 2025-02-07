@@ -40,9 +40,15 @@ const InformConfirm = () => {
             Estás a punto de ser parte de la gran experiencia, estamos muy
             emocionados por tu participación.
           </p>
-          <button className="confirm-btn" onClick={confirm}>
-            CONFIRMAR ASISTENCIA
-          </button>
+          <div className="container-btn-confirm">
+            <button className="confirm-btn" disabled onClick={confirm}>
+              CONFIRMAR ASISTENCIA
+            </button>
+            <span>
+              Próximamente se habilitará esta sección para que puedas confirmar
+              tu asistencia, te avisaremos vía e-mail.
+            </span>
+          </div>
         </div>
         {!isMobile ? (
           <div className="pasos-confirm">

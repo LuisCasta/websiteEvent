@@ -59,6 +59,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   color: #0e3668;
+  width: 500px;
 }
 .active-color {
   color: #0d366b;
@@ -73,6 +74,7 @@
   color: #0a5b9e;
   font-weight: 700;
   white-space: nowrap;
+  width: 160px;
 }
 
 @media (max-width: 768px) {
@@ -105,5 +107,10 @@
   .p-horario {
     font-size: 1rem;
     font-weight: 500;
+    width: 200px;
+  }
+  .div h2 {
+    font-size: 2rem;
+    color: #0e3668;
   }
 }
