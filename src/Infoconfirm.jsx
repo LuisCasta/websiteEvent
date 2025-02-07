@@ -1,9 +1,13 @@
 import "../src/styles/infoconfirm.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const InformConfirm = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
-
+  const confirm = () => {
+    navigate("/home?step=1", { replace: true });
+  };
   const handleResize = () => {
     if (window.innerWidth <= 768) {
       setIsMobile(true);
@@ -36,7 +40,9 @@ const InformConfirm = () => {
             Estás a punto de ser parte de la gran experiencia, estamos muy
             emocionados por tu participación.
           </p>
-          <button className="confirm-btn">CONFIRMAR ASISTENCIA</button>
+          <button className="confirm-btn" onClick={confirm}>
+            CONFIRMAR ASISTENCIA
+          </button>
         </div>
         {!isMobile ? (
           <div className="pasos-confirm">

@@ -7,7 +7,7 @@ import images from "../src/assets/images";
 const NavHome = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
+  user;
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
 
@@ -23,12 +23,16 @@ const NavHome = () => {
     setUser(null); // Limpia el estado
     navigate("/"); // Redirige al login
   };
+  const backToHome = () => {
+    navigate("/home", { replace: true });
+  };
 
   const menuItems = [
     {
       icon: <img className="icon-img" src={images.homeIco} />,
       text: "Inicio",
       section: "Inicio",
+      back: backToHome,
     },
     {
       icon: <img className="icon-img" src={images.generalidades} />,
@@ -100,7 +104,7 @@ const NavHome = () => {
                         to={item.section}
                         smooth={true}
                         duration={500}
-                        onClick={toggleMenu}
+                        onClick={(toggleMenu, backToHome)}
                       >
                         {item.icon} <span>{item.text}</span>
                       </Link>
