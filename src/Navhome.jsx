@@ -81,6 +81,11 @@ const NavHome = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleClick = () => {
+    toggleMenu();
+    backToHome();
+  };
+
   return (
     <nav className="navbar-home">
       <div className="navbar-content-home">
@@ -104,7 +109,7 @@ const NavHome = () => {
                         to={item.section}
                         smooth={true}
                         duration={500}
-                        onClick={(toggleMenu, backToHome)}
+                        onClick={handleClick}
                       >
                         {item.icon} <span>{item.text}</span>
                       </Link>
