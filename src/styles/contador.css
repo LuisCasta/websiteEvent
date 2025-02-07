@@ -80,8 +80,6 @@
 }
 
 @media (max-width: 768px) {
-  .contador {
-  }
   .line:first-child {
     width: 150px;
     height: 150px;
@@ -94,7 +92,15 @@
   }
   .line {
     font-size: 1.5rem;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
+  }
+  .title-numbers {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .line p {
+    font-weight: 600;
   }
 }
