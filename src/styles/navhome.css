@@ -11,10 +11,13 @@
   margin: auto;
   width: 70%;
   justify-content: space-between;
+  align-items: center;
 }
+
 .abrir ul li {
   list-style: none;
 }
+
 .abrir ul li a {
   color: white;
   cursor: pointer;
@@ -94,7 +97,8 @@
   margin: auto;
 }
 .logo-gwm-2 {
-  width: 150px;
+  width: 100px;
+  height: 30px;
   position: relative;
   right: -100px;
 }
@@ -149,12 +153,10 @@
   }
   .logo-gwm-2 {
     width: 70px;
-    height: fit-content;
     right: -120px;
   }
   .logo-bbva-2 {
     width: 50px;
-    height: fit-content;
   }
   .container-all {
     align-items: center;

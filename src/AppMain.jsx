@@ -6,14 +6,14 @@ import "./styles/appmain.css";
 import bg1 from "./assets/haval.png";
 import bg2 from "./assets/BG2.png";
 import bg3 from "./assets/BG3.png";
-import camionetaBlanca from "./assets/pkWhite.png";
+import camionetaBlanca from "./assets/Capa_16.png";
 import camionetaGris from "./assets/pkgrey.png";
 import slogan from "./assets/Slogan.png";
-import camionetaNegra from "./assets/Capa_16.png";
+import camionetaNegra from "./assets/camionetaNegra.png";
 import { UseAuth } from "./UseAuth";
 import { useNavigate } from "react-router-dom";
 import camionetaResponsiveNegra from "./assets/auto01.png";
-import camionetaResponsiveBlanca from "./assets/auto02.png";
+// import camionetaResponsiveBlanca from "./assets/auto02.png";
 import camionetaResponsiveGris from "./assets/auto03.png";
 import bckMobile from "./assets/bkmov1.png";
 import { registerUser } from "./index.js";
@@ -205,7 +205,7 @@ const AppMain = () => {
 
   const camionetas = {
     crearCuenta: isMobile ? camionetaResponsiveNegra : camionetaNegra,
-    iniciarSesion: isMobile ? camionetaResponsiveBlanca : camionetaBlanca,
+    iniciarSesion: isMobile ? camionetaBlanca : camionetaBlanca,
     olvidoPassword: isMobile ? camionetaResponsiveGris : camionetaGris,
   };
 

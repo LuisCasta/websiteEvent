@@ -5,7 +5,8 @@ import { confirm } from "./index.js";
 import "./styles/asistencia.css";
 import PropTypes from "prop-types";
 import { fields } from "./fields.js";
-import Header from "./Header.jsx";
+// import Header from "./Header.jsx";
+import NavHome from "./Navhome.jsx";
 
 const ConfirmForm = ({ onComplete }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -159,14 +160,14 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Espera un momento estamos confirmando tu asistencia...",
             type: "success",
           }),
-        100
+        5000
       );
       setTimeout(() => {
         setMessageData({
           text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta.",
           type: "success",
         });
-      }, 1000);
+      }, 10000);
 
       setTimeout(
         () =>
@@ -174,10 +175,10 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        7000
+        17000
       );
       setTimeout(() => {
-        setTimeout(() => setMessageData({ text: "", type: "" }), 12000);
+        setTimeout(() => setMessageData({ text: "", type: "" }), 17000);
         onComplete();
       }, 2000);
 
@@ -204,7 +205,7 @@ const ConfirmForm = ({ onComplete }) => {
 
   return (
     <>
-      <Header />
+      <NavHome />
       <main className="main">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
@@ -280,7 +281,12 @@ const ConfirmForm = ({ onComplete }) => {
                 );
               })}
               <div className="label-terms">
-                <input className="create-type" type="checkbox" id="terminos" />
+                <input
+                  required
+                  className="create-type"
+                  type="checkbox"
+                  id="terminos"
+                />
                 <label htmlFor="terminos" onClick={() => setIsOpen(true)}>
                   Leí y acepto los{" "}
                   <b style={{ borderBottom: "1px solid #000" }}>

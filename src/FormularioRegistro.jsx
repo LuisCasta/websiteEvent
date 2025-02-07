@@ -99,7 +99,8 @@ const FormularioRegistro = ({
           <p className="message-form-text">
             Conoce toda la información para participar en la
             <b> PRIMERA CONVENCIÓN GWM FINANCE 2025</b> que BBVA ha preparado
-            para ti. Recuerda registrarte con tu correo institucional
+            para ti. <br /> <br /> Recuerda registrarte con tu correo de la
+            Agencia.
           </p>
         </div>
       )}
@@ -114,7 +115,10 @@ const FormularioRegistro = ({
         </h2>
         {modo === "olvidoPassword" && (
           <div className="message-form">
-            <p className="message-form-text-pw">Crea una nueva contraseña</p>
+            <p className="message-form-text-pw">
+              Escribe tu correo electrónico y te llegará un e-mail con las
+              indicaciones para recuperar tu contrseña.
+            </p>
           </div>
         )}
         {campos.map((campo) => (
@@ -129,13 +133,6 @@ const FormularioRegistro = ({
             />
           </div>
         ))}
-
-        {/* {modo === "crearCuenta" && (
-          <div className="terminos">
-            <input className="terms-input" id="terms" type="checkbox" />
-            <label htmlFor="terms">Acepto términos y condiciones</label>
-          </div>
-        )} */}
         <div className="form-footer">
           {modo === "crearCuenta" && (
             <a

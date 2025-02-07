@@ -4,8 +4,7 @@ import azul from "./assets/pkWhite.png";
 import { confirmDecline, dataUserCompanion } from "./index.js";
 import "./styles/decline.css";
 import PropTypes from "prop-types";
-import Header from "./Header.jsx";
-
+import NavHome from "./Navhome.jsx";
 const DeclineConfirm = ({ onComplete }) => {
   const [message, setMessage] = useState({ text: "", type: "" });
   const [tokenUser, setUserToken] = useState(null);
@@ -123,7 +122,7 @@ const DeclineConfirm = ({ onComplete }) => {
 
   return (
     <>
-      <Header />
+      <NavHome />
       <main className="main-decline">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />

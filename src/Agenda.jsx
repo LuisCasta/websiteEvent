@@ -71,7 +71,7 @@ const Agenda = () => {
             },
             {
               horario: "18:00 - 18:30",
-              text: <p className="p-horario">Cocktail</p>,
+              text: <p className="p-horario">Cóctel</p>,
             },
             {
               horario: "18:30 - 23:00",
@@ -190,7 +190,7 @@ const Agenda = () => {
     <div className="container-agenda">
       <div className="content-agenda">
         <div className="div">
-          <h2>{isVip ? "Agenda VIP" : "Agenda"} </h2>
+          <h2>{isVip ? "Agenda Dueños y Directores" : "Agenda"} </h2>
           <p>
             ¡Descubre las emocionantes actividades que se han preparado para ti!
           </p>

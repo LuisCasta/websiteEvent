@@ -325,4 +325,8 @@
   .content-main {
     gap: 0;
   }
+  .main {
+    padding-top: 5rem;
+    padding-bottom: 0rem;
+  }
 }
