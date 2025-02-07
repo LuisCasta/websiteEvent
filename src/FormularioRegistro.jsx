@@ -98,9 +98,9 @@ const FormularioRegistro = ({
           <h3 className="call-title">Regístrate</h3>
           <p className="message-form-text">
             Conoce toda la información para participar en la
-            <b> PRIMERA CONVENCIÓN GWM FINANCE 2025</b> que BBVA ha preparado
-            para ti. <br /> <br /> Recuerda registrarte con tu correo de la
-            Agencia.
+            <b> PRIMERA CONVENCIÓN GWM FINANCE 2025</b> en alianza con{" "}
+            <b>BBVA.</b>
+            <br /> <br /> Recuerda registrarte con tu correo de la agencia.
           </p>
         </div>
       )}
