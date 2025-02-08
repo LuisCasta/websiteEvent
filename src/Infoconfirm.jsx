@@ -60,7 +60,7 @@ const InformConfirm = () => {
                 <p>Revisa la información general del evento.</p> <span>1</span>
               </li>
               <li>
-                <p>Revisa las fechas de vuelos disponibles.</p> <span>2</span>
+                <p>Revisa los horarios de vuelos disponibles.</p> <span>2</span>
               </li>
               <li>
                 <p>
@@ -97,7 +97,7 @@ const InformConfirm = () => {
               </li>
               <li>
                 <span>2</span>
-                <p>Revisa las fechas de vuelos disponibles.</p>
+                <p>Revisa los horarios de vuelos disponibles.</p>
               </li>
               <li>
                 <span>3</span>

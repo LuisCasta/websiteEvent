@@ -3,14 +3,17 @@ import "./styles/contador.css";
 
 const Contador = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-03-10") - +new Date();
+    const targetDate = new Date("2025-03-10T10:00:00"); // 10 de marzo, 1 PM
+    const now = new Date();
+    const difference = targetDate - now;
+
     let timeLeft = {};
 
     if (difference > 0) {
       timeLeft = {
         días: Math.floor(difference / (1000 * 60 * 60 * 24)),
         horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutos: Math.floor((difference / 1000 / 60) % 60),
+        minutos: Math.floor((difference / (1000 * 60)) % 60),
         segundos: Math.floor((difference / 1000) % 60),
       };
     }
@@ -21,27 +24,19 @@ const Contador = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    return () => clearTimeout(timer);
-  });
+    return () => clearInterval(timer); // Limpiar intervalo al desmontar
+  }, []);
 
-  const timerComponents = [];
-
-  Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
-      return;
-    }
-
-    timerComponents.push(
-      <div className="line" key={interval}>
-        <p> {timeLeft[interval].toString().padStart(2, "0")}</p>
-        <p className="title-numbers">{interval} </p>
-      </div>
-    );
-  });
+  const timerComponents = Object.keys(timeLeft).map((interval) => (
+    <div className="line" key={interval}>
+      <p>{timeLeft[interval].toString().padStart(2, "0")}</p>
+      <p className="title-numbers">{interval}</p>
+    </div>
+  ));
 
   return (
     <div className="contador">
