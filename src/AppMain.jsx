@@ -22,6 +22,7 @@ import { loginUser } from "./index.js";
 import { useSearchParams } from "react-router-dom";
 
 const AppMain = () => {
+  const [user, setUser] = useState(null);
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
   const inicio = searchParams.get("iniciarsesion");
@@ -61,6 +62,22 @@ const AppMain = () => {
   const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
   const { login } = UseAuth();
   const navigate = useNavigate();
+  // Al cargar la app, revisar si hay usuario en localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      login(); // Simula el inicio de sesión automático
+    }
+  }, [login]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      navigate("/home", { replace: true });
+    }
+  }, [navigate]);
+
   // console.log(UseAuth());
   // Función para manejar la acción del botón
   const manejarAccion = async (e) => {
@@ -68,7 +85,7 @@ const AppMain = () => {
       setVisible(true); // Muestra el mensaje
       setTimeout(() => {
         setVisible(false); // Oculta el mensaje después de 3 segundos
-      }, 5000); // Tiempo en milisegundos (3 segundos)
+      }, 7000); // Tiempo en milisegundos (3 segundos)
     };
     if (modo === "crearCuenta") {
       e.preventDefault();
@@ -212,32 +229,36 @@ const AppMain = () => {
   return (
     <>
       <Header />
-      <main
-        className="main"
-        style={{
-          backgroundImage: fondos[modo], // Cambia el fondo según el modo
-        }}
-      >
-        <div className="content-main">
-          <img className="slogan-img-mov" src={slogan} alt="" />
-          <FormularioRegistro
-            setModo={setModo}
-            modo={modo}
-            onSubmit={manejarAccion}
-            error={error}
-            message={successMessage}
-            formDataInput={formDataInput}
-            handleChange={handleChange}
-            visible={visible} // Pasa la función de manejar cambios
-          />
-          <div className="main-message">
-            <img className="slogan-img" src={slogan} alt="" />
-            <div className="container-pickup">
-              <img className="pickup" src={camionetas[modo]} alt="" />
+      {user ? (
+        <></>
+      ) : (
+        <main
+          className="main"
+          style={{
+            backgroundImage: fondos[modo], // Cambia el fondo según el modo
+          }}
+        >
+          <div className="content-main">
+            <img className="slogan-img-mov" src={slogan} alt="" />
+            <FormularioRegistro
+              setModo={setModo}
+              modo={modo}
+              onSubmit={manejarAccion}
+              error={error}
+              message={successMessage}
+              formDataInput={formDataInput}
+              handleChange={handleChange}
+              visible={visible} // Pasa la función de manejar cambios
+            />
+            <div className="main-message">
+              <img className="slogan-img" src={slogan} alt="" />
+              <div className="container-pickup">
+                <img className="pickup" src={camionetas[modo]} alt="" />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      )}
     </>
   );
 };

@@ -3,7 +3,7 @@ export const fields = [
   // Título entre vuelos
   {
     id: "title_go",
-    label: "Información del vuelo de ida",
+    label: "Información de llegada",
     type: "title",
   },
   // Información del vuelo de ida
@@ -38,7 +38,7 @@ export const fields = [
   // Título entre vuelos
   {
     id: "title_return",
-    label: "Información del vuelo de regreso",
+    label: "Información de salida",
     type: "title",
   },
   // Información del vuelo de regreso

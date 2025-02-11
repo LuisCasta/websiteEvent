@@ -9,6 +9,11 @@ import { fields } from "./fields.js";
 import NavHome from "./Navhome.jsx";
 
 const ConfirmForm = ({ onComplete }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChangeRadio = (e) => {
+    setSelectedOption(e.target.value);
+  };
   const [isOpen, setIsOpen] = useState(false);
   // const [searchParams] = useSearchParams();
   // const tokenParam = searchParams.get("token");
@@ -79,6 +84,14 @@ const ConfirmForm = ({ onComplete }) => {
     const limitDate = new Date("2025-03-10");
     const selectedFirstDate = new Date(firstDate);
     const selectedLastDate = new Date(lastDate);
+    if (!selectedOption) {
+      setMessageData({
+        text: "Por favor, selecciona un medio de llegada antes de continuar.",
+        type: "error",
+      });
+      setTimeout(() => setMessageData(""), 5000);
+      return;
+    }
 
     // Validación 8: Fecha del vuelo de ida no debe ser mayor al 10 de marzo de 2025
     if (selectedFirstDate > limitDate) {
@@ -153,6 +166,7 @@ const ConfirmForm = ({ onComplete }) => {
         wantsRoom: formData.individual_room ? 1 : 0,
         wantsToShare: formData.shared_room ? 1 : 0,
         emailCompanion: formData.companion_email,
+        arrivalType: selectedOption,
       });
       setTimeout(
         () =>
@@ -160,7 +174,7 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Espera un momento estamos confirmando tu asistencia...",
             type: "success",
           }),
-        5000
+        1000
       );
       setTimeout(() => {
         setMessageData({
@@ -214,6 +228,45 @@ const ConfirmForm = ({ onComplete }) => {
               <div className="message-form">
                 <h4 className="call-title-form">Confirma tu asistencia</h4>
               </div>
+              <h5>Por favor, seleccione el medio de su llegada</h5>
+              <div className="type-form-choose">
+                <div className="content-checkbox">
+                  {" "}
+                  <input
+                    type="radio"
+                    id="opcion1"
+                    name="opcion"
+                    value="1"
+                    checked={selectedOption === "1"}
+                    onChange={handleChangeRadio}
+                  />
+                  <label htmlFor="opcion1">Llegaré en avión</label>
+                </div>
+                <div className="content-checkbox">
+                  <input
+                    type="radio"
+                    id="opcion2"
+                    name="opcion"
+                    value="2"
+                    checked={selectedOption === "2"}
+                    onChange={handleChangeRadio}
+                  />
+                  <label htmlFor="opcion2">Llegaré directo al Hotel</label>
+                </div>
+                <div className="content-checkbox">
+                  <input
+                    type="radio"
+                    id="opcion3"
+                    name="opcion"
+                    value="3"
+                    checked={selectedOption === "3"}
+                    onChange={handleChangeRadio}
+                  />{" "}
+                  <label htmlFor="opcion3">
+                    Llegaré en otro Transporte al aeropuerto
+                  </label>
+                </div>
+              </div>
               {fields.map((field) => {
                 if (field.condition && !formData[field.condition]) {
                   return null;
@@ -238,17 +291,34 @@ const ConfirmForm = ({ onComplete }) => {
 
                 if (field.type === "warning") {
                   return (
-                    <>
-                      <div key={field.id} className="warning">
-                        <i className="bx bx-md bxs-error-circle bx-flip-vertical"></i>
-                        <p className="form-warning">{field.label}</p>
-                      </div>
-                    </>
+                    <div key={field.id} className="warning">
+                      <i className="bx bx-md bxs-error-circle bx-flip-vertical"></i>
+                      <p className="form-warning">{field.label}</p>
+                    </div>
                   );
                 }
 
+                // Determinar si el campo debe estar deshabilitado
+                const isDisabled =
+                  selectedOption !== "1" &&
+                  ![
+                    "date_outbound",
+                    "boarding_time_outbound",
+                    "date_return",
+                    "boarding_time_return",
+                    "individual_room",
+                    "shared_room",
+                    "companion_name",
+                    "companion_email",
+                  ].includes(field.id);
+
                 return (
-                  <div key={field.id} className={field.id}>
+                  <div
+                    key={field.id}
+                    className={`${field.id} ${
+                      isDisabled ? "disabled-field" : ""
+                    }`}
+                  >
                     {field.type === "checkbox" && (
                       <label key={field.label} htmlFor={field.id}>
                         {field.label}
@@ -256,7 +326,6 @@ const ConfirmForm = ({ onComplete }) => {
                     )}
                     <input
                       className={field.class}
-                      key={field.id}
                       id={field.id}
                       type={field.type}
                       value={
@@ -276,10 +345,12 @@ const ConfirmForm = ({ onComplete }) => {
                           ? field.isRequired
                           : false
                       }
+                      disabled={isDisabled}
                     />
                   </div>
                 );
               })}
+
               <div className="label-terms">
                 <input
                   required
@@ -288,9 +359,9 @@ const ConfirmForm = ({ onComplete }) => {
                   id="terminos"
                 />
                 <label htmlFor="terminos" onClick={() => setIsOpen(true)}>
-                  Leí y acepto los{" "}
+                  Leí y acepto el{" "}
                   <b style={{ borderBottom: "1px solid #000" }}>
-                    términos y condiciones
+                    deslinde de responsabilidades
                   </b>
                 </label>
               </div>

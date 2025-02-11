@@ -7,6 +7,9 @@ const InformConfirm = () => {
   const [isMobile, setIsMobile] = useState(false);
   const confirm = () => {
     navigate("/home?step=1", { replace: true });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
   };
   const handleResize = () => {
     if (window.innerWidth <= 768) {
@@ -41,13 +44,13 @@ const InformConfirm = () => {
             emocionados por tu participación.
           </p>
           <div className="container-btn-confirm">
-            <button className="confirm-btn" disabled onClick={confirm}>
+            <button className="confirm-btn" onClick={confirm}>
               CONFIRMAR ASISTENCIA
             </button>
-            <span>
+            {/* <span>
               Próximamente se habilitará esta sección para que puedas confirmar
               tu asistencia, te avisaremos vía e-mail.
-            </span>
+            </span> */}
           </div>
         </div>
         {!isMobile ? (

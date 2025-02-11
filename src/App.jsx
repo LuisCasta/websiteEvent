@@ -4,13 +4,16 @@ import Home from "./Home";
 import RecoveryPassword from "./RecoveryPassword";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRouter from "./ProtectedRouter";
-import { TestModeProvider } from "./TestMode.jsx"; // Importar el proveedor
+// import { TestModeProvider } from "./TestMode.jsx"; // Importar el proveedor
+import ScrollToTop from "./ScrollTop.jsx";
 
 import "./styles/App.css";
 
 const App = () => {
   return (
-    <TestModeProvider>
+    // <TestModeProvider>
+    <>
+      <ScrollToTop />
       <div className="app">
         {/* Manejo de rutas */}
         <Routes>
@@ -30,7 +33,8 @@ const App = () => {
         </Routes>
         <Footer />
       </div>
-    </TestModeProvider>
+    </>
+    // </TestModeProvider>
   );
 };
 

@@ -14,6 +14,10 @@
   margin: auto;
 }
 
+.disabled-field input {
+  opacity: 0.2;
+  pointer-events: none;
+}
 .main-message {
   width: 80%;
   display: flex;
@@ -138,7 +142,7 @@
 
 #individual_room,
 #shared_room {
-  width: 10%;
+  width: 10px;
 }
 
 .btn-registro {
@@ -310,6 +314,25 @@
   background-color: #0056b3;
 }
 
+.type-form-choose {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+.content-checkbox {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  gap: 2px;
+}
+.content-checkbox input {
+  width: 10px;
+}
+.content-checkbox label {
+  padding: 5px;
+  font-size: 0.8rem;
+}
 @media (max-width: 768px) {
   .contenedor-formulario-confirm {
     width: 90%;

@@ -44,7 +44,7 @@ const Dresscode = () => {
               <b>Actividades en jardín:</b> ropa deportiva, tenis y gorra.{" "}
             </p>
             <p className="p-dresscode">
-              <b>Cena de clausura:</b> Business casual con ropa de color negro.
+              <b>Cena de clausura:</b> business casual con ropa de color negro.
             </p>
           </div>
           <div className="img-container-dresscode">

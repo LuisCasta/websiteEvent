@@ -135,13 +135,36 @@ const FormularioRegistro = ({
         ))}
         <div className="form-footer">
           {modo === "crearCuenta" && (
-            <a
-              onClick={enlace.accion}
-              className="ready-btn-login"
-              id="login-btn-register"
-            >
-              {enlace.texto}
-            </a>
+            <>
+              <a
+                onClick={enlace.accion}
+                className="ready-btn-login"
+                id="login-btn-register"
+              >
+                {enlace.texto}
+              </a>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  style={{ width: "20px" }}
+                  id="terms_label"
+                  type="checkbox"
+                  required
+                />
+                <label
+                  style={{ fontSize: "0.7rem", color: "#2978b5" }}
+                  htmlFor="terms_label"
+                >
+                  Leí y acepto los{""}
+                  <a
+                    style={{ color: "#2978b5" }}
+                    target="_blank"
+                    href="https://drive.google.com/file/d/1vtUGxUrAbeNZKE40oeC39q3wf7R6nsL-/view"
+                  >
+                    <b>Términos y condiciones</b>
+                  </a>
+                </label>
+              </div>
+            </>
           )}
           {modo === "olvidoPassword" && (
             <div className="btn-init-container">

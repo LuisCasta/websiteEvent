@@ -136,10 +136,10 @@
   text-align: left;
 }
 
-#individual_room,
+/* #individual_room,
 #shared_room {
   width: 10%;
-}
+} */
 
 .btn-registro-decline {
   background-color: #2978b5;

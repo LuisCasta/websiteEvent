@@ -12,7 +12,6 @@ import Transport from "./Transport";
 import Dresscode from "./Dresscode";
 import Consejos from "./Consejos";
 import { Element } from "react-scroll";
-
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const step = searchParams.get("step");
@@ -70,6 +69,7 @@ const Home = () => {
         <Transport />
       </Element>
       <Element name="Vestimenta">
+        {" "}
         <Dresscode />
       </Element>
       <Element name="Consejos">

@@ -30,7 +30,7 @@ const Consejos = () => {
           <div className="text-consejo">
             <h2>Consejos para tu estancia</h2>
             <h3>
-              Estamos calentando motores para recibirte a la <br />{" "}
+              Estamos calentando motores para recibirte en la <br />{" "}
               <b>PRIMERA CONVENCIÓN GWM FINANCE 2025</b>, en alianza con BBVA.
             </h3>
           </div>

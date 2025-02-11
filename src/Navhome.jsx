@@ -1,30 +1,56 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-scroll"; // Importa Link de react-scroll
+import { Link } from "react-scroll";
 import "./styles/navhome.css";
 import images from "../src/assets/images";
 
 const NavHome = () => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
   user;
+  const navigate = useNavigate();
+  const menuRef = useRef(null); // Añadir el ref al menú
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Recupera los datos del usuario
+      setUser(JSON.parse(storedUser));
     } else {
       navigate("/"); // Si no hay usuario, manda a login
     }
+
+    // Añadir event listener al hacer clic fuera del menú
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Borra los datos del usuario
-    setUser(null); // Limpia el estado
-    navigate("/"); // Redirige al login
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/?iniciarsesion=true");
   };
+
   const backToHome = () => {
     navigate("/home", { replace: true });
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClick = () => {
+    toggleMenu();
+    backToHome();
   };
 
   const menuItems = [
@@ -72,19 +98,9 @@ const NavHome = () => {
     {
       icon: <img className="icon-img" src={images.logoutIco} />,
       text: "Cerrar sesión",
-      action: handleLogout, // Agregar función para logout
+      action: handleLogout,
     },
   ];
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleClick = () => {
-    toggleMenu();
-    backToHome();
-  };
 
   return (
     <nav className="navbar-home">
@@ -92,7 +108,9 @@ const NavHome = () => {
         <img className="logo-bbva-2" src={images.bbva} />
         <div className="container-all">
           <img className="logo-gwm-2" src={images.logoGwm} alt="" />
-          <div className="container-menu">
+          <div className="container-menu" ref={menuRef}>
+            {" "}
+            {/* Añadir el ref aquí */}
             <button className="btn-nav" onClick={toggleMenu}>
               <i className="bx bx-menu bx-md"></i>
             </button>
@@ -109,6 +127,7 @@ const NavHome = () => {
                         to={item.section}
                         smooth={true}
                         duration={500}
+                        offset={-70}
                         onClick={handleClick}
                       >
                         {item.icon} <span>{item.text}</span>
