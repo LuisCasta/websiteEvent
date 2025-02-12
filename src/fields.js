@@ -58,14 +58,14 @@ export const fields = [
   },
   {
     id: "date_return",
-    label: "Fecha",
+    label: "Fecha de regreso",
     type: "date",
     class: "input",
     isRequired: "required",
   },
   {
     id: "boarding_time_return",
-    label: "Hora de abordaje",
+    label: "Hora de abordaje de regreso",
     type: "time",
     class: "input",
     isRequired: "required",
@@ -80,7 +80,7 @@ export const fields = [
   {
     id: "notice_price",
     label:
-      "La habitación individual tendrá un costo adicional de $16,900.00 MXN",
+      "La habitación individual tendrá un costo adicional de $16,900.00 MXN Tarifa por persona, por noche.",
     type: "warning",
   },
   // Preguntas adicionales

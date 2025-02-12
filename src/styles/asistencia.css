@@ -136,6 +136,30 @@
   color: #a0a0a0;
 }
 
+/* .input[type="date"],
+.input[type="time"] {
+  appearance: none; /* Elimina estilos predeterminados 
+  -webkit-appearance: none; /* Necesario en iOS 
+  background-color: white;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Evita que se recorten los textos en iOS
+.input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* Placeholder visible en iOS 
+.input[type="date"]:before {
+  content: attr(placeholder);
+  color: gray;
+} */
+
 .form-notice {
   text-align: left;
 }
@@ -280,14 +304,19 @@
   width: 80%;
   max-width: 600px;
   box-shadow: 0px 5px 15px rgba(6, 0, 73, 0.3);
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
 }
-.modal-content h2 {
-  margin-bottom: 50px;
+/* .modal-content h2 {
+  margin-bottom: 10px;
 }
 
 .modal-content button {
-  margin-top: 50px;
-}
+  margin-top: 10px;
+} */
 /* Botón de cerrar */
 .close-modal-btn {
   position: absolute;
@@ -333,6 +362,11 @@
   padding: 5px;
   font-size: 0.8rem;
 }
+.p-modal {
+  height: 80%;
+  overflow-y: scroll;
+}
+
 @media (max-width: 768px) {
   .contenedor-formulario-confirm {
     width: 90%;
@@ -351,5 +385,11 @@
   .main {
     padding-top: 5rem;
     padding-bottom: 0rem;
+  }
+
+  .p-modal {
+    height: 75%;
+    overflow: scroll;
+    overscroll-behavior: auto;
   }
 }

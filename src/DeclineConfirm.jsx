@@ -181,11 +181,11 @@ const DeclineConfirm = ({ onComplete }) => {
                     />
                   </label>
                   <span className="room-title">
-                    Declino la invitación a compartir habitación
+                    Rechazo la invitación a compartir habitación
                   </span>
                 </div>
                 <button type="submit" className="btn-registro-decline">
-                  CONFIRMAR ASISTENCIA
+                  ENVIAR
                 </button>
                 <div className="container-message-decline">
                   {message.text && (

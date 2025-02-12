@@ -81,7 +81,7 @@ const FormularioRegistro = ({
             texto: "¿Aún no estás registrado? Regístrate",
             accion: () => setModo("crearCuenta"),
             accionIniciar: () => setModo("iniciarSesion"),
-            textIniciar: "Inicia sesión",
+            textIniciar: "Iniciar sesión",
           },
         };
       default:
@@ -154,7 +154,7 @@ const FormularioRegistro = ({
                   style={{ fontSize: "0.7rem", color: "#2978b5" }}
                   htmlFor="terms_label"
                 >
-                  Leí y acepto los{""}
+                  Leí y acepto los{" "}
                   <a
                     style={{ color: "#2978b5" }}
                     target="_blank"

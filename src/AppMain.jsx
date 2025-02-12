@@ -26,6 +26,29 @@ const AppMain = () => {
   const [searchParams] = useSearchParams();
   const step = searchParams.get("step");
   const inicio = searchParams.get("iniciarsesion");
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
+  const { login } = UseAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user && step) {
+      login();
+      navigate(`/home?step=${step}`, { replace: true });
+    }
+  }, [login, navigate, step]);
+  // Al cargar la app, revisar si hay usuario en localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // Guarda el usuario en el estado
+      login(); // Simula el inicio de sesión automático
+      navigate("/home", { replace: true }); // Redirige a /home
+    }
+  }, [login, navigate]);
   // console.log(recovery);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
@@ -49,6 +72,7 @@ const AppMain = () => {
       return acc;
     }, {})
   );
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormDataInput({
@@ -57,26 +81,6 @@ const AppMain = () => {
     });
     // console.log(id, value);
   };
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
-  const { login } = UseAuth();
-  const navigate = useNavigate();
-  // Al cargar la app, revisar si hay usuario en localStorage
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      login(); // Simula el inicio de sesión automático
-    }
-  }, [login]);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      navigate("/home", { replace: true });
-    }
-  }, [navigate]);
 
   // console.log(UseAuth());
   // Función para manejar la acción del botón
