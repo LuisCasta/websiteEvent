@@ -219,11 +219,11 @@ const FormularioRegistro = ({
         {isOpen && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <h2>AVISO LEGAL Y TÉRMINOS Y CONDICIONES DEL SITIOWEB</h2>
+              <h2>AVISO LEGAL Y TÉRMINOS Y CONDICIONES DEL SITIO WEB</h2>
               <p className="p-modal">
                 INFORMACIÓN GENERAL: BBVA México, SA Institución de Banca
                 Múltiple, (sucesivo BBVA México) es una Institución Delaware
-                Banco Múltiple, que cuenta estafa las autorizaciones y permisos
+                Banco Múltiple, que cuenta con las autorizaciones y permisos
                 correspondientes para el direccionamiento de la plataforma.
                 DATOS GENERALES Denominación social: AVISO LEGAL Y TÉRMINOS Y
                 CONDICIONES del Sitio web (acelerandooportunidades2025.com) para
