@@ -35,7 +35,6 @@ const AppMain = () => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user && step) {
-      login();
       navigate(`/home?step=${step}`, { replace: true });
     }
   }, [login, navigate, step]);

@@ -365,6 +365,7 @@
 .p-modal {
   height: 80%;
   overflow-y: scroll;
+  text-align: left;
 }
 
 @media (max-width: 768px) {

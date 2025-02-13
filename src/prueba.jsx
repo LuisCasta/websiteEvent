@@ -8,7 +8,7 @@ import { fields } from "./fields.js";
 // import Header from "./Header.jsx";
 import NavHome from "./Navhome.jsx";
 
-const ConfirmForm = ({ onComplete }) => {
+const Prueba = ({ onComplete }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [vipUser, setVipUser] = useState(null);
   const handleChangeRadio = (e) => {
@@ -276,6 +276,14 @@ const ConfirmForm = ({ onComplete }) => {
                 if (field.condition && !formData[field.condition]) {
                   return null;
                 }
+
+                if (field.type === "title") {
+                  return (
+                    <h4 key={field.id} className="form-title">
+                      {field.label}
+                    </h4>
+                  );
+                }
                 // Evitar renderizar checkboxes si el usuario es VIP
                 if (
                   vipUser === 1 &&
@@ -285,30 +293,22 @@ const ConfirmForm = ({ onComplete }) => {
                 ) {
                   return null;
                 }
+                {
+                  vipUser === 0 && (
+                    <>
+                      {field.type === "notice" && (
+                        <p key={field.id} className="form-notice">
+                          <b>Importante:</b> {field.label}
+                        </p>
+                      )}
 
-                if (field.type === "title") {
-                  return (
-                    <h4 key={field.id} className="form-title">
-                      {field.label}
-                    </h4>
-                  );
-                }
-
-                if (field.type === "notice") {
-                  return (
-                    <p key={field.id} className="form-notice">
-                      <b>Importante:</b>
-                      {field.label}
-                    </p>
-                  );
-                }
-
-                if (field.type === "warning") {
-                  return (
-                    <div key={field.id} className="warning">
-                      <i className="bx bx-md bxs-error-circle bx-flip-vertical"></i>
-                      <p className="form-warning">{field.label}</p>
-                    </div>
+                      {field.type === "warning" && (
+                        <div key={field.id} className="warning">
+                          <i className="bx bx-md bxs-error-circle bx-flip-vertical"></i>
+                          <p className="form-warning">{field.label}</p>
+                        </div>
+                      )}
+                    </>
                   );
                 }
 
@@ -339,11 +339,7 @@ const ConfirmForm = ({ onComplete }) => {
                       </label>
                     )}
                     <input
-                      className={
-                        field.type == "date" || field.type == "time"
-                          ? "date-time"
-                          : field.class
-                      }
+                      className={field.class}
                       id={field.id}
                       type={field.type}
                       value={
@@ -651,5 +647,3 @@ const ConfirmForm = ({ onComplete }) => {
 ConfirmForm.propTypes = {
   onComplete: PropTypes.func,
 };
-
-export default ConfirmForm;

@@ -7,7 +7,7 @@ const DiagonalSection = () => {
       <div className="container-general">
         <div className="container-pasos">
           <div className="text-diagonal">
-            <h2>Generales de Evento</h2>
+            <h2>Generales del Evento</h2>
             <p>Vive una experiencia única</p>
           </div>
         </div>
@@ -18,8 +18,12 @@ const DiagonalSection = () => {
               <img src={images.calendar} alt="" />
               <div className="text-date">
                 <p className="small text-info-p">Del 10 al 12</p>
-                <p className="middle text-info-p">de Marzo</p>
-                <p className="lg text-info-p">2025</p>
+                <p className="middle text-info-p" style={{ fontWeight: "500" }}>
+                  de marzo
+                </p>
+                <p className="lg text-info-p" style={{ fontWeight: "bolder" }}>
+                  2025
+                </p>
               </div>
             </div>
             <div className="locate info">
