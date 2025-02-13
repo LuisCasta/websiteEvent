@@ -349,7 +349,11 @@ const ConfirmForm = ({ onComplete }) => {
                       value={
                         field.type === "checkbox"
                           ? undefined
-                          : formData[field.id]
+                          : field.type === "date"
+                          ? formData[field.id] || "2025-01-01" // Valor predeterminado para fecha
+                          : field.type === "time"
+                          ? formData[field.id] || "14:30" // Valor predeterminado para hora
+                          : formData[field.id] || "" // Para otros tipos de campos
                       }
                       checked={
                         field.type === "checkbox"

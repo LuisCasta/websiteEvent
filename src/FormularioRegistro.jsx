@@ -314,7 +314,7 @@ const FormularioRegistro = ({
                 datos subyacentes, el diseño gráfico y la interfaz de
                 Participante (aspecto y sensación) y los programas de ordenador
                 subyacentes (incluidos los códigos fuente y objeto) (en
-                adelante, los 'Contenidos'). El uso del Sitio Web por el
+                adelante, los Contenidos). El uso del Sitio Web por el
                 Participante NO le otorga derecho alguno sobre los derechos de
                 propiedad intelectual e industrial sobre el Sitio Web y los
                 Contenidos. A tal efecto, mediante las presentes Condiciones de
@@ -482,8 +482,8 @@ const FormularioRegistro = ({
                 con el Aviso Legal, la Política de Protección de Datos
                 Personales y la Política de Cookies constituyen en su conjunto
                 los términos y condiciones que rigen el acceso y uso de la parte
-                pública del Sitio Web (los 'Términos y Condiciones del Sitio
-                Web'). El acceso y utilización del Sitio Web por parte del
+                pública del Sitio Web (los Términos y Condiciones del Sitio
+                Web). El acceso y utilización del Sitio Web por parte del
                 Participante supone que éste acepta en su totalidad y se obliga
                 a cumplir por completo los Términos y Condiciones del Sitio Web.
                 Por lo tanto, debe leer atentamente los presentes Términos y
