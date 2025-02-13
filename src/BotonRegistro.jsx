@@ -7,7 +7,7 @@ const BotonRegistro = ({ modo }) => {
         : modo == "iniciarSesion"
         ? "INICIA SESIÓN"
         : modo == "olvidoPassword"
-        ? "ENVIAR CORREO"
+        ? "RECUPERAR CONTRASEÑA"
         : ""}
     </button>
   );

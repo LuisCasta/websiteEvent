@@ -20,6 +20,7 @@ import { registerUser } from "./index.js";
 import { emailToken } from "./index.js";
 import { loginUser } from "./index.js";
 import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const AppMain = () => {
   const [user, setUser] = useState(null);
@@ -31,11 +32,29 @@ const AppMain = () => {
   const [visible, setVisible] = useState(false); // Estado para controlar la visibilidad
   const { login } = UseAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    if (user && step) {
-      navigate(`/home?step=${step}`, { replace: true });
+    if (user && step == 2) {
+      login();
+      navigate(`/home?step=2`, { replace: true });
+    }
+  }, [login, navigate, step]);
+  const catchStep = () => {
+    const user = localStorage.getItem("user");
+    if (user && step == 1) {
+      login();
+      navigate(`/home?step=1`, { replace: true });
+    }
+  };
+  catchStep();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user && step == 1) {
+      login();
+      navigate(`/home?step=1`, { replace: true });
     }
   }, [login, navigate, step]);
   // Al cargar la app, revisar si hay usuario en localStorage
@@ -45,9 +64,9 @@ const AppMain = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser)); // Guarda el usuario en el estado
       login(); // Simula el inicio de sesión automático
-      navigate("/home", { replace: true }); // Redirige a /home
+      navigate(`/home${location.search}`); // Redirige a /home
     }
-  }, [login, navigate]);
+  }, [login, navigate, location]);
   // console.log(recovery);
   // Auí empieza el código para comnsumir la api register
   const [formData, setFormData] = useState({
