@@ -136,19 +136,27 @@
   color: #a0a0a0;
 }
 
-/* .input[type="date"],
-.input[type="time"] {
-  appearance: none; /* Elimina estilos predeterminados 
-  -webkit-appearance: none; /* Necesario en iOS 
-  background-color: white;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  font-size: 16px;
-  color: #333;
+.date_return,
+.date_outbound,
+.boarding_time_return,
+.boarding_time_outbound {
+  position: relative;
+}
+.date-time[type="date"]::after {
+  content: "Fecha:";
+  position: absolute;
+  top: -7px;
+  font-size: 10px;
+  /* font-weight: 700; */
 }
 
+.date-time[type="time"]::after {
+  content: "Hora:";
+  position: absolute;
+  top: -7px;
+  font-size: 10px;
+  /* font-weight: 700; */
+}
 /* Evita que se recorten los textos en iOS
 .input[type="date"]::-webkit-date-and-time-value {
   text-align: left;

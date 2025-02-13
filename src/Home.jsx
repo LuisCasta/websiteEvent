@@ -25,7 +25,7 @@ const Home = () => {
     }
     setTimeout(() => {
       setSearchParams(searchParams);
-    }, 17000);
+    }, 12000);
   };
 
   if (step == "1") {

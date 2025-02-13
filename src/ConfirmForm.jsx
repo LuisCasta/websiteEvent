@@ -177,14 +177,14 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Espera un momento estamos confirmando tu asistencia...",
             type: "success",
           }),
-        1000
+        100
       );
       setTimeout(() => {
         setMessageData({
           text: "Confirmación de asistencia exitosa. Si has solicitado una habitación compartida, en breve te notificaremos la respuesta.",
           type: "success",
         });
-      }, 10000);
+      }, 2000);
 
       setTimeout(
         () =>
@@ -192,12 +192,12 @@ const ConfirmForm = ({ onComplete }) => {
             text: "Te rediccionaremos a la página de inicio",
             type: "success",
           }),
-        17000
+        7000
       );
       setTimeout(() => {
-        setTimeout(() => setMessageData({ text: "", type: "" }), 17000);
+        setTimeout(() => setMessageData({ text: "", type: "" }), 7000);
         onComplete();
-      }, 2000);
+      }, 12000);
 
       setTimeout(() => resetForm(), 5000);
     } catch (err) {
