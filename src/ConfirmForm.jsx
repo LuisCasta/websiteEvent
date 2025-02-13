@@ -32,8 +32,8 @@ const ConfirmForm = ({ onComplete }) => {
     if (userData) {
       // Parsear el JSON y obtener el id
       const user = JSON.parse(userData);
-      setUserId(user.idUser); // Almacena el id en el estado
-      console.log(user.idUser);
+      setUserId(user.id); // Almacena el id en el estado
+      // console.log(user.id);
     }
   }, []);
 
