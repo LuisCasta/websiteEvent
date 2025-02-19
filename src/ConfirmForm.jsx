@@ -81,6 +81,7 @@ const ConfirmForm = ({ onComplete }) => {
     const firstDate = formData.date_outbound; // Fecha de vuelo de ida
     const firstBoardingTime = formData.boarding_time_outbound; // Hora de abordaje de ida
     const lastDate = formData.date_return; // Fecha de vuelo de regreso
+    const lastBoardingTime = formData.boarding_time_return;
 
     // Fecha límite: 10 de marzo de 2025
     const limitDate = new Date("2025-03-10");
@@ -147,6 +148,45 @@ const ConfirmForm = ({ onComplete }) => {
     if (selectedLastDate < selectedFirstDate) {
       setMessageData({
         text: "La fecha del vuelo de regreso no puede ser anterior a la fecha del vuelo de ida.",
+        type: "error",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      // setTimeout(() => resetForm(), 4000);
+      return;
+    }
+
+    if (firstDate == "") {
+      setMessageData({
+        text: "Selecciona una fecha válida para la ida",
+        type: "error",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      // setTimeout(() => resetForm(), 4000);
+      return;
+    }
+    if (firstBoardingTime == "") {
+      setMessageData({
+        text: "Selecciona una hora válida para la ida",
+        type: "error",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      // setTimeout(() => resetForm(), 4000);
+      return;
+    }
+
+    if (lastDate == "") {
+      setMessageData({
+        text: "Selecciona una fecha válida para el regreso",
+        type: "error",
+      });
+      setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
+      // setTimeout(() => resetForm(), 4000);
+      return;
+    }
+
+    if (lastBoardingTime == "") {
+      setMessageData({
+        text: "Selecciona una hora válida para el regreso",
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
