@@ -157,7 +157,7 @@ const ConfirmForm = ({ onComplete }) => {
 
     if (firstDate == "") {
       setMessageData({
-        text: "Selecciona una fecha válida para la ida",
+        text: "Selecciona una fecha válida para la información de llegada.",
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
@@ -166,7 +166,7 @@ const ConfirmForm = ({ onComplete }) => {
     }
     if (firstBoardingTime == "") {
       setMessageData({
-        text: "Selecciona una hora válida para la ida",
+        text: "Selecciona una hora válida para la información de llegada.",
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
@@ -176,7 +176,7 @@ const ConfirmForm = ({ onComplete }) => {
 
     if (lastDate == "") {
       setMessageData({
-        text: "Selecciona una fecha válida para el regreso",
+        text: "Selecciona una fecha válida para la información de salida.",
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
@@ -186,7 +186,7 @@ const ConfirmForm = ({ onComplete }) => {
 
     if (lastBoardingTime == "") {
       setMessageData({
-        text: "Selecciona una hora válida para el regreso",
+        text: "Selecciona una hora válida para la información de salida.",
         type: "error",
       });
       setTimeout(() => setMessageData({ text: "", type: "" }), 5000);
