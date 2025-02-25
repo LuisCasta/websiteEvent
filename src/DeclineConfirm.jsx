@@ -7,26 +7,27 @@ import PropTypes from "prop-types";
 import NavHome from "./Navhome.jsx";
 const DeclineConfirm = ({ onComplete }) => {
   const [message, setMessage] = useState({ text: "", type: "" });
-  const [tokenUser, setUserToken] = useState(null);
+  // const [tokenUser, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
     if (userData) {
       const user = JSON.parse(userData);
       setUserId(user.id);
     }
-    if (token) {
-      setUserToken(token);
-    }
+    // if (token) {
+    //   setUserToken(token);
+    // }
   }, []);
 
   const [companionData, setCompanionData] = useState(null); // Almacena los datos obtenidos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
+  const [token, setToken] = useState(null);
   loading, error;
   useEffect(() => {
     const fetchCompanionData = async () => {
@@ -34,7 +35,7 @@ const DeclineConfirm = ({ onComplete }) => {
         // Aquí puedes definir el objeto que enviarás a la API
         const data = await dataUserCompanion({ userId }); // Llamada a la API
         setCompanionData(data.hostUser);
-        // console.log(companionData.name);
+        setToken(data.token.token);
         // Almacena los datos obtenidos
       } catch (err) {
         setError(err.message); // Almacena el mensaje de error
@@ -59,31 +60,31 @@ const DeclineConfirm = ({ onComplete }) => {
       return;
     }
     const responseValue = response === "accept" ? 1 : 0;
+    if (!userId) {
+      setMessage({
+        text: "Usuario no proporcionado o inválido.",
+        type: "error",
+      });
+      setTimeout(() => ({ text: "", type: "" }), 5000);
+      return;
+    }
+
+    if (!token) {
+      setMessage({
+        text: "Token no válido o no proporcionado.",
+        type: "error",
+      });
+      setTimeout(() => ({ text: "", type: "" }), 5000);
+      return;
+    }
 
     try {
       const result = await confirmDecline({
         userId,
         isConfirm: responseValue,
-        token: tokenUser,
+        token,
       });
 
-      if (!userId) {
-        setMessage({
-          text: "Usuario no proporcionado o inválido.",
-          type: "error",
-        });
-        setTimeout(() => ({ text: "", type: "" }), 5000);
-        return;
-      }
-
-      if (!tokenUser) {
-        setMessage({
-          text: "Token no válido o no proporcionado.",
-          type: "error",
-        });
-        setTimeout(() => ({ text: "", type: "" }), 5000);
-        return;
-      }
       setTimeout(
         () =>
           setMessage({
