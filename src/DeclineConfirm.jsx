@@ -14,7 +14,6 @@ const DeclineConfirm = ({ onComplete }) => {
   useEffect(() => {
     const userData = localStorage.getItem("user");
     // const token = localStorage.getItem("token");
-
     if (userData) {
       const user = JSON.parse(userData);
       setUserId(user.id);

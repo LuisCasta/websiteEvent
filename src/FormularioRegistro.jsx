@@ -167,6 +167,18 @@ const FormularioRegistro = ({
                     </a>
                   </label>
                 </div>
+                <p
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "0.7rem",
+                    color: "#2978b5",
+                    textAlign: "left",
+                  }}
+                >
+                  Al continuar, otorgo mi consentimiento a BBVA México para que
+                  trate mis datos personales de conformidad con el Aviso de
+                  Privacidad.
+                </p>
               </>
             )}
             {modo === "olvidoPassword" && (
