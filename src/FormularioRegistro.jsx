@@ -1,5 +1,4 @@
 import Input from "./Input";
-// import { useState } from "react";
 import BotonRegistro from "./BotonRegistro";
 import PropTypes from "prop-types";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -16,48 +15,52 @@ const FormularioRegistro = ({
   formDataInput,
   handleChange,
   visible,
+  date,
 }) => {
   function onChange(value) {
     console.log("Captcha value:", value);
   }
+
   // const { isTestMode } = useTestMode();
   // Configuración de los campos y el enlace según el modo
   const obtenerCampos = () => {
     switch (modo) {
       case "crearCuenta":
-        return {
-          campos: [
-            { id: "email", placeholder: "Correo electrónico", type: "email" },
-            { id: "password", placeholder: "Contraseña", type: "password" },
-            {
-              id: "confirmPassword",
-              placeholder: "Confirmar tu contraseña",
-              type: "password",
+        if (date == false) {
+          return {
+            campos: [
+              { id: "email", placeholder: "Correo electrónico", type: "email" },
+              { id: "password", placeholder: "Contraseña", type: "password" },
+              {
+                id: "confirmPassword",
+                placeholder: "Confirmar tu contraseña",
+                type: "password",
+              },
+            ],
+            enlace: {
+              message: "",
+              texto: "¿Ya estás registrado? Inicia sesión",
+              accion: () => setModo("iniciarSesion"),
             },
-          ],
-          btn: [
-            {
-              texto: "Botón Extra: Crear Cuenta",
-              accion: () => alert("Acción para Crear Cuenta"),
+          };
+        } else {
+          return {
+            campos: [],
+            enlace: {
+              message: "",
+              texto: "Iniciar sesión",
+              accion: () => {
+                setModo("iniciarSesion");
+              },
             },
-          ],
-          enlace: {
-            message: "",
-            texto: "¿Ya estás registrado? Inicia sesión",
-            accion: () => setModo("iniciarSesion"),
-          },
-        };
+          };
+        }
+
       case "iniciarSesion":
         return {
           campos: [
             { id: "email", placeholder: "Correo electrónico", type: "email" },
             { id: "password", placeholder: "Contraseña", type: "password" },
-          ],
-          btn: [
-            {
-              texto: "Botón Extra: Iniciar Sesión",
-              accion: () => alert("Acción para Iniciar Sesión"),
-            },
           ],
           enlace: {
             message: "",
@@ -71,12 +74,6 @@ const FormularioRegistro = ({
         return {
           campos: [
             { id: "email", placeholder: "Correo electrónico", type: "email" },
-          ],
-          btn: [
-            {
-              texto: "Botón Extra: Recuperar Contraseña",
-              accion: () => alert("Acción para Recuperar Contraseña"),
-            },
           ],
           enlace: {
             texto: "¿Aún no estás registrado? Regístrate",
@@ -95,18 +92,52 @@ const FormularioRegistro = ({
 
   return (
     <>
-      <div className="contenedor-formulario-register">
-        {modo === "crearCuenta" && (
-          <div className="message-form">
-            <h3 className="call-title">Regístrate</h3>
-            <p className="message-form-text">
-              Conoce toda la información para participar en la
-              <b> PRIMERA CONVENCIÓN GWM FINANCE 2025</b> en alianza con{" "}
-              <b>BBVA.</b>
-              <br /> <br /> Recuerda registrarte con tu correo de la agencia.
-            </p>
-          </div>
-        )}
+      <div
+        className={
+          modo == "crearCuenta" && date === true
+            ? "no-register"
+            : "contenedor-formulario-register"
+        }
+      >
+        {modo === "crearCuenta" &&
+          (date === true ? (
+            <div className="message-form">
+              <h3 className="title-no-register">Registro cerrado</h3>
+              <p
+                style={{
+                  textAlign: "center",
+                  marginBottom: "2.5rem",
+                  color: "#ffffff",
+                  fontSize: "1.8rem",
+                }}
+              >
+                Agradecemos tu interés y aunque en
+                <br />
+                esta ocasión no nos acompañes, <br />
+                seguro nos veremos en la próxima <br />
+                <b
+                  style={{
+                    textAlign: "center",
+                    marginBottom: "3rem",
+                    color: "#ffffff",
+                    fontSize: "2rem",
+                  }}
+                >
+                  Convención GWM Finance, <br /> en alianza con BBVA.
+                </b>
+              </p>
+            </div>
+          ) : (
+            <div className="message-form">
+              <h3 className="call-title">Regístrate</h3>
+              <p className="message-form-text">
+                Conoce toda la información para participar en la
+                <b> PRIMERA CONVENCIÓN GWM FINANCE 2025</b> en alianza con{" "}
+                <b>BBVA.</b>
+                <br /> <br /> Recuerda registrarte con tu correo de la agencia.
+              </p>
+            </div>
+          ))}
 
         <form className="formulario" onSubmit={onSubmit}>
           <h2>
@@ -124,6 +155,7 @@ const FormularioRegistro = ({
               </p>
             </div>
           )}
+
           {campos.map((campo) => (
             <div key={campo.id}>
               <Input
@@ -137,50 +169,60 @@ const FormularioRegistro = ({
             </div>
           ))}
           <div className="form-footer">
-            {modo === "crearCuenta" && (
-              <>
-                <a
-                  onClick={enlace.accion}
-                  className="ready-btn-login"
-                  id="login-btn-register"
-                >
-                  {enlace.texto}
-                </a>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <input
-                    style={{ width: "20px" }}
-                    id="terms_label"
-                    type="checkbox"
-                    required
-                  />
-                  <label
-                    style={{ fontSize: "0.7rem", color: "#2978b5" }}
-                    htmlFor="terms_label"
+            {modo === "crearCuenta" &&
+              (date === true ? (
+                // Contenido alternativo cuando `date === true`
+                <>
+                  <button onClick={enlace.accion} className="btn-no-register">
+                    Iniciar sesión
+                  </button>
+                </>
+              ) : (
+                // Contenido original cuando `date === false` o no está definido
+                <>
+                  <a
+                    onClick={enlace.accion}
+                    className="ready-btn-login"
+                    id="login-btn-register"
                   >
-                    Leí y acepto los{" "}
-                    <a
-                      style={{ color: "#2978b5" }}
-                      target="_blank"
-                      onClick={() => setIsOpen(true)}
+                    {enlace.texto}
+                  </a>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <input
+                      style={{ width: "20px" }}
+                      id="terms_label"
+                      type="checkbox"
+                      required
+                    />
+                    <label
+                      style={{ fontSize: "0.7rem", color: "#2978b5" }}
+                      htmlFor="terms_label"
                     >
-                      <b>Términos y condiciones</b>
-                    </a>
-                  </label>
-                </div>
-                <p
-                  style={{
-                    fontWeight: "normal",
-                    fontSize: "0.7rem",
-                    color: "#2978b5",
-                    textAlign: "left",
-                  }}
-                >
-                  Al continuar, otorgo mi consentimiento a BBVA México para que
-                  trate mis datos personales de conformidad con el Aviso de
-                  Privacidad.
-                </p>
-              </>
-            )}
+                      Leí y acepto los{" "}
+                      <a
+                        style={{ color: "#2978b5" }}
+                        target="_blank"
+                        onClick={() => setIsOpen(true)}
+                      >
+                        <b>Términos y condiciones</b>
+                      </a>
+                    </label>
+                  </div>
+                  <p
+                    style={{
+                      fontWeight: "normal",
+                      fontSize: "0.7rem",
+                      color: "#2978b5",
+                      textAlign: "left",
+                    }}
+                  >
+                    Al continuar, otorgo mi consentimiento a BBVA México para
+                    que trate mis datos personales de conformidad con el Aviso
+                    de Privacidad.
+                  </p>
+                </>
+              ))}
+
             {modo === "olvidoPassword" && (
               <div className="btn-init-container">
                 <a
@@ -212,7 +254,9 @@ const FormularioRegistro = ({
             onChange={onChange}
             size="invisible"
           />
-          <BotonRegistro modo={modo} />
+          {!(modo === "crearCuenta" && date === true) && (
+            <BotonRegistro modo={modo} date={date} />
+          )}
           {error && visible && <p className="error-message">{error}</p>}
           {message && visible && (
             <p
@@ -566,6 +610,7 @@ FormularioRegistro.propTypes = {
   formDataInput: PropTypes.object.isRequired,
   handleChange: PropTypes.func,
   visible: PropTypes.bool,
+  date: PropTypes.bool,
 };
 
 export default FormularioRegistro;

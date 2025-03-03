@@ -19,6 +19,7 @@ import consejos from "./Consejos.png";
 import mobilvestimenta from "./vestimentamovil.png";
 import beach from "./beachmovil.png";
 import auto from "./auto-recovery.png";
+import bg3 from "./Transportacion.png";
 export default {
   homeIco,
   agendaIco,
@@ -41,4 +42,5 @@ export default {
   mobilvestimenta,
   beach,
   auto,
+  bg3,
 };

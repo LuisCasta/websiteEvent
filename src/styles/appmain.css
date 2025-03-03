@@ -12,6 +12,25 @@
   margin: auto;
 }
 
+.display-none {
+  display: none;
+}
+.slogan-no-register {
+  display: none;
+}
+
+.main-heigth {
+  background-size: cover;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  display: flex;
+  height: 100vh;
+}
+
+.no-register {
+  margin: auto;
+}
+
 .main-message {
   width: 80%;
   display: flex;
@@ -91,5 +110,10 @@
   .main {
     padding-top: 5rem;
     padding-bottom: 0rem;
+  }
+  .main-heigth {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    height: auto;
   }
 }

@@ -3,7 +3,7 @@ import FormularioRegistro from "./FormularioRegistro";
 import PropTypes from "prop-types";
 import Header from "./Header.jsx";
 import "./styles/appmain.css";
-import bg1 from "./assets/haval.png";
+// import bg1 from "./assets/haval.png";
 import bg2 from "./assets/BG2.png";
 import bg3 from "./assets/BG3.png";
 import camionetaBlanca from "./assets/Capa_16.png";
@@ -21,6 +21,7 @@ import { emailToken } from "./index.js";
 import { loginUser } from "./index.js";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import images from "../src/assets/images";
 
 const AppMain = () => {
   const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ const AppMain = () => {
   const { login } = UseAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const date = true;
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -237,7 +239,12 @@ const AppMain = () => {
   }, []);
 
   const fondos = {
-    crearCuenta: isMobile ? `url(${bckMobile})` : `url(${bg1})`, // Cambia el fondo según el modo
+    crearCuenta: isMobile
+      ? `url(${images.bg3})`
+      : date === true
+      ? `url(${images.bg3})` // Fondo especial si date === true
+      : `url(${images.bg3})`, // Fondo normal si date !== true
+    // Cambia el fondo según el modo
     iniciarSesion: isMobile ? `url(${bckMobile})` : `url(${bg2})`,
     olvidoPassword: isMobile ? `url(${bckMobile})` : `url(${bg3})`,
   };
@@ -255,13 +262,23 @@ const AppMain = () => {
         <></>
       ) : (
         <main
-          className="main"
+          className={
+            modo === "crearCuenta" && date === true ? "main-heigth" : "main"
+          }
           style={{
             backgroundImage: fondos[modo], // Cambia el fondo según el modo
           }}
         >
           <div className="content-main">
-            <img className="slogan-img-mov" src={slogan} alt="" />
+            <img
+              className={
+                modo === "crearCuenta" && date === true
+                  ? "slogan-no-register"
+                  : "slogan-img-mov"
+              }
+              src={slogan}
+              alt=""
+            />
             <FormularioRegistro
               setModo={setModo}
               modo={modo}
@@ -271,8 +288,15 @@ const AppMain = () => {
               formDataInput={formDataInput}
               handleChange={handleChange}
               visible={visible} // Pasa la función de manejar cambios
+              date={date}
             />
-            <div className="main-message">
+            <div
+              className={
+                modo === "crearCuenta" && date === true
+                  ? "display-none"
+                  : "main-message"
+              }
+            >
               <img className="slogan-img" src={slogan} alt="" />
               <div className="container-pickup">
                 <img className="pickup" src={camionetas[modo]} alt="" />

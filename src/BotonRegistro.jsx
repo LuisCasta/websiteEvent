@@ -15,5 +15,6 @@ const BotonRegistro = ({ modo }) => {
 // Validación de props con PropTypes
 BotonRegistro.propTypes = {
   modo: PropTypes.string.isRequired, // La prop "modo" debe ser un string obligatorio
+  date: PropTypes.bool,
 };
 export default BotonRegistro;
