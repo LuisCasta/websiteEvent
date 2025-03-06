@@ -13,13 +13,7 @@ const Footer = () => {
         <div className="advices">
           <div className="container-info">
             <div className="container-legal">
-              <a
-                target="_blank"
-                href="https://www.bbva.mx/personas/aviso-legal.html"
-                className="legal-advices"
-              >
-                Aviso legal
-              </a>
+              <a className="legal-advices">Aviso legal</a>
               <a
                 target="_blank"
                 href="https://drive.google.com/file/d/1PWeYHJG8RF54NTkJBpACyR2n_lzdoOVB/view?usp=sharing"

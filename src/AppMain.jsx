@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import FormularioRegistro from "./FormularioRegistro";
 import PropTypes from "prop-types";
-import Header from "./Header.jsx";
+// import Header from "./Header.jsx";
 import "./styles/appmain.css";
 // import bg1 from "./assets/haval.png";
 import bg2 from "./assets/BG2.png";
@@ -257,7 +257,7 @@ const AppMain = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {user ? (
         <></>
       ) : (

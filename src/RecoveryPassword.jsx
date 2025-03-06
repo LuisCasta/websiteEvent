@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Header from "./Header";
 import slogan from "./assets/Slogan.png";
 import images from "./assets/images.js";
 import { recovery } from "./index.js";
@@ -130,7 +129,6 @@ const RecoveryPassword = () => {
 
   return (
     <>
-      <Header />
       <main className="main">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="" />

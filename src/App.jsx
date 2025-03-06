@@ -1,5 +1,5 @@
 import AppMain from "./AppMain";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Home from "./Home";
 import RecoveryPassword from "./RecoveryPassword";
 import { Routes, Route } from "react-router-dom";
@@ -31,7 +31,7 @@ const App = () => {
           {/* Ruta principal */}
           <Route path="/" element={<AppMain />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
     // </TestModeProvider>
