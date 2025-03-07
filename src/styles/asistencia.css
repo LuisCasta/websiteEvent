@@ -62,7 +62,7 @@
     align-items: center;
     gap: 0;
   }
-  main {
+  .main-confirm {
     height: initial;
     padding-bottom: 0;
     padding-top: 1rem;
@@ -391,7 +391,7 @@
   .content-main {
     gap: 0;
   }
-  .main {
+  .main-confirm {
     padding-top: 5rem;
     padding-bottom: 0rem;
   }
