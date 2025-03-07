@@ -5,6 +5,7 @@ import { confirmDecline, dataUserCompanion } from "./index.js";
 import "./styles/decline.css";
 import PropTypes from "prop-types";
 import NavHome from "./Navhome.jsx";
+import Footer from "./Footer.jsx";
 const DeclineConfirm = ({ onComplete }) => {
   const [message, setMessage] = useState({ text: "", type: "" });
   // const [tokenUser, setUserToken] = useState(null);
@@ -223,6 +224,7 @@ const DeclineConfirm = ({ onComplete }) => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

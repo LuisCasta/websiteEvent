@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { fields } from "./fields.js";
 // import Header from "./Header.jsx";
 import NavHome from "./Navhome.jsx";
+import Footer from "./Footer.jsx";
 
 const ConfirmForm = ({ onComplete }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -263,7 +264,7 @@ const ConfirmForm = ({ onComplete }) => {
   return (
     <>
       <NavHome />
-      <main className="main">
+      <main className="main-confirm">
         <div className="content-main">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
           <div className="contenedor-formulario-confirm">
@@ -689,6 +690,7 @@ const ConfirmForm = ({ onComplete }) => {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 };

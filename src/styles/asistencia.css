@@ -1,9 +1,9 @@
-.main {
+.main-confirm {
   background-image: url("../assets/BG3.png");
   background-size: cover;
   padding-top: 10rem;
   padding-bottom: 10rem;
-  /* height: auto; */
+  height: auto;
   display: flex;
 }
 .content-main {
