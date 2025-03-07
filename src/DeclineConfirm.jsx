@@ -125,7 +125,7 @@ const DeclineConfirm = ({ onComplete }) => {
     <>
       <NavHome />
       <main className="main-decline">
-        <div className="content-main">
+        <div className="content-main-decline">
           <img className="slogan-img-mov" src={slogan} alt="Slogan" />
           <div className="contenedor-formulario-decline">
             <form className="formulario-2" onSubmit={manejarAccion}>

@@ -1,11 +1,11 @@
 .main-decline {
   background-image: url("../assets/BG3.png");
   background-size: cover;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
   display: flex;
 }
-.content-main {
+.content-main-decline {
   display: flex;
   justify-content: space-between;
   gap: 40px;

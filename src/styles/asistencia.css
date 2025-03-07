@@ -6,13 +6,13 @@
   height: auto;
   display: flex;
 }
-.content-main {
+/* .content-main {
   display: flex;
   justify-content: space-between;
   gap: 40px;
   width: 80%;
   margin: auto;
-}
+} */
 
 .disabled-field input {
   opacity: 0.2;
