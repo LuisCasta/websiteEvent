@@ -129,7 +129,7 @@ const RecoveryPassword = () => {
 
   return (
     <>
-      <main className="main">
+      <main className="main-recovery">
         <div className="content-main-recovery">
           <img className="slogan-img-mov" src={slogan} alt="" />
           <div className="contenedor-formulario">
