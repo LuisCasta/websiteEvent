@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://apibbva.onrender.com/api/auth/register";
+const API_URL = "https://events-production-4a8f.up.railway.app/api/auth/register";
 
 // Función para registrar un usuario
 export const registerUser = async (userData) => {
@@ -29,7 +29,7 @@ export const registerUser = async (userData) => {
 };
 
 const API_URL_RECOVERY_EMAIL =
-  "https://apibbva.onrender.com/api/auth/forgot-password";
+  "https://events-production-4a8f.up.railway.app/api/auth/forgot-password";
 
 // Función para recuperar password 1er vista
 export const emailToken = async (userData) => {
@@ -58,7 +58,7 @@ export const emailToken = async (userData) => {
 };
 
 const API_URL_RECOVERY =
-  "https://apibbva.onrender.com/api/auth/update-password";
+  "https://events-production-4a8f.up.railway.app/api/auth/update-password";
 
 // Función para recuperar 2da vista
 export const recovery = async (userData) => {
@@ -108,7 +108,7 @@ export const validateCaptcha = async (captchaToken) => {
   }
 };
 
-const API_LOGIN = "https://apibbva.onrender.com/api/auth/login";
+const API_LOGIN = "https://events-production-4a8f.up.railway.app/api/auth/login";
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(API_LOGIN, userData, {
@@ -133,7 +133,7 @@ export const loginUser = async (userData) => {
   }
 };
 
-const API_CONFIRM = "https://apibbva.onrender.com/api/event/confirm";
+const API_CONFIRM = "https://events-production-4a8f.up.railway.app/api/event/confirm";
 
 // Función para confirmar asistencia
 export const confirm = async (userData) => {
@@ -162,7 +162,7 @@ export const confirm = async (userData) => {
 };
 
 const API_CONFIRM_DECLINE =
-  "https://apibbva.onrender.com/api/event/confirmOrDecline";
+  "https://events-production-4a8f.up.railway.app/api/event/confirmOrDecline";
 
 // Función para confirmar asistencia
 export const confirmDecline = async (userData) => {
@@ -191,7 +191,7 @@ export const confirmDecline = async (userData) => {
 };
 
 const API_DATA_COMPANION =
-  "https://apibbva.onrender.com/api/event/getInvitationData";
+  "https://events-production-4a8f.up.railway.app/api/event/getInvitationData";
 
 // Función para confirmar asistencia
 export const dataUserCompanion = async (userData) => {
