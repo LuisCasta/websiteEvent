@@ -40,7 +40,13 @@ const Contador = () => {
 
   return (
     <div className="contador">
-      {timerComponents.length ? timerComponents : <span>¡Es Hoy!</span>}
+      {timerComponents.length ? (
+        timerComponents
+      ) : (
+        <span style={{ color: "white", fontSize: "3rem", fontWeight: "900" }}>
+          ¡Es Hoy!
+        </span>
+      )}
     </div>
   );
 };

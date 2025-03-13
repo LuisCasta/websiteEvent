@@ -109,8 +109,6 @@ const NavHome = () => {
         <div className="container-all">
           <img className="logo-gwm-2" src={images.logoGwm} alt="" />
           <div className="container-menu" ref={menuRef}>
-            {" "}
-            {/* Añadir el ref aquí */}
             <button className="btn-nav" onClick={toggleMenu}>
               <i className="bx bx-menu bx-md"></i>
             </button>

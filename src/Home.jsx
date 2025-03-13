@@ -13,7 +13,7 @@ import Dresscode from "./Dresscode";
 import Consejos from "./Consejos";
 import { Element } from "react-scroll";
 import Footer from "./Footer";
-// import Gallery from "./Gallery";
+import Gallery from "./Gallery";
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const step = searchParams.get("step");
@@ -78,9 +78,9 @@ const Home = () => {
         <Element name="Consejos">
           <Consejos />
         </Element>
-        {/* <Element name="Galeria">
+        <Element name="Galeria">
           <Gallery />
-        </Element> */}
+        </Element>
       </div>
       <Footer />
     </>

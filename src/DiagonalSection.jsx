@@ -41,7 +41,6 @@ const DiagonalSection = () => {
             </div>
           </div>
           <div className="contador-container-home">
-            <h2>FALTAN</h2>
             <Contador />
             <h4>
               PARA GENERAR OPORTUNIDADES CON GWM Y BBVA <br />
