@@ -84,6 +84,9 @@ export default function Gallery() {
           )}
         </div>
       </div>
+      {/* <button className="btn-video" style={{ margin: "2rem auto" }}>
+        Ver video memoria
+      </button> */}
     </div>
   );
 }
