@@ -55,9 +55,11 @@
 /* Estilos de paginación */
 .pagination {
   display: flex;
-  margin-top: 16px;
   gap: 8px;
   justify-content: center;
+  width: 50%;
+  flex-wrap: wrap;
+  margin: 1rem auto;
 }
 
 .page-button {
@@ -125,5 +127,6 @@
   }
   .pagination {
     flex-wrap: wrap;
+    width: 100%;
   }
 }
