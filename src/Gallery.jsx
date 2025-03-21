@@ -7,8 +7,9 @@ const IMAGES_PER_PAGE = 9;
 export default function Gallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   useEffect(() => {
-    if (selectedImage) {
+    if (selectedImage || selectedVideo) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -16,7 +17,7 @@ export default function Gallery() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [selectedImage]);
+  }, [selectedImage, selectedVideo]);
 
   const totalPages = Math.ceil(images.length / IMAGES_PER_PAGE);
   const displayedImages = images.slice(
@@ -84,9 +85,36 @@ export default function Gallery() {
           )}
         </div>
       </div>
-      {/* <button className="btn-video" style={{ margin: "2rem auto" }}>
+      <button
+        onClick={() =>
+          setSelectedVideo("https://www.youtube.com/embed/Pug7pERktwk")
+        }
+        className="btn-video"
+        style={{ margin: "2rem auto" }}
+      >
         Ver video memoria
-      </button> */}
+      </button>
+
+      {selectedVideo && (
+        <div className="modal-overlay" onClick={() => setSelectedVideo(null)}>
+          <div className="modal-content-gallery">
+            <iframe
+              className="iframe-video"
+              src="https://www.youtube.com/embed/Pug7pERktwk?si=yl5tDiOSK1DurwHw"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <button
+            className="close-button"
+            onClick={() => setSelectedVideo(null)}
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 }
