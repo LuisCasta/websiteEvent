@@ -7,7 +7,9 @@ const IMAGES_PER_PAGE = 9;
 export default function Gallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
+
   useEffect(() => {
     if (selectedImage || selectedVideo) {
       document.body.style.overflow = "hidden";
@@ -24,6 +26,23 @@ export default function Gallery() {
     (currentPage - 1) * IMAGES_PER_PAGE,
     currentPage * IMAGES_PER_PAGE
   );
+
+  const handleImageClick = (img, index) => {
+    setSelectedImage(img);
+    setSelectedIndex(index + (currentPage - 1) * IMAGES_PER_PAGE);
+  };
+
+  const handleNext = () => {
+    const nextIndex = (selectedIndex + 1) % images.length;
+    setSelectedImage(images[nextIndex]);
+    setSelectedIndex(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = (selectedIndex - 1 + images.length) % images.length;
+    setSelectedImage(images[prevIndex]);
+    setSelectedIndex(prevIndex);
+  };
 
   return (
     <div className="section-gallery">
@@ -42,12 +61,12 @@ export default function Gallery() {
                 src={img}
                 alt={`Image ${index}`}
                 className="gallery-image"
-                onClick={() => setSelectedImage(img)}
+                onClick={() => handleImageClick(img, index)}
               />
             ))}
           </div>
 
-          {/* Pagination */}
+          {/* Paginación */}
           <div className="pagination">
             {[...Array(totalPages)].map((_, i) => (
               <button
@@ -62,18 +81,27 @@ export default function Gallery() {
             ))}
           </div>
 
-          {/* Full Screen Image Dialog */}
+          {/* Modal de imagen completa con navegación */}
           {selectedImage && (
             <div
               className="modal-overlay"
               onClick={() => setSelectedImage(null)}
             >
-              <div className="modal-content-gallery">
+              <div
+                className="modal-content-gallery"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="nav-button left" onClick={handlePrev}>
+                  ←
+                </button>
                 <img
                   src={selectedImage}
                   className="modal-image"
                   alt="Full view"
                 />
+                <button className="nav-button right" onClick={handleNext}>
+                  →
+                </button>
               </div>
               <button
                 className="close-button"
@@ -95,16 +123,17 @@ export default function Gallery() {
         Ver video memoria
       </button>
 
+      {/* Modal de video */}
       {selectedVideo && (
         <div className="modal-overlay" onClick={() => setSelectedVideo(null)}>
           <div className="modal-content-gallery">
             <iframe
               className="iframe-video"
-              src="https://www.youtube.com/embed/Pug7pERktwk?si=yl5tDiOSK1DurwHw"
+              src={selectedVideo}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
           <button
