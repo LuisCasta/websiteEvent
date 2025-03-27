@@ -49,7 +49,7 @@ const Home = () => {
                   <img className="slogan-home" src={slogan} alt="" />
                 </div>
                 <div className="msg-h2">
-                  <h2>Evento dirigido a Dueños, Directores de Marca y F&I</h2>
+                  {/* <h2>Evento dirigido a Dueños, Directores de Marca y F&I</h2> */}
                 </div>
                 <div className="content-pickup">
                   <img className="pickup-gris-home" src={pickgris} alt="" />
